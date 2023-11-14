@@ -1,0 +1,93 @@
+SINT32 ret;
+
+if (SviClt_Read() < 0)
+    LOG_W(0, "Control_CycleStart", "Could not read all SVI variables!");
+
+time ( &rawtime );
+timeinfo = gmtime( &rawtime );
+sprintf(Date_and_Time, "%d.%02d.%02d_%02d:%02d:%02d:%03lld", timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, Time_ms1970 % 1000);
+
+//    filename_hostdata
+sprintf(dateYMD_HMS,"%d%02d%02d_%02d%02d%02d", timeinfo->tm_year + 1900, timeinfo->tm_mon + 1, timeinfo->tm_mday, timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+sprintf(output_FileName_fast,"%s%s_%s_FAST.dat", output_path, dateYMD_HMS, output_FileName_main);
+sprintf(output_FileName_slow,"%s%s_%s_SLOW.dat", output_path, dateYMD_HMS, output_FileName_main);
+sprintf(output_FileName_ctrl,"%s%s_%s_CTRL.dat", output_path, dateYMD_HMS, output_FileName_main);
+
+
+// Check if Recording_Start has changed, and if it went off i should close all open files
+if (Recording_Start == FALSE && Recording_Start_prev == TRUE ) {
+    if (pFileFast != NULL) {fclose(pFileFast);}
+    if (pFileSlow != NULL) {fclose(pFileSlow);}
+    if (pFileCtrl != NULL) {fclose(pFileCtrl);}
+} else if (Recording_Start == TRUE && Recording_Start_prev == FALSE ) { // if i just turned on the recording, create new files
+    CycleCount_new_file = CycleCount;
+}
+
+// Shall we generate new files? (has time elapsed?)
+if (CycleCount >= CycleCount_new_file && Recording_Start)
+{
+    create_new_file_fast = TRUE;
+    create_new_file_slow = TRUE;
+    create_new_file_ctrl = TRUE;
+
+    CycleCount_new_file = CycleCount + offset_newfile;
+}
+
+
+// manage fast file
+if ((CycleCount % FAST_FREQ_RATIO) == 0 && Recording_Start )  {
+
+    if (create_new_file_fast) {
+        if (pFileFast != NULL) {fclose(pFileFast);}
+        pFileFast = fopen( output_FileName_fast, "w");
+        if (pFileFast == NULL)
+        {
+            LOG_W(0, "Control_CycleStart", "Cannot open fast file!");
+        } else {
+        ret = write_header_fast();
+        }
+        create_new_file_fast = FALSE;
+    };
+
+    if (pFileFast != NULL) ret = write_output_fast();
+    else LOG_W(0, "Control_CycleStart", "Cannot write into fast file!");
+
+};
+
+if ((CycleCount % SLOW_FREQ_RATIO) == 0) {
+
+    if (create_new_file_slow) {
+        if (pFileSlow != NULL) {fclose(pFileSlow);}
+        pFileSlow = fopen( output_FileName_slow, "w");
+        if (pFileSlow == NULL)
+        {
+            LOG_W(0, "Control_CycleStart", "Cannot open slow file!");
+        } else {
+        ret = write_header_slow();
+        }
+        create_new_file_slow = FALSE;
+    };
+
+    if (pFileSlow != NULL) ret = write_output_slow();
+    else LOG_W(0, "Control_CycleStart", "Cannot write into slow file!");
+
+};
+
+if ((CycleCount % CTRL_FREQ_RATIO) == 0) {
+
+    if (create_new_file_ctrl) {
+        if (pFileCtrl != NULL) {fclose(pFileCtrl);}
+        pFileCtrl = fopen( output_FileName_ctrl, "w");
+        if (pFileCtrl == NULL)
+        {
+            LOG_W(0, "Control_CycleStart", "Cannot open ctrl file!");
+        } else {
+        ret = write_header_ctrl();
+        }
+        create_new_file_ctrl = FALSE;
+    };
+
+    if (pFileCtrl != NULL) ret = write_output_ctrl();
+    else LOG_W(0, "Control_CycleStart", "Cannot write into ctrl file!");
+
+};

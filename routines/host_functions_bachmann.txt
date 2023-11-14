@@ -1,0 +1,101 @@
+MLOCAL SINT32 write_header_fast()
+{
+    FILE *fp = pFileFast;
+
+    if (fp == NULL)
+     {
+         LOG_W(0, "write_header_fast", "File pointer for fast file is empty when writing fast header.");
+         return(1);
+     }
+
+
+    return(0);
+}
+
+MLOCAL SINT32 write_header_slow()
+{
+    FILE *fp = pFileSlow;
+
+    if (fp == NULL)
+     {
+         LOG_W(0, "write_header_slow", "File pointer for fast file is empty when writing slow header.");
+         return(1);
+     }
+
+
+    return(0);
+}
+
+MLOCAL SINT32 write_header_ctrl()
+{
+    FILE *fp = pFileCtrl;
+
+    if (fp == NULL)
+     {
+         LOG_W(0, "write_header_ctrl", "File pointer for fast file is empty when writing ctrl header.");
+         return(1);
+     }
+
+
+    return(0);
+}
+
+MLOCAL SINT32 write_output_fast()
+{
+
+    FILE *fp = pFileFast;
+    // Printing to file, checking for nan
+
+    if (fp == NULL)
+     {
+         LOG_W(0, "write_output_fast", "File pointer for fast file is empty when writing fast.");
+         return(1);
+     }
+
+    fprintf(fp, "%s; ", Date_and_Time);
+
+    fprintf(fp, "\n");
+    fflush(fp);
+
+    return 0;
+}
+
+MLOCAL SINT32 write_output_slow()
+{
+
+    FILE *fp = pFileSlow;
+    // Printing to file, checking for nan
+
+    if (fp == NULL)
+     {
+         LOG_W(0, "write_output_slow", "File pointer for fast file is empty when writing slow.");
+         return(1);
+     }
+
+    fprintf(fp, "%s; ", Date_and_Time);
+
+    fprintf(fp, "\n");
+    fflush(fp);
+
+    return 0;
+}
+
+MLOCAL SINT32 write_output_ctrl()
+{
+
+    FILE *fp = pFileCtrl;
+    // Printing to file, checking for nan
+
+    if (fp == NULL)
+     {
+         LOG_W(0, "write_output_ctrl", "File pointer for fast file is empty when writing ctrl.");
+         return(1);
+     }
+
+    fprintf(fp, "%s; ", Date_and_Time);
+
+    fprintf(fp, "\n");
+    fflush(fp);
+
+    return 0;
+}
