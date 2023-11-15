@@ -2,7 +2,7 @@
 
 Welcome to the documentation for My Project.
 
-## Getting Started
+## Test
 
 ...
 
