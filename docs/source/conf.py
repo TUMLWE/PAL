@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'PAL'
+project = 'TUMLWEPAL'
 copyright = '2023, Carlo R. Sucameli'
 author = 'Carlo R. Sucameli'
 
