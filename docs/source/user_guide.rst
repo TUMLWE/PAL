@@ -1,8 +1,4 @@
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+Usage
+=====
 
-   introduction
-   framework_architechture
-   user_guide
-   licensing
+Describe how users can use your project effectively.
