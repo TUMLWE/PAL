@@ -1,11 +1,9 @@
-# My Project Documentation
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-Welcome to the documentation for My Project.
-
-## Test
-
-...
-
-## Usage
-
-...
+   introduction
+   installation
+   usage
+   advanced_topics
+   conclusion
