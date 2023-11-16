@@ -3,6 +3,6 @@
    :caption: Contents:
 
    introduction
-   framework_architecture
+   framework_architechture
    user_guide
    licensing
