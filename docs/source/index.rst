@@ -3,7 +3,6 @@
    :caption: Contents:
 
    introduction
-   installation
-   usage
-   advanced_topics
-   conclusion
+   framework_architechture
+   user_guide
+   licensing
