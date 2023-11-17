@@ -1,6 +1,6 @@
-﻿KeyName;KeyType;Description
-PLCApp;Absolute folder path;Location of PLC application code after generation.
-InterfaceFiles;Relative folder path;Main folder containing a dictionary for data type conversion between Matlab and the PLC. Do not change it.
-ReferenceCFiles;Absolute folder path;Location of Reference C files from PLC.
-SimulinkCCode;Absolute folder path;Location Simulink Coder outputs.
-SimulinkModels;Absolute folder path;Location of Simulink Models.
+﻿KeyName,KeyType,Description
+PLCApp,Absolute folder path,Location of PLC application code after generation.
+InterfaceFiles,Relative folder path,Main folder containing a dictionary for data type conversion between Matlab and the PLC. Do not change it.
+ReferenceCFiles,Absolute folder path,Location of Reference C files from PLC.
+SimulinkCCode,Absolute folder path,Location Simulink Coder outputs.
+SimulinkModels,Absolute folder path,Location of Simulink Models.
