@@ -32,5 +32,5 @@ When creating a new project through the GUI (Section XX), two excel files are cr
 
 .. csv-table:: Main Folders
    :file: inputfile_description_mainfolders.csv
-   :widths: 30, 30 , 40
+   :widths: 30, 30, 40
    :header-rows: 1
