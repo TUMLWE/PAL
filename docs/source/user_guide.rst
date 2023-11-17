@@ -30,6 +30,9 @@ New Project Definition
 
 When creating a new project through the GUI (Section XX), two excel files are created by default: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
 
+Inputfile.xlsx
+~~~~~~~~~~~~~~~~~
+
 .. csv-table:: Main Folders
    :file: inputfile_description_mainfolders.csv
    :widths: 30, 30, 40
