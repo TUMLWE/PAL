@@ -33,7 +33,15 @@ When creating a new project through the GUI (Section XX), two excel files are cr
 Inputfile.xlsx
 ~~~~~~~~~~~~~~~~~
 
-.. csv-table:: Main Folders
+This file contains general information for the project, such as folder definitions,  settings and layers applications.
+The main tabs are described in the following:
+
+.. csv-table:: Tab: Main Folders
    :file: inputfile_description_mainfolders.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
+
+.. csv-table:: Tab: Settings
+   :file: inputfile_settings.csv
    :widths: 30, 30, 40
    :header-rows: 1
