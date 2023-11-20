@@ -1,8 +1,8 @@
-﻿KeyName;KeyType;Description
-ExcelPLCFileName;Absolute folder path;"Location of the file ""SVI_Definition.xlsx"". Automatically defined"
-FlagGenerate_ITFC;TRUE/FALSE;"If flag is on, ITFC applications will load the user-defined test interfaces specified in the ""ITFC"" tab"
-FlagGenerate_PLCApps;TRUE/FALSE;Master switch to control PLC generation of Simulink models. Default is TRUE
-SaveModelParametersFlag;TRUE/FALSE;"If flag is on, Simulink model parameters are saved as "".mat"" files after each deployment. Default is TRUE"
-sample_time;Double;Sample time of execution for the framework, in seconds
-PLC_system;String;"Type of PLC system for deployment, as of V1.0, only ""Bachmann"" is supported"
-DataTypes_dict_filename;String;Dictionary filename for the conversion of data types between PLC and Matlab
+﻿KeyName,KeyType,Description
+ExcelPLCFileName,Absolute folder path,"Location of the file ""SVI_Definition.xlsx"". Automatically defined"
+FlagGenerate_ITFC,TRUE/FALSE,"If flag is on, ITFC applications will load the user-defined test interfaces specified in the ""ITFC"" tab"
+FlagGenerate_PLCApps,TRUE/FALSE,Master switch to control PLC generation of Simulink models. Default is TRUE
+SaveModelParametersFlag,TRUE/FALSE,"If flag is on, Simulink model parameters are saved as "".mat"" files after each deployment. Default is TRUE"
+sample_time,Double,Sample time of execution for the framework, in seconds
+PLC_system,String,"Type of PLC system for deployment, as of V1.0, only ""Bachmann"" is supported"
+DataTypes_dict_filename,String,Dictionary filename for the conversion of data types between PLC and Matlab
