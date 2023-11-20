@@ -41,6 +41,7 @@ The main tabs are described in the following:
    :widths: 30, 30, 40
    :header-rows: 1
 
+
 .. csv-table:: Tab: Settings
    :file: inputfile_settings.csv
    :widths: 30, 30, 40
