@@ -1,7 +1,7 @@
 ﻿KeyName,KeyType,Description
 appTag,String,Tag name of the application
-PLCApp_folder,String,Name of PLC application folder in ProjectName\PLCApp
-refC_name,String,Name of PLC reference C file in ProjectName\ReferenceCFiles\Originals
+PLCApp_folder,String,"Name of PLC application folder in ProjectName\PLCApp"
+refC_name,String,"Name of PLC reference C file in ProjectName\ReferenceCFiles\Originals"
 Flag_Generate_PLC_app,TRUE/FALSE,"If flag is TRUE, PLC code is generated for specified ITFC application"
 Flag_Create_test_ITFC,TRUE/FALSE,"If flag is TRUE, test interface is created and loaded, default is FALSE"
 test_ITFC_filename,Relative filename path,Location of test interface .mat file

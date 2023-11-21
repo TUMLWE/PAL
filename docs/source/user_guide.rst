@@ -36,28 +36,28 @@ Inputfile.xlsx
 This file contains general information for the project, such as folder definitions,  settings and layers applications.
 The main tabs are described in the following:
 
-.. csv-table:: Tab: Main Folders
+.. csv-table:: Inputfile - Main Folders sheet
    :file: inputfile_description_mainfolders.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
 
-.. csv-table:: Tab: Settings
+.. csv-table:: Inputfile - Settings sheet
    :file: inputfile_settings.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
-.. csv-table:: Tab: ITFC
+.. csv-table:: Inputfile - ITFC sheet
    :file: inputfile_itfc.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
-.. csv-table:: Tab: HOST
+.. csv-table:: Inputfile - HOST sheet
    :file: inputfile_host.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
-.. csv-table:: Tab: SUBMODEL
+.. csv-table::  Inputfile - SUBMODEL sheet
    :file: inputfile_submodel.csv
    :widths: 30, 30, 40
    :header-rows: 1
