@@ -34,7 +34,10 @@ Inputfile.xlsx
 ~~~~~~~~~~~~~~~~~
 
 This file contains general information for the project, such as folder definitions,  settings and layers applications.
-The main tabs are described in the following:
+The main tabs are described below.
+
+**Main Folders:**
+
 
 .. csv-table:: Inputfile - Main Folders sheet
    :file: inputfile_description_mainfolders.csv
