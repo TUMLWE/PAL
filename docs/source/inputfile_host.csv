@@ -1,0 +1,12 @@
+﻿KeyName,KeyType,Description
+appTag,String,Same as ITFC
+PLCApp_folder,String,Same as ITFC
+refC_name,String,Same as ITFC
+Flag_Generate_PLC_app,TRUE/FALSE,Same as ITFC
+FAST_FREQ_RATIO,Integer,"Sample time of output data generation of FAST data. Expressed in integer multiples of ""sample_time"". Default is 1"
+SLOW_FREQ_RATIO,Integer,"Sample time of output data generation of SLOW data. Expressed in integer multiples of ""sample_time"". Default is 10"
+CTRL_FREQ_RATIO,Integer,"Sample time of output data generation of CONTROL data. Expressed in integer multiples of ""sample_time"". Default is 10"
+out_filename,string,filename of output files in PLC
+output_path_in_PLC,Absolute folder path,Location of folder in PLC (WARNING: YOU MUST CREATE THIS FOLDER BEFORE RUNNING THE APPLICATION)
+output_file_duration_s,Double,Length of output data time histories [s]
+Comment,String,Same as ITFC

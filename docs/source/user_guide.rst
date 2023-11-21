@@ -46,3 +46,18 @@ The main tabs are described in the following:
    :file: inputfile_settings.csv
    :widths: 30, 30, 40
    :header-rows: 1
+
+.. csv-table:: Tab: ITFC
+   :file: inputfile_itfc.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
+
+.. csv-table:: Tab: HOST
+   :file: inputfile_host.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
+
+.. csv-table:: Tab: SUBMODEL
+   :file: inputfile_submodel.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
