@@ -4,7 +4,7 @@ VarName,String,"Internal variable name in generated code, as a default this can 
 AppName,String,"appTag of HOST application  the variable belongs to. HOST must be present in ""inputfile.xlsx"""
 VarType,String,"MATLAB Data type of the variable. Must be included in data type conversion dictionary between Matlab and PLC. For variables exchanged with an ITFC app, VarType can be inherited by setting its value as ""inherit"""
 VarSize,Integer,"Size of the variable. Set ""-1"" in combination with ""VarType"" equal to “inherit” to retrieve the size from the ITFC app. Currently, only size equal to 1 is possible for numeric variables, while strings can have larger sizes"
-Create,TRUE/FALSE,When set to FALSE, the variable is ignored
+Create,TRUE/FALSE,"When set to FALSE, the variable is ignored"
 parent_App,String,"""AppName"" of the parent ITFC app, if the variable is exchanged with a ITFC app. In such case ""Action"" must be set. It can be left blank otherwise"
 parent_TagName,String,"""TagName"" of the main parent ITFC variable, if the variable is exchanged with a ITFC app. If the ITFC variable belongs to a structure, ""parent_TagName"" is the ""TagName"" of the ITFC structure. If the ITFC variable is not a structure ""parent_TagName"" is the ""TagName"" of the ITFC variable"
 parent_SubVar,String/Integer,"""TagName"" of the parent ITFC variable, if the variable is exchanged with a ITFC app. If ITFC variable belongs to a structure, ""parent_SubVar"" is the ""TagName"" of the subvariable.If the ITFC variable is an array, it can be set as the index to read"
