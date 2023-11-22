@@ -12,6 +12,6 @@ Action,READ/WRITE/-,"It must match the ""Access"" of the corresponding ITFC vari
 Flag_Assign_InitialValue,TRUE/FALSE,Set to TRUE to assign an initial value to the variable. Only numerical values are supported.
 Initial_Value,double,Initial value of the variable
 Units,String,Units of measure of variable to be written in output file
-Print_output,TRUE/FALSE,Is set to TRUE, the variable will be written to output files
+Print_output,TRUE/FALSE,"If set to TRUE, the variable will be written to output files"
 output_freq,"fast/slow/ctrl",Frequency at which the variable should be written to the output file
 Comments,String,Comment string
