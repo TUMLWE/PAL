@@ -1,0 +1,10 @@
+﻿KeyName,KeyType,Description
+InputNumber,String,Unique number identifying a main ITFC variable. Consecutive entries with same input number are considered subfields of the main structure.
+TagName,String,Tag name of the structure/variable/subfield
+VarName,String,Internal variable name in generated code, as a default this can be set equal to TagName
+AppName,String,"appTag of ITFC application  the variable belongs to. Not necessary for subfields. ITFC must be present in ""inputfile.xlsx"""
+VarType,String/struct,"MATLAB Data type of the variable. Must be included in data type conversion dictionary between Matlab and PLC. If variable is a structure, it must be set to ""struct"""
+VarSize,Integer,"If variable is a structure, VarSize should be the sum of the Bytes of its subfields. See here for examples. If variable is a subfield, only VarSize equal to 1 is allowed for numerical variables, while it can be longer for ""char"" variables. If it is a main variable, any number of array length is allowed."
+Access,READ/WRITE,"It must match the ""Action"" of the corresponding HOST variable. Set READ if the variable is read by HOST or WRITE if the variable is written by HOST"
+Create,TRUE/FALSE,When set to FALSE, the variable is ignored
+

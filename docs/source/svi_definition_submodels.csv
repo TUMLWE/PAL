@@ -1,0 +1,12 @@
+KeyName,KeyType,Description
+modelTag,String,Tag name of the Simulink model
+TagName,String,Same as HOST
+VarName,String,Same as HOST
+IO,input/output/status,"Variable block type in Simulink model. A single status variable must be present for each Submodel, in which case ""IO"" should be set to ""status"""
+PortNumber,Integer,Port numbering of Simulink model. Status variables are not numbered. WARNING: different numberings for input and output!
+PortName,String,Port name in Simulink model
+Create,TRUE/FALSE,Same as HOST
+VarType,String,"Similar to HOST, but ""inherit"" is not supported"
+parent_App,String,"""AppName"" of the parent HOST app, if the variable is exchanged with a HOST app. In such case ""Action"" must be set. It can be left blank otherwise "
+parent_TagName,String,"""TagName"" of parent HOST variable, if the variable is exchanged with a HOST app"
+Action,READ/WRITE/-,"Action to perform on each variable. Normally, Simulink inputs are ""read"" and outputs are ""write"""
