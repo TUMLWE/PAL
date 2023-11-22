@@ -105,7 +105,7 @@ A complete list of the supported data types is provided **here**
 
 
 .. csv-table::  SVI_Definition - HOST sheet
-   :file: svi_definition_itfc.csv
+   :file: svi_definition_host.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
