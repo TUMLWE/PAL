@@ -1,6 +1,6 @@
 ﻿KeyName,KeyType,Description
 TagName,String,Variable tag name
-VarName,String,Internal variable name in generated code, as a default this can be set equal to TagName
+VarName,String,"Internal variable name in generated code, as a default this can be set equal to TagName"
 AppName,String,"appTag of HOST application  the variable belongs to. HOST must be present in ""inputfile.xlsx"""
 VarType,String,"MATLAB Data type of the variable. Must be included in data type conversion dictionary between Matlab and PLC. For variables exchanged with an ITFC app, VarType can be inherited by setting its value as ""inherit"""
 VarSize,Integer,"Size of the variable. Set ""-1"" in combination with ""VarType"" equal to “inherit” to retrieve the size from the ITFC app. Currently, only size equal to 1 is possible for numeric variables, while strings can have larger sizes"
