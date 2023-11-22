@@ -109,7 +109,7 @@ A complete list of the supported data types is provided **here**
    :widths: 30, 30, 40
    :header-rows: 1
 
-   .. csv-table::  SVI_Definition - SUBMODELS sheet
+.. csv-table::  SVI_Definition - SUBMODELS sheet
    :file: svi_definition_submodels.csv
    :widths: 30, 30, 40
    :header-rows: 1
