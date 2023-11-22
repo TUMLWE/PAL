@@ -5,7 +5,7 @@ AppName,String,"appTag of HOST application  the variable belongs to. HOST must b
 VarType,String,"MATLAB Data type of the variable. Must be included in data type conversion dictionary between Matlab and PLC. For variables exchanged with an ITFC app, VarType can be inherited by setting its value as ""inherit"""
 VarSize,Integer,"Size of the variable. Set ""-1"" in combination with ""VarType"" equal to “inherit” to retrieve the size from the ITFC app. Currently, only size equal to 1 is possible for numeric variables, while strings can have larger sizes"
 Create,TRUE/FALSE,When set to FALSE, the variable is ignored
-parent_App,String,"""AppName"" of the parent ITFC app, if the variable is exchanged with a ITFC app. In such case ""Action"" must be set. It can be left blank otherwise. "
+parent_App,String,"""AppName"" of the parent ITFC app, if the variable is exchanged with a ITFC app. In such case ""Action"" must be set. It can be left blank otherwise"
 parent_TagName,String,"""TagName"" of the main parent ITFC variable, if the variable is exchanged with a ITFC app. If the ITFC variable belongs to a structure, ""parent_TagName"" is the ""TagName"" of the ITFC structure. If the ITFC variable is not a structure ""parent_TagName"" is the ""TagName"" of the ITFC variable"
 parent_SubVar,String/Integer,"""TagName"" of the parent ITFC variable, if the variable is exchanged with a ITFC app. If ITFC variable belongs to a structure, ""parent_SubVar"" is the ""TagName"" of the subvariable.If the ITFC variable is an array, it can be set as the index to read"
 Action,READ/WRITE/-,"It must match the ""Access"" of the corresponding ITFC variable. Set READ if the variable is read by HOST or WRITE if the variable should be written back into the ITFC variable"
@@ -13,5 +13,5 @@ Flag_Assign_InitialValue,TRUE/FALSE,Set to TRUE to assign an initial value to th
 Initial_Value,double,Initial value of the variable
 Units,String,Units of measure of variable to be written in output file
 Print_output,TRUE/FALSE,Is set to TRUE, the variable will be written to output files
-output_freq,fast, slow, ctrl,Frequency at which the variable should be written to the output file
+output_freq,"fast/slow/ctrl",Frequency at which the variable should be written to the output file
 Comments,String,Comment string
