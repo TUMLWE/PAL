@@ -158,6 +158,8 @@ Below in :numref:`sketch_data_trasmission`, an exemplary sketch that illustrates
 Graphic User Interface
 -----------------------
 
+.. _paldd:
+
 To start a new session, open the App Designer file “main.mlapp” and run it. A new GUI will open. There are two main tabs that are devoted to two specific operations of the framework: the “Develop/Deploy” and the “test” tab. 
 
 Develop/Deploy
@@ -168,6 +170,11 @@ Through the Develop/Deploy tab it is possible to define the main applications fo
 .. figure:: images/paldd_1.png
    :width: 1000
    :name: paldd
+
+   Develop/Deploy Tab
+
+
+
 
 A load button: Which can be used to load an "inputfile.xlsx" 
 
