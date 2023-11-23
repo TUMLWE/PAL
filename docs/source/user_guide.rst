@@ -97,7 +97,7 @@ To promote separation between hardware-specific and research-specific operations
 
 ITFC applications are "inert", in the sense that they do not actively perform any reading or writing operation on any other application's SVI. HOST applications can read and write information to ITFC SVI's. 
 
-
+**ITFC Variables** 
 
 .. csv-table::  SVI_Definition - ITFC sheet
    :file: svi_definition_itfc.csv
@@ -106,11 +106,20 @@ ITFC applications are "inert", in the sense that they do not actively perform an
 
 A complete list of the supported data types is provided **here**
 
+HOST
+""""""""
+
+**HOST Variables** 
 
 .. csv-table::  SVI_Definition - HOST sheet
    :file: svi_definition_host.csv
    :widths: 30, 30, 40
    :header-rows: 1
+
+SUBMODEL
+""""""""
+
+**SUBMODEL Variables** 
 
 .. csv-table::  SVI_Definition - SUBMODELS sheet
    :file: svi_definition_submodels.csv
@@ -118,8 +127,8 @@ A complete list of the supported data types is provided **here**
    :header-rows: 1
 
 .. image:: org_chart.png
-   :width: 800
-
+   :width: 1482px
+   :height: 799px
 
 
 
