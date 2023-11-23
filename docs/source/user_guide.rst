@@ -31,7 +31,7 @@ Project Definition
 When creating a new project through the GUI (Section XX), two excel files are created by default: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
 
 Inputfile.xlsx
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 This file contains general information for the project, such as folder definitions,  settings and layers applications.
 The main tabs are described below.
@@ -84,14 +84,14 @@ One row for each Simulink submodel. IMPORTANT: each submodel can have a single S
 
 
 SVI_Definition.xlsx
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 This excel file defined the data flow between the different layers of each project. Variables for each application must be specified, as well as data trasmission to other applications. 
 
 Generally speaking, each application hosts a "shared variable interface" (SVI), which can be read and written by other applications. There are three sheets in the SVI_Definition file, one for each layer of the framework (ITFC, HOST, Submodel). Allowed variables data types are common for each layer and can be found **here**. Exceptions exist for ITFC variables, as specified below.
 
 ITFC
-""""""""
+"""""""""
 
 To promote separation between hardware-specific and research-specific operations, this layer should be ideally developed by the hardware owner. This layer is used uniquely for testing purposes, to ensure that the remaining framework components (mainly the simulink submodels) operate as expected. For this reason it is fundamental that the SVI of the ITFC applications exactly replicates the one encountered during experimentation. 
 
@@ -109,7 +109,7 @@ Beside the already mentioned **data type** , ITFC variables in the form of struc
 
 
 HOST
-""""""""
+"""""""""
 
 HOST variables can perform READ/WRITE actions to a ITFC variable, while they cannot perform actions on SUBMODEL.
 
@@ -132,7 +132,7 @@ It is important that, in case of variables exchanged with an ITFC app, the "Acti
    :header-rows: 1
 
 SUBMODEL
-""""""""
+"""""""""
 
 SUBMODEL variables can perform READ/WRITE actions to a HOST variable, while they cannot perform actions on SUBMODEL. For each Simulink model, it is reccommended to include **all** model inputs and outputs as SUBMODEL variables (with the correct port numbering). For each SUBMODEL application, a further **AppStatus** status variable should be included, which is used to inform the HOST application about the execution of the SUBMODEL.
 
@@ -161,9 +161,9 @@ Graphic User Interface
 To start a new session, open the App Designer file “main.mlapp” and run it. A new GUI will open. There are two main tabs that are devoted to two specific operations of the framework: the “Develop/Deploy” and the “test” tab. 
 
 Develop/Deploy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
-Through the Develop/Deploy tab it is possible to define the main applications for each layer. A sketch of the GUI for the example project "met_mast_reader" is shown in
+Through the Develop/Deploy tab it is possible to define the main applications for each layer. A sketch of the GUI for the example project "met_mast_reader" is shown in :numref:`paldd`
 
 .. figure:: images/paldd_1.png
    :width: 1000
