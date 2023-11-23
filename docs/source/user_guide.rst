@@ -163,7 +163,7 @@ To start a new session, open the App Designer file “main.mlapp” and run it. 
 Develop/Deploy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Through the Develop/Deploy tab it is possible to define the main applications for each layer. A sketch of the GUI for the example project "met_mast_reader" is shown in :numref:`paldd`
+Through the Develop/Deploy tab it is possible to define the main applications for each layer. A sketch of the GUI for the example project "met_mast_reader" is shown in 
 
 .. figure:: images/paldd_1.png
    :width: 1000
