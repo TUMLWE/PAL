@@ -115,7 +115,7 @@ A complete list of the supported data types is provided **here**
    :header-rows: 1
 
 .. image:: data_trasmission.png
-   :width: 400
+   :width: 800
 
 
 
