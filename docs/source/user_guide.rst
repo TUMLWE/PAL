@@ -145,10 +145,13 @@ Also SUBMODEL variables must be single numerical values, i.e, arrays are not all
    :widths: 30, 30, 40
    :header-rows: 1
 
-Below, an exemplary sketch that illustrates the data transmission of two ITFC variables (a structure and an array), which are exchanged with a Simulink model
+Below in  :num:`sketch_data_trasmission`, an exemplary sketch that illustrates the data transmission of two ITFC variables (a structure and an array), which are exchanged with a Simulink model
 
 .. image:: images/org_chart.png
    :width: 1000
+   :name: sketch_data_trasmission
+
+   Example of data transmission between ITFC/HOST/SUBMODEL layers
 
 
 
@@ -160,7 +163,7 @@ To start a new session, open the App Designer file “main.mlapp” and run it. 
 Develop/Deploy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Through this tab it is possible to define the main applications for each layer mentioned in the previous chapter. The uppermost part of the tab (highlighted in red in Figure:XX) can be used to either load a project or create a new one:
+Through the Develop/Deploy tab it is possible to define the main applications for each layer. A sketch of the GUI for the example project "met_mast_reader" is shown in the Figure below
 
 .. image:: images/paldd_1.png
    :width: 1000
