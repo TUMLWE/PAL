@@ -127,7 +127,7 @@ SUBMODEL
    :header-rows: 1
 
 .. image:: images/org_chart.png
-
+   :widths: 1000
 
 
 
