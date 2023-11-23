@@ -117,7 +117,7 @@ A complete list of the supported data types is provided **here**
    :widths: 30, 30, 40
    :header-rows: 1
 
-.. image:: org chart.png
+.. image:: org_chart.png
    :width: 800
 
 
