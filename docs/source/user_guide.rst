@@ -25,7 +25,7 @@ The framework is equipped with a Graphic User Interface (GUI) that simplifies th
 
 
 
-New Project Definition
+Project Definition
 -----------------------
 
 When creating a new project through the GUI (Section XX), two excel files are created by default: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
@@ -138,7 +138,7 @@ SUBMODEL variables can perform READ/WRITE actions to a HOST variable, while they
 
 **SUBMODEL Variables** 
 
-Also SUBMODEL variables must be single numerical values, i.e, arrays are not allowed. The "IO" type field must match the type of port of Simulink model, except for "status" variables. Generally, each SUBMODEL will contain nI + nO + 1 variables, which nI/nO the number of input/output ports of a Simulink model. 
+Also SUBMODEL variables must be single numerical values, i.e, arrays are not allowed. The "IO" type field must match the type of port of Simulink model, except for "status" variables. Generally, each SUBMODEL will contain nI + nO + 1 variables, where nI/nO indicates the number of input/output ports of a Simulink model. 
 
 .. csv-table::  SVI_Definition - SUBMODELS sheet
    :file: svi_definition_submodels.csv
@@ -152,4 +152,49 @@ Below, an exemplary sketch that illustrates the data transmission of two ITFC va
 
 
 
+Graphic User Interface
+-----------------------
 
+To start a new session, open the App Designer file “main.mlapp” and run it. A new GUI will open. There are two main tabs that are devoted to two specific operations of the framework: the “Develop/Deploy” and the “test” tab. 
+
+Develop/Deploy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Through this tab it is possible to define the main applications for each layer mentioned in the previous chapter. The uppermost part of the tab (highlighted in red in Figure:XX) can be used to either load a project or create a new one:
+
+.. image:: images/paldd_1.png
+   :width: 1000
+
+
+A load button: Which can be used to load an "inputfile.xlsx" 
+
+A "new" switch: By clicking this switch a new project can be created. Select the folder in which you want to create your project click ok and it will prompt you to define a new project name you click ok new empty project will be created 
+
+Three different panels, one for each application type column submodel, interface, host. 
+
+To create a new submodel click on the ADD sub model button located above the sub model panel. You will be prompt to specify new model tag, many it's a model will have the following columns :
+Model tag: Is the name of your sub model 
+Generate PLC: This flag is used to indicate whether the signal link model should be converted to PLC files upon clicking the generate PLC button at the bottom of the gui 
+C ref found: This light will turn green if the reference source Code file is present under the folders "ReferenceCFiles/originals". 
+SLmodel-ready: This light will turn green if a simulink model with the designated name is found in the path. In the "root\SimulinkModels" folder 
+PLCgen-Ready: These flag return Green if both of the other flags are green. And if the reference source file has been prepared for application interconnection, buy right clicking with the mouse on the c reference found light with the right click and selecting add MATLAB Fields.
+Create simulink model: This button creates a new empty stimulink model. Each model will be initialized so to be the generated through embed the real time solver, with fixed step and sampling frequency. Among other settings. It is there for important when using external simulink models, to copy paste them into the newly created ones rather than substituting them. A bone generating a new simulink models, a new subfolder will be created with the name as model tag. Beside An empty simulink model, an easier initialization mATLAB file will be created this file can be used to initialize any parameters there is necessary for the model execution 
+Details: These open gui where several fields can be specified whose filled our coincident of the ones of the input file and therefore will be explained in the following section.
+
+Similarly. Create a new interface by clicking the add interface button. Similarly several columns will be shown: 
+Apptag: It is the application name
+Generate PLC: same as above
+PLC ref found: same as above
+PLCgen-Ready: same as above
+Create empty ITFC: This allows to generate an empty interface that can be used for testing 
+Create random ITFC: these allows generating are random interface can be used for testing data transmission 
+Load ITFC column this can be used to load a previously generated interface file 
+Details: same as above 
+
+Same story for the Host application
+Are there buttons are the following:
+Refresh: Which can be used to reload the sub panels 
+Generate PLC: This is used to generate the PLC applications of all the apps of which the generate PLC check mark is thicked. 
+Save: These saved the actual final configuration onto the input file Excel. 
+
+This tab can be used to develop new project by specify new submodels the, interface and host and deployed through the generate PLC button.
