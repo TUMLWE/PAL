@@ -127,7 +127,6 @@ SUBMODEL
    :header-rows: 1
 
 .. image:: org_chart.pdf
-   :width: 1482px
 
 
 
