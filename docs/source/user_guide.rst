@@ -128,7 +128,7 @@ SUBMODEL
 
 .. image:: org_chart.png
    :width: 1482px
-   :height: 799px
+
 
 
 
