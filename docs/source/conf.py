@@ -17,7 +17,10 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.imgconverter',
 ]
+
+image_converter_args=["-density", "300"]
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
