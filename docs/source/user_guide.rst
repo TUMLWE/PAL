@@ -88,7 +88,7 @@ SVI_Definition.xlsx
 
 This excel file defined the data flow between the different layers of each project. Variables for each application must be specified, as well as data trasmission to other applications. 
 
-Generally speaking, each application hosts a "shared variable interface" (SVI), which can be read and written by other applications. There are three sheets in the SVI_Definition file, one for each layer of the framework (ITFC, HOST, Submodel). Variables for each layer are treated differently, as specified below.
+Generally speaking, each application hosts a "shared variable interface" (SVI), which can be read and written by other applications. There are three sheets in the SVI_Definition file, one for each layer of the framework (ITFC, HOST, Submodel). Allowed variables data types are common for each layer and can be found **here**. Exceptions exist for ITFC variables, as specified below.
 
 ITFC
 """"""""
@@ -99,12 +99,14 @@ ITFC applications are "inert", in the sense that they do not actively perform an
 
 **ITFC Variables** 
 
+Beside the already mentioned **data type** , ITFC variables in the form of structures can also be implemented. In this case all subfields will share the same "Access" property. Numerical arrays are not yet supported for subfields, with the exception of string arrays. 
+
 .. csv-table::  SVI_Definition - ITFC sheet
    :file: svi_definition_itfc.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
-A complete list of the supported data types is provided **here**
+
 
 HOST
 """"""""
