@@ -20,6 +20,11 @@ extensions = [
     'sphinx.ext.numfig',
 ]
 
+numfig = True
+# numfig:
+# numfig_number_figures = True
+# numfig_figure_caption_prefix = "Figure"
+
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
