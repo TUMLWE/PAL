@@ -145,7 +145,7 @@ Also SUBMODEL variables must be single numerical values, i.e, arrays are not all
    :widths: 30, 30, 40
    :header-rows: 1
 
-Below in  :num:`sketch_data_trasmission`, an exemplary sketch that illustrates the data transmission of two ITFC variables (a structure and an array), which are exchanged with a Simulink model
+Below in  :numref:`sketch_data_trasmission`, an exemplary sketch that illustrates the data transmission of two ITFC variables (a structure and an array), which are exchanged with a Simulink model
 
 .. image:: images/org_chart.png
    :width: 1000
