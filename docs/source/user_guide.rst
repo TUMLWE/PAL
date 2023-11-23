@@ -99,7 +99,7 @@ ITFC applications are "inert", in the sense that they do not actively perform an
 
 **ITFC Variables** 
 
-Beside the already mentioned **data type** , ITFC variables in the form of structures can also be implemented. In this case all subfields will share the same "Access" property. Numerical arrays are not yet supported for subfields, with the exception of string arrays. 
+Beside the already mentioned **data type** , ITFC variables in the form of structures can also be implemented. In this case all subfields will share the same "Access" property. Numerical arrays are not yet supported for subfields, with the exception of string arrays. A description of all the table elements is provided below.
 
 .. csv-table::  SVI_Definition - ITFC sheet
    :file: svi_definition_itfc.csv
@@ -111,7 +111,20 @@ Beside the already mentioned **data type** , ITFC variables in the form of struc
 HOST
 """"""""
 
+HOST variables can perform READ/WRITE actions to a ITFC variable, while they cannot perform actions on SUBMODEL.
+
 **HOST Variables** 
+
+HOST Variables can be created for many purposes, such as:
+   (1) Read variable from ITFC to be read by SUBMODEL
+   (2) Read variable from ITFC for monitoring purposes
+   (3) Create static variables to be read by SUBMODEL, useful for consant definition
+   (4) Receive output from SUBMODEL and write it to ITFC
+   (5) Receive output from SUBMODEL for monitoring purposes
+   (6) Receive AppStatus variable from SUBMODEL, to check operation of application
+
+Beside string variables, all HOST variables **MUST** be a single numerical value, i.e, arrays are not allowed.
+It is important that, in case of variables exchanged with an ITFC app, the "Action" of a HOST Variable matches the "Access" of a ITFC Variable. By default, HOST applications generate three txt outputs at three different sampling time: "fast", "slow", "ctrl". For each HOST variable, this can be controlled by the field "output_freq".
 
 .. csv-table::  SVI_Definition - HOST sheet
    :file: svi_definition_host.csv
@@ -121,12 +134,18 @@ HOST
 SUBMODEL
 """"""""
 
+SUBMODEL variables can perform READ/WRITE actions to a HOST variable, while they cannot perform actions on SUBMODEL. For each Simulink model, it is reccommended to include **all** model inputs and outputs as SUBMODEL variables (with the correct port numbering). For each SUBMODEL application, a further **AppStatus** status variable should be included, which is used to inform the HOST application about the execution of the SUBMODEL.
+
 **SUBMODEL Variables** 
+
+Also SUBMODEL variables must be single numerical values, i.e, arrays are not allowed. The "IO" type field must match the type of port of Simulink model, except for "status" variables. Generally, each SUBMODEL will contain nI + nO + 1 variables, which nI/nO the number of input/output ports of a Simulink model. 
 
 .. csv-table::  SVI_Definition - SUBMODELS sheet
    :file: svi_definition_submodels.csv
    :widths: 30, 30, 40
    :header-rows: 1
+
+Below, an exemplary sketch that illustrates the data transmission of two ITFC variables (a structure and an array), which are exchanged with a Simulink model
 
 .. image:: images/org_chart.png
    :width: 1000
