@@ -188,7 +188,7 @@ Aften generating a new SUBMODEL, several options and flags will be visible
 
 .. csv-table::  GUI - SUBMODEL panel
    :file: sm_gui.csv
-   :widths: 30, 30, 40
+   :widths: 30, 7
    :header-rows: 1
 
 It is important to remark that if an user wants to use a Simulink model developed externally, it is better to copy-paste its content into a newly created one, thus keeping the Simulink model settings set through the button "Create Simulink Model". This will create, beside an empty Simulink model, an initialization .m file that can be used to initialize specific model parameters.
