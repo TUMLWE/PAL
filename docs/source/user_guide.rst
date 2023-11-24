@@ -171,7 +171,12 @@ Through the Develop/Deploy tab it is possible to define the main applications fo
 
    Develop/Deploy Tab
 
+And explained in the following table.
 
+.. csv-table::  GUI - overview
+   :file: gui_guide.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
 
 
 A load button: Which can be used to load an "inputfile.xlsx" 
