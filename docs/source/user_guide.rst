@@ -206,3 +206,16 @@ ITFC
 HOST
 """""""""
 Same as SUBMODEL panel.
+
+
+
+Test
+^^^^^^^^^^^^^^^^^^^
+
+Through the Test tab it is possible to check the correct data trasmission between the different layers. A sketch of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`
+
+
+.. figure:: images/paltest.png
+   :width: 1000
+   :name: paltest
+
