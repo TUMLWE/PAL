@@ -210,7 +210,9 @@ Same as SUBMODEL panel.
 Test
 ^^^^^^^^^^^^^^^^^^^
 
-Through the Test tab it is possible to check the correct data trasmission between the different layers. A sketch of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`
+After generating the PLC applications it it possible to run the framework on the PLC hardware. The host application will generate .txt outputs, which can be used to verify the correctness of the data transmission between the different applications. The Test tab provides a tool to read HOST outputs and to compare the results between PLC and Simulink, among other functions. It is important to notice that the applications should be loaded on the PLC in sequential order from lower to higher layer, i.e. ITFC, HOST, SUBMODEL. For this reason a residual delay will exist between the test ITFC data and the HOST data, which is of course not physical but purely introduced by this delay. 
+
+A sketch of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`
 
 
 .. figure:: images/paltest.png
@@ -219,5 +221,12 @@ Through the Test tab it is possible to check the correct data trasmission betwee
 
    Test tab
 
-An explanation ofthe different elements is provided below. It is reccommended that the user familiarizes with the testing functionality by following the examples **provided**
+
+.. csv-table::  GUI - overview Test tab
+   :file: gui_guide_test.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
+
+Before running the Simulink models, unphysical data should be trimmed by using the Brush function, together with the "Brush Data/ sync ITFC app" (right-click on the figure). The user should familiarize with the testing functionality by following the **examples**
+
 
