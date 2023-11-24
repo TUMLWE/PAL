@@ -207,8 +207,6 @@ HOST
 """""""""
 Same as SUBMODEL panel.
 
-
-
 Test
 ^^^^^^^^^^^^^^^^^^^
 
@@ -218,4 +216,8 @@ Through the Test tab it is possible to check the correct data trasmission betwee
 .. figure:: images/paltest.png
    :width: 1000
    :name: paltest
+
+   Test tab
+
+An explanation ofthe different elements is provided below. It is reccommended that the user familiarizes with the testing functionality by following the examples **provided**
 
