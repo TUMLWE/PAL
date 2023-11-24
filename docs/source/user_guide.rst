@@ -184,18 +184,20 @@ Application panels are described for each layer.
 
 SUBMODEL
 """""""""
+Aften generating a new SUBMODEL, several options and flags will be visible
+
+.. csv-table::  GUI - SUBMODEL panel
+   :file: sm_gui.csv
+   :widths: 30, 30, 40
+   :header-rows: 1
+
+It is important to remark that if an user wants to use a Simulink model developed externally, it is better to copy-paste its content into a newly created one, thus keeping the Simulink model settings set through the button "Create Simulink Model". This will create, beside an empty Simulink model, an initialization .m file that can be used to initialize specific model parameters.
+
+ITFC
+"""""""""
 
 
 
-
-To create a new submodel click on the ADD sub model button located above the sub model panel. You will be prompt to specify new model tag, many it's a model will have the following columns :
-Model tag: Is the name of your sub model 
-Generate PLC: This flag is used to indicate whether the signal link model should be converted to PLC files upon clicking the generate PLC button at the bottom of the gui 
-C ref found: This light will turn green if the reference source Code file is present under the folders "ReferenceCFiles/originals". 
-SLmodel-ready: This light will turn green if a simulink model with the designated name is found in the path. In the "root\SimulinkModels" folder 
-PLCgen-Ready: These flag return Green if both of the other flags are green. And if the reference source file has been prepared for application interconnection, buy right clicking with the mouse on the c reference found light with the right click and selecting add MATLAB Fields.
-Create simulink model: This button creates a new empty stimulink model. Each model will be initialized so to be the generated through embed the real time solver, with fixed step and sampling frequency. Among other settings. It is there for important when using external simulink models, to copy paste them into the newly created ones rather than substituting them. A bone generating a new simulink models, a new subfolder will be created with the name as model tag. Beside An empty simulink model, an easier initialization mATLAB file will be created this file can be used to initialize any parameters there is necessary for the model execution 
-Details: These open gui where several fields can be specified whose filled our coincident of the ones of the input file and therefore will be explained in the following section.
 
 Similarly. Create a new interface by clicking the add interface button. Similarly several columns will be shown: 
 Apptag: It is the application name
