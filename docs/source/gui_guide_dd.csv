@@ -1,0 +1,12 @@
+﻿N°,KeyName,Description
+1,Load button,"Button to load an ""inputfile.xlsx"" "
+2,"""New project"" switch",Use to create a new project. Must specify project folder and name
+3,Add Submodel button,Use to add a new submodel to the project. It will appear in the SUBMODEL panel
+4,Submodel panel,Overview of the project SUBMODEL apps
+5,Add ITFC button,Use to add a new ITFC to the project. It will appear in the ITFC panel
+6,ITFC panel,Overview of the project ITFC apps
+7,Add HOST button,Use to add a new HOST to the project. It will appear in the HOST panel
+8,HOST panel,Overview of the project HOST apps
+9,Save button,"Use to save current data to ""inputfile.xlsx"""
+10,Generate PLC button,Use to generate PLC code of selected applications
+11,Refresh button,Use to refresh the application panels

@@ -173,17 +173,20 @@ Through the Develop/Deploy tab it is possible to define the main applications fo
 
 And explained in the following table.
 
-.. csv-table::  GUI - overview
-   :file: gui_guide.csv
+.. csv-table::  GUI - overview Develop/Deploy tab
+   :file: gui_guide_dd.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
 
-A load button: Which can be used to load an "inputfile.xlsx" 
+New applications can be generated for each layer through the respective buttons. 
+Application panels are described for each layer.
 
-A "new" switch: By clicking this switch a new project can be created. Select the folder in which you want to create your project click ok and it will prompt you to define a new project name you click ok new empty project will be created 
+SUBMODEL
+"""""""""
 
-Three different panels, one for each application type column submodel, interface, host. 
+
+
 
 To create a new submodel click on the ADD sub model button located above the sub model panel. You will be prompt to specify new model tag, many it's a model will have the following columns :
 Model tag: Is the name of your sub model 
