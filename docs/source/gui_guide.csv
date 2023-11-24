@@ -1,4 +1,4 @@
-Nø,KeyName,Description
+N°,KeyName,Description
 1,Load button,"Button to load an ""inputfile.xlsx"" "
 2,"""New project"" switch",Use to create a new project. Must specify project folder and name
 3,Add Submodel button,Use to add a new submodel to the project. It will appear in the SUBMODEL panel
