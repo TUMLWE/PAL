@@ -205,16 +205,4 @@ ITFC
 
 HOST
 """""""""
-.. csv-table::  GUI - ITFC panel
-   :file: ITFC_gui.csv
-   :widths: 30, 70
-   :header-rows: 1
-
-
-Same story for the Host application
-Are there buttons are the following:
-Refresh: Which can be used to reload the sub panels 
-Generate PLC: This is used to generate the PLC applications of all the apps of which the generate PLC check mark is thicked. 
-Save: These saved the actual final configuration onto the input file Excel. 
-
-This tab can be used to develop new project by specify new submodels the, interface and host and deployed through the generate PLC button.
+Same as SUBMODEL panel.
