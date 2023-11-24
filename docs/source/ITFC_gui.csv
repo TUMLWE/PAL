@@ -1,0 +1,9 @@
+﻿KeyName;Description
+appTag; Name of ITFC
+GeneratePLC; Same as SUBMODEL 
+C ref found; Same as SUBMODEL
+PLCgen-Ready; Same as SUBMODEL
+Create Empty ITFC; Used to generate an empty test interface according to the specifics defined in the "SVI_Definition.xlsx". All numeric values will be set to 0. Filename is set as "test_ITFC_filename" of the "inputfile.xlsx"
+Create Random ITFC; Used to generate an random test interface according to the specifics defined in the "SVI_Definition.xlsx". Preferred option for testing. Filename is set as "test_ITFC_filename" of the "inputfile.xlsx"
+Load ITFC; Load the filename "test_ITFC_filename" of the "inputfile.xlsx"
+Details; Same as SUBMODEL

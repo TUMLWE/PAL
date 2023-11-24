@@ -55,7 +55,8 @@ This tab defines some main settings of the project execution and compilation. Im
    :widths: 30, 30, 40
    :header-rows: 1
 
-**ITFC** 
+ITFC
+"""""""""
 
 One row for each ITFC application. Each can take as input a test interface in the form of .mat file. Multiple ITFC Apps are supported. 
 
@@ -64,7 +65,8 @@ One row for each ITFC application. Each can take as input a test interface in th
    :widths: 30, 30, 40
    :header-rows: 1
 
-**HOST** 
+HOST
+"""""""""
 
 One row for each HOST application. IMPORTANT: only one HOST application can be used for each project. 
 
@@ -73,7 +75,8 @@ One row for each HOST application. IMPORTANT: only one HOST application can be u
    :widths: 30, 30, 40
    :header-rows: 1
 
-**SUBMODELS** 
+SUBMODELS
+"""""""""
 
 One row for each Simulink submodel. IMPORTANT: each submodel can have a single Simulink model associated. There is no limit to the number of SUBMODELS for each project. 
 
@@ -188,26 +191,25 @@ Aften generating a new SUBMODEL, several options and flags will be visible
 
 .. csv-table::  GUI - SUBMODEL panel
    :file: sm_gui.csv
-   :widths: 30, 7
+   :widths: 30, 70
    :header-rows: 1
 
 It is important to remark that if an user wants to use a Simulink model developed externally, it is better to copy-paste its content into a newly created one, thus keeping the Simulink model settings set through the button "Create Simulink Model". This will create, beside an empty Simulink model, an initialization .m file that can be used to initialize specific model parameters.
 
 ITFC
 """""""""
+.. csv-table::  GUI - ITFC panel
+   :file: ITFC_gui.csv
+   :widths: 30, 70
+   :header-rows: 1
 
+HOST
+"""""""""
+.. csv-table::  GUI - ITFC panel
+   :file: ITFC_gui.csv
+   :widths: 30, 70
+   :header-rows: 1
 
-
-
-Similarly. Create a new interface by clicking the add interface button. Similarly several columns will be shown: 
-Apptag: It is the application name
-Generate PLC: same as above
-PLC ref found: same as above
-PLCgen-Ready: same as above
-Create empty ITFC: This allows to generate an empty interface that can be used for testing 
-Create random ITFC: these allows generating are random interface can be used for testing data transmission 
-Load ITFC column this can be used to load a previously generated interface file 
-Details: same as above 
 
 Same story for the Host application
 Are there buttons are the following:
