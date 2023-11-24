@@ -3,7 +3,7 @@
 2,Run Simulink models,It runs the Simulink models with the HOST inputs currently loaded present. WARNING: trim unphysical data before use!
 3,Select HOST,Use to select the HOST app to Test. Currently only one HOST app is supported for each project
 4,Load HOST Data,"Load MAT file generate by the button ""Generate MAT file from HOST outputs"""
-5,Select HOST entry,Select HOST entry to plot. ITFC and SUBMODEL curves will be added, if present
+5,Select HOST entry,"Select HOST entry to plot. ITFC and SUBMODEL curves will be added, if present"
 6,Comparison plot,Axes on which the variables are displayed
 7,Find delay,Run cross correlation to identify delay between HOST and ITFC
 8,Adjust delay,Manually specify or adjust the delay between HOST and ITFC
