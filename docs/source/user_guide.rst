@@ -49,20 +49,7 @@ Graphic User Interface
 .. include:: gui_guide.inc
 
 
-Appendix
------------------------
 
-.. _user_guide_appendix_createbachmann:
-
-Create Bachmann Applications 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To create e new PLC application in Bachmann, open the Bachmann solution center and follow the steps:
-
-
-   (1) In the Solution Navigator: right click C/C++ projects, new, C Project.
-   (2) Define a project name, which could be any name. Under Project Type, select Bachmann module -> C Template. Under Toolchains, select Bachmann 2.95 Toolchain. Next.
-   (3) Insert your module name, which should be your "AppName". Check the “SVI client for reading SVI variables”. Finish.
-   (4) A new C project will be created. Under its “Source Files” folder, copy the “AppName_app.c” file into “ReferenceCFiles\\Originals”. IMPORTANT: this file name, without the appendix "_app.c" is the "refC_name" to be written in "inputfile.xlsx". This is the main application file, which needs to be modified to include the app interconnections.
 
 
 Examples
@@ -247,3 +234,9 @@ The comparison should align well after the initial ramp-up time required for the
 Verify the last two variables, "avg_inflow_AppStatus," which should be 0 when the submodel "calc_avg" was not running and 1 otherwise, and "avg_inflowState," which should be 0 when the submodel is running correctly and a number between 1 and 7 otherwise.
 Save your results by clicking on "Save" with the desired output file name to generate a ".mat" file for future reference.
 This concludes the tutorial. Your applications are now ready for execution.
+
+
+Appendix
+-----------------------
+
+.. include:: appendix.inc
