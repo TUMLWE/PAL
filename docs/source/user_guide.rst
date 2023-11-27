@@ -61,7 +61,7 @@ In this first example, we are going to create a simple framework to read data fr
 
 The first step is to open the framework by double-clicking on the main file "mail.mlapp". This opens the main GUI. There will be two options for us to choose: load an existing file or create a new one. we click on "new". A window will appear where we can specify the folder for our new project. We open the "Examples" folder and click OK.
 
-Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in sectionXX
+Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`user_guide_svi_definition_itfc`
 
 .. figure:: images/mmr_new.png
    :width: 1000
@@ -70,7 +70,7 @@ Then, we need to specify the new project name. We'll call it "met_mast_reader" a
    Define new project view
 
 
-:ref:`user_guide_svi_definition_itfc`
+
 
 In the three main panels linked to the three layers . We must create at least three applications:
 1.	ITFC for data transmission and testing.
