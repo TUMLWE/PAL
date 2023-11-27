@@ -1,0 +1,6 @@
+﻿InputNumber,TagName,VarName,AppName,VarType,VarSize,Access,Create
+1,met_mast,met_mast,met_mast_ITFC,struct,24,READ,TRUE
+1,ws_110m,ws_110m,,double,1,,TRUE
+1,ws_60m,ws_60m,,double,1,,TRUE
+1,wd_110m,wd_110m,,double,1,,TRUE
+2,exchange_data_mm,exchange_data_mm,met_mast_ITFC,double,5,WRITE,TRUE

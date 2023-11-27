@@ -167,19 +167,33 @@ Below an overview of the different tabs in "inputfile.xlsx"
    :widths: 30, 60, 10
    :header-rows: 1
 
-**Modify the “SVI_Definition”**
+Modify the “SVI_Definition”
+""""""""""""""""""""""""""""""""
 
-One of the key files to generate is the "SVI definition.xlsx." This file is crucial as it enables us to define and establish the interconnections among various variables across different applications. Much like the "inputfile," the "SVI definition.xlsx" comprises three tabs: interface, host, and submodels.
+In this step we will define the variables for each application and the relative variable interconnections between different layers. Open the "SVI definition.xlsx." The definitions relative to each layer is specified in the following sections.
 
 **ITFC**
 
-The initial step is to define the interface variables. In a real-world scenario, this application would collect data from physical hardware. However, in this case, we will create a dummy interface to emulate real-world conditions, allowing us to test data transmission among all the other applications seamlessly.
-We want to define two variables: one is a structure, which will contain the met mast variables to be read by the host. The second is a vector that will contain all variables to be written back. 
-•	To begin, create a variable named 'met_mast' and provide the 'TagName' and 'VarName' details. Set 'InputNumber' to 1 and verify that 'AppName' matches the entry in 'inputfile.xlsx.' Specify 'VarType' as 'struct,' choose 'READ' for the 'Access' field, and ensure 'Create' is set to 1. It's worth noting that structures can handle variables of different data types. The 'VarSize' field is used to specify the size in bytes of the structure's content, which may vary based on the data types included. For now, it can be left empty.
-•	Now define three subvariables under "met_mast." These subvariables are: "Wind Speed at 110 Meters (ws_110m)," "Wind Speed at 60 Meters (ws_60m)," and "Wind Direction at 110 Meters (wd_110m)." Ensure that the 'InputNumber' for each subvariable matches the structure, leave 'AppName' empty, specify 'VarType' as "double," set 'VarSize' to 1, choose 'Access' as 1, and mark 'Create' as 1 for each of these subvariables.
-•	Now, we establish an additional variable known as 'exchange_data_mm' for the purpose of storing and writing the some output values from the host to the interface. 'InputNumber' must be 2 (since it is a separate variable), 'VarType'is double, 'VarSize' is 5, access is WRITE.
+We want now to create a dummy interface to emulate real-world conditions. For the present met-mast case, we want to define two variables: one is a structure which will contain the met-mast variables to be read by the HOST "host_calc_avg". The second is a vector of double, which contains all variables that the HOST will write back to the ITFC. 
 
-The resulting sheet can be viewed in the following **figure [Insert Figure Reference].**
+   #. Create the structure: set both "TagName" and "VarName" as "met_mast". Set 'InputNumber' to 1 and verify that "AppName" matches the HOST app in "inputfile.xlsx." Specify "VarType" as "struct," type "READ" in the "Access" field, and ensure "Create" is set to true. It's worth reminding that structures can handle variables of different data types. The "VarSize" field is used to specify the size in bytes of the structure's content, which may vary based on the data types included. For now, it can be left empty.
+   #. Define three subvariables under "met_mast." These subvariables are: 
+       #. Wind Speed at 110 Meters, named "ws_110m"
+       #. Wind Speed at 60 Meters, named "ws_60m"
+       #. Wind Direction at 110 Meters, named "wd_110m"
+   Ensure that the "InputNumber" for each subvariable matches that of the structure, leave "AppName" empty, specify "VarType" as "double," set "VarSize" to 1, and mark "Create" as true for each of these subvariables. "Access" can be left empty, since it will be inherited from the structure.
+
+   #. Create a variable named "exchange_data_mm" for the purpose of storing and writing output values from the HOST to the ITFC. "InputNumber" must be 2, set "VarType" to double and "VarSize" to 5. Set "Access" to WRITE.
+
+
+The resulting sheet can be viewed in the following table.
+
+.. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - ITFC
+   :file: SVI_Definition_itfc_mmreader.csv
+   :widths: 30, 60, 10
+   :header-rows: 1
+   :name: SVI_Definition_itfc_mmreader 
+
 
 **HOST**
 

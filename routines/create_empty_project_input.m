@@ -187,7 +187,7 @@ set(eActivesheetRange.Font, 'Bold', true)
 
 s3 = Add(WS, [], s2);
 s3.Name = 'Submodels';
-eActivesheetRange = get(s3,'Range','A1:L1');
+eActivesheetRange = get(s3,'Range','A1:K1');
 eActivesheetRange.Value = {
     'modelTag'
     'TagName'
