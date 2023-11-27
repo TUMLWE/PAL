@@ -28,7 +28,7 @@ eActivesheetRange = get(s1,'Range','A1:B1');
 eActivesheetRange.Value = {'VariableName', 'FolderName'};
 set(eActivesheetRange.Font, 'Bold', true)
 
-eActivesheetRange = get(s1,'Range','A2:A7');
+eActivesheetRange = get(s1,'Range','A2:A6');
 eActivesheetRange.Value = {
     'PLCApps'
     'InterfaceFiles'
@@ -38,14 +38,14 @@ eActivesheetRange.Value = {
 %     'MatlabRoutines_PLCGenerators'
     };
 
-eActivesheetRange = get(s1,'Range','B2:B7');
+eActivesheetRange = get(s1,'Range','B2:B6');
 eActivesheetRange.Value = {
     fullfile(prj_path,'PLCApps')
     'PLC_Matlab_InterfaceRoutines'
     fullfile(prj_path,'ReferenceCFiles')
     fullfile(prj_path,'SimulinkCCodes')
     fullfile(prj_path,'SimulinkModels')
-    ''};
+    };
 
 
 s2 = Add(WS, [], s1);
@@ -110,7 +110,7 @@ eActivesheetRange.Value = {
     }';
 set(eActivesheetRange.Font, 'Bold', true)
 
-eActivesheetRange = get(s5,'Range','A2:A10');
+eActivesheetRange = get(s5,'Range','A2:A8');
 eActivesheetRange.Value = {
     'ExcelPLCFileName'
 %     'ExcelIOFileName'
@@ -123,7 +123,7 @@ eActivesheetRange.Value = {
     'DataTypes_dict_filename'
     };
 
-eActivesheetRange = get(s5,'Range','B2:B10');
+eActivesheetRange = get(s5,'Range','B2:B8');
 eActivesheetRange.Value = {
     fullfile(prj_path,'SVI_definition.xlsx')
     'true'

@@ -1,6 +1,6 @@
 /**
 ********************************************************************************
-* @file     calavg_app.c
+* @file     mmitfc_app.c
 * @author   Bachmann electronic GmbH
 * @version  $Revision: 3.90 $ $LastChangedBy: BE $
 * @date     $LastChangeDate: 2013-06-10 11:00:00 $
@@ -37,27 +37,19 @@
 #include <lst_e.h>
 
 /* Project includes */
-#include "calavg.h"
-#include "calavg_e.h"
-#include "calavg_int.h"
-
-
-// MATLABCODEGEN: OpenField #IncludeHeader
-// MATLABCODEGEN: CloseField #IncludeHeader
-
-
-// MATLABCODEGEN: OpenField #Include rt_OneStep
-// MATLABCODEGEN: CloseField #Include rt_OneStep
+#include "mmitfc.h"
+#include "mmitfc_e.h"
+#include "mmitfc_int.h"
 
 /* Functions: administration, to be called from outside this file */
-SINT32  calavg_AppEOI(VOID);
-VOID    calavg_AppDeinit(VOID);
-SINT32  calavg_CfgRead(VOID);
-SINT32  calavg_SviSrvInit(VOID);
-VOID    calavg_SviSrvDeinit(VOID);
+SINT32  mmitfc_AppEOI(VOID);
+VOID    mmitfc_AppDeinit(VOID);
+SINT32  mmitfc_CfgRead(VOID);
+SINT32  mmitfc_SviSrvInit(VOID);
+VOID    mmitfc_SviSrvDeinit(VOID);
 
 /* Functions: administration, to be called only from within this file */
-MLOCAL VOID calavg_CfgInit(VOID);
+MLOCAL VOID mmitfc_CfgInit(VOID);
 
 /* Functions: task administration, being called only within this file */
 MLOCAL SINT32 Task_CreateAll(VOID);
@@ -80,12 +72,8 @@ MLOCAL SINT32 SviClt_Example(UINT32 * pTime_us);
 MLOCAL SINT32 SviClt_Init(VOID);
 MLOCAL VOID SviClt_Deinit(VOID);
 
-
-MLOCAL SINT32 SviClt_Read();
-MLOCAL SINT32 SviClt_Write(VOID);
-
 /* Global variables: data structure for mconfig parameters */
-CALAVG_BASE_PARMS calavg_BaseParams;
+MMITFC_BASE_PARMS mmitfc_BaseParams;
 
 /* Global variables: SVI client */
 MLOCAL  SINT32(**pSviLib) () = NULL;    /* Information about external SVI server */
@@ -93,28 +81,8 @@ MLOCAL SVI_ADDR TimeSviAddr;            /* SVI address of server's variable */
 MLOCAL BOOL8 PrintTime = TRUE;
 
 
-
-// MATLABCODEGEN: OpenField SVI Server Definition
-// MATLABCODEGEN: CloseField SVI Server Definition
-
-
-// MATLABCODEGEN: OpenField SA Address and Variables to be read from interface
-// MATLABCODEGEN: CloseField SA Address and Variables to be read from interface
-
-
-MLOCAL SVI_ADDR SA_AppStatus;
-
-
 /* Global variables: miscellaneous */
 MLOCAL UINT32 CycleCount = 0;
-// MATLABCODEGEN: OpenField Output Variable Definition
-// MATLABCODEGEN: CloseField Output Variable Definition
-
-
-
-
-// MATLABCODEGEN: OpenField SVI Variables Definition
-// MATLABCODEGEN: CloseField SVI Variables Definition
 
 /*
  * Global variables: Settings for application task
@@ -123,7 +91,7 @@ MLOCAL UINT32 CycleCount = 0;
  * in this initialization.
  */
 MLOCAL TASK_PROPERTIES TaskProperties_aControl = {
-    "aCALAVG_Ctrl",                 /* unique task name, maximum length 14 */
+    "aMMITFC_Ctrl",                 /* unique task name, maximum length 14 */
     "ControlTask",                      /* configuration group name */
     Control_Main,                       /* task entry function (function pointer) */
     0,                                  /* default task priority (->Task_CfgRead) */
@@ -158,12 +126,8 @@ MLOCAL SVI_GLOBVAR SviGlobVarList[] = {
     {"CycleCounter", SVI_F_INOUT | SVI_F_UINT32, sizeof(UINT32), (UINT32 *) & CycleCount, 0, NULL,
      NULL}
     ,
-    {"ModuleVersion", SVI_F_OUT | SVI_F_STRING, sizeof(calavg_Version),
-     (UINT32 *) calavg_Version, 0, NULL, NULL},
-
-// MATLABCODEGEN: OpenField SVI Variables Coupling
-// MATLABCODEGEN: CloseField SVI Variables Coupling
-
+    {"ModuleVersion", SVI_F_OUT | SVI_F_STRING, sizeof(mmitfc_Version),
+     (UINT32 *) mmitfc_Version, 0, NULL, NULL}
 };
 
 /**
@@ -196,20 +160,6 @@ MLOCAL VOID Control_Main(TASK_PROPERTIES * pTaskData)
         /* cycle end administration */
         Control_CycleEnd(pTaskData);
     }
-// MATLABCODEGEN: OpenField #terminate model
-// MATLABCODEGEN: CloseField #terminate model
-
-// MATLABCODEGEN: OpenField Terminate Variables
-// MATLABCODEGEN: CloseField Terminate Variables
-
-
-
-AppStatus = 0;
-SviClt_Write();
-
-
-
-
 }
 
 /**
@@ -223,15 +173,6 @@ SviClt_Write();
 *******************************************************************************/
 MLOCAL VOID Control_CycleInit(VOID)
 {
-// MATLABCODEGEN: OpenField #initialize model
-// MATLABCODEGEN: CloseField #initialize model
-
-AppStatus = 1;
-
-
-
-
-
 
     /* TODO: add what is necessary before cyclic operation starts */
 
@@ -248,19 +189,6 @@ AppStatus = 1;
 *******************************************************************************/
 MLOCAL VOID Control_CycleStart(VOID)
 {
-if (SviClt_Read() < 0)
-    LOG_W(0, "Control_CycleStart", "Could not read all SVI variables!");
-
-
-
-
-// MATLABCODEGEN: OpenField Assign ITF Variables to HOST SVI
-// MATLABCODEGEN: CloseField Assign ITF Variables to HOST SVI
-
-// MATLABCODEGEN: OpenField3 Simulink Model Input Assignment Definition
-// MATLABCODEGEN: CloseField3 Simulink Model Input Assignment Definition
-
-
 
     /* TODO: add what is necessary at each cycle start */
 
@@ -282,16 +210,7 @@ MLOCAL VOID Control_Cycle(VOID)
     /* TODO: add operational code to be called in this task */
 
     /* Increase cycle counter */
-    CycleCount++;    rt_OneStep();
-// MATLABCODEGEN: OpenField Output Variable Assignment
-// MATLABCODEGEN: CloseField Output Variable Assignment
-
-// MATLABCODEGEN: OpenField Assign ITF output Variables to HOST SVI
-// MATLABCODEGEN: CloseField Assign ITF output Variables to HOST SVI
-
-
-
-
+    CycleCount++;
 
     /*
      * In this example, all values are read in a separated function.
@@ -318,10 +237,6 @@ MLOCAL VOID Control_Cycle(VOID)
 *******************************************************************************/
 MLOCAL VOID Control_CycleEnd(TASK_PROPERTIES * pTaskData)
 {
-    SviClt_Write();
-
-
-
 
     /* TODO: add what is to be called at each cycle end */
 
@@ -343,14 +258,14 @@ MLOCAL VOID Control_CycleEnd(TASK_PROPERTIES * pTaskData)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-SINT32 calavg_AppEOI(VOID)
+SINT32 mmitfc_AppEOI(VOID)
 {
 
     /* do while(0), to be left as soon as there is an error */
     do
     {
         /* TODO: set module info string, maximum length is SMI_DESCLEN_A */
-        snprintf(calavg_ModuleInfoDesc, sizeof(calavg_ModuleInfoDesc), "TODO: set application specific module info string");
+        snprintf(mmitfc_ModuleInfoDesc, sizeof(mmitfc_ModuleInfoDesc), "TODO: set application specific module info string");
 
         /* TODO: add all initializations required by your application */
 
@@ -371,7 +286,7 @@ SINT32 calavg_AppEOI(VOID)
      * At this point, an init action returned an error.
      * The application code is being de-initialized.
      */
-    calavg_AppDeinit();
+    mmitfc_AppDeinit();
     return (ERROR);
 }
 
@@ -386,7 +301,7 @@ SINT32 calavg_AppEOI(VOID)
 *
 * @retval     N/A
 *******************************************************************************/
-VOID calavg_AppDeinit(VOID)
+VOID mmitfc_AppDeinit(VOID)
 {
 
     /* TODO: Free all resources which have been allocated by the application */
@@ -405,8 +320,8 @@ VOID calavg_AppDeinit(VOID)
 *        for all tasks registered in TaskList[].
 *        The task name in TaskList[] is being used as configuration group name.
 *        The initialization values in TaskList[] are being used as default values.
-*        For general configuration data, calavg_CfgParams is being used.
-*        Being called by calavg_CfgRead.
+*        For general configuration data, mmitfc_CfgParams is being used.
+*        Being called by mmitfc_CfgRead.
 *        All parameters are stored in the task properties data structure.
 *        All parameters are being treated as optional.
 *        There is no limitation checking of the parameters, the limits are being
@@ -432,7 +347,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
     CHAR    Func[] = "Task_CfgRead";
 
     /* section name is the application name, for all tasks */
-    snprintf(section, sizeof(section), calavg_BaseParams.AppName);
+    snprintf(section, sizeof(section), mmitfc_BaseParams.AppName);
 
     /* For all application tasks listed in TaskList */
     for (idx = 0; idx < NbOfTasks; idx++)
@@ -463,7 +378,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
         snprintf(key, sizeof(key), "CycleTime");
         snprintf(TmpStrg, sizeof(TmpStrg), "%f", TaskList[idx]->CycleTime_ms);
         ret = pf_GetStrg(section, group, key, "", (CHAR *) & TmpStrg, sizeof(TmpStrg),
-                         calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                         mmitfc_BaseParams.CfgLine, mmitfc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -484,7 +399,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
          */
         snprintf(key, sizeof(key), "Priority");
         ret = pf_GetInt(section, group, key, TaskList[idx]->Priority, &TmpVal,
-                        calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                        mmitfc_BaseParams.CfgLine, mmitfc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -496,7 +411,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
             LOG_W(0, Func, "Missing configuration parameter '[%s](%s)%s'", section, group, key);
             if (TaskList[idx]->Priority == 0)
             {
-                TaskList[idx]->Priority = calavg_BaseParams.DefaultPriority;
+                TaskList[idx]->Priority = mmitfc_BaseParams.DefaultPriority;
                 LOG_W(0, Func, " -> using base parms value of %d", TaskList[idx]->Priority);
             }
             else
@@ -510,7 +425,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
          */
         snprintf(key, sizeof(key), "WatchdogRatio");
         ret = pf_GetInt(section, group, key, TaskList[idx]->WDogRatio, &TmpVal,
-                        calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                        mmitfc_BaseParams.CfgLine, mmitfc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -530,7 +445,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
          */
         snprintf(key, sizeof(key), "TimeBase");
         ret = pf_GetInt(section, group, key, TaskList[idx]->TimeBase, &TmpVal,
-                        calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                        mmitfc_BaseParams.CfgLine, mmitfc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -602,7 +517,7 @@ MLOCAL SINT32 Task_CreateAll(VOID)
             }
 
             wdogtime_us = (TaskList[idx]->CycleTime_ms * 1000) * TaskList[idx]->WDogRatio;
-            TaskList[idx]->WdogId = sys_WdogCreate(calavg_AppName, wdogtime_us);
+            TaskList[idx]->WdogId = sys_WdogCreate(mmitfc_AppName, wdogtime_us);
             if (TaskList[idx]->WdogId == 0)
             {
                 LOG_E(0, Func, "Could not create watchdog!");
@@ -634,7 +549,7 @@ MLOCAL SINT32 Task_CreateAll(VOID)
 
         /* If no task name has been set: use application name and index */
         if (strlen(TaskList[idx]->Name) < 1)
-            snprintf(TaskList[idx]->Name, sizeof(TaskList[idx]->Name), "a%s_%d", calavg_AppName, idx + 1);
+            snprintf(TaskList[idx]->Name, sizeof(TaskList[idx]->Name), "a%s_%d", mmitfc_AppName, idx + 1);
 
         snprintf(TaskName, sizeof(TaskList[idx]->Name), "%s", TaskList[idx]->Name);
 
@@ -644,7 +559,7 @@ MLOCAL SINT32 Task_CreateAll(VOID)
             TaskOptions |= VX_FP_TASK;
 
         /* Spawn task with properties set in task list */
-        TaskList[idx]->TaskId = sys_TaskSpawn(calavg_AppName, TaskName,
+        TaskList[idx]->TaskId = sys_TaskSpawn(mmitfc_AppName, TaskName,
                                               TaskList[idx]->Priority, TaskOptions,
                                               TaskList[idx]->StackSize,
                                               (FUNCPTR) TaskList[idx]->pMainFunc, TaskList[idx]);
@@ -729,7 +644,7 @@ MLOCAL VOID Task_DeleteAll(VOID)
         /* If all tasks have terminated themselves */
         if (AllTasksQuitted)
         {
-            if (calavg_BaseParams.DebugMode & APP_DBG_INFO1)
+            if (mmitfc_BaseParams.DebugMode & APP_DBG_INFO1)
                 LOG_I(0, Func, "All tasks have terminated by themselves");
             break;
         }
@@ -883,7 +798,7 @@ MLOCAL SINT32 Task_InitTiming_Sync(TASK_PROPERTIES * pTaskData)
     }
 
     /* Start sync session for this module (multiple starts are possible) */
-    pTaskData->SyncSessionId = mio_StartSyncSession(calavg_AppName);
+    pTaskData->SyncSessionId = mio_StartSyncSession(mmitfc_AppName);
     if (pTaskData->SyncSessionId < 0)
     {
         LOG_E(0, Func, "Could not start sync session for task '%s'!", pTaskData->Name);
@@ -1090,7 +1005,7 @@ MLOCAL VOID Task_WaitCycle(TASK_PROPERTIES * pTaskData)
      * If the software module receives the RpcStart call,
      * it will give the state semaphore, and all tasks will continue.
      */
-    if ((calavg_ModState == RES_S_STOP) || (calavg_ModState == RES_S_EOI))
+    if ((mmitfc_ModState == RES_S_STOP) || (mmitfc_ModState == RES_S_EOI))
     {
         /* Disable software watchdog if present */
         if (pTaskData->WdogId)
@@ -1102,7 +1017,7 @@ MLOCAL VOID Task_WaitCycle(TASK_PROPERTIES * pTaskData)
          * semaphore will be given by SMI server with calls
          * RpcStart or RpcEndOfInit
          */
-        semTake(calavg_StateSema, WAIT_FOREVER);
+        semTake(mmitfc_StateSema, WAIT_FOREVER);
     }
 }
 
@@ -1116,22 +1031,22 @@ MLOCAL VOID Task_WaitCycle(TASK_PROPERTIES * pTaskData)
 *
 * @retval     N/A
 *******************************************************************************/
-MLOCAL VOID calavg_CfgInit(VOID)
+MLOCAL VOID mmitfc_CfgInit(VOID)
 {
     /* Configuration file name (profile name) */
-    strncpy(calavg_BaseParams.CfgFileName, calavg_ProfileName, M_PATHLEN);
+    strncpy(mmitfc_BaseParams.CfgFileName, mmitfc_ProfileName, M_PATHLEN);
 
     /* Application name */
-    strncpy(calavg_BaseParams.AppName, calavg_AppName, M_MODNAMELEN);
+    strncpy(mmitfc_BaseParams.AppName, mmitfc_AppName, M_MODNAMELEN);
 
     /* Line number in configuration file (used as start line for searching) */
-    calavg_BaseParams.CfgLine = calavg_CfgLine;
+    mmitfc_BaseParams.CfgLine = mmitfc_CfgLine;
 
     /* Worker task priority from module base parameters (BaseParms) */
-    calavg_BaseParams.DefaultPriority = calavg_AppPrio;
+    mmitfc_BaseParams.DefaultPriority = mmitfc_AppPrio;
 
     /* Debug mode from module base parameters (BaseParms) */
-    calavg_BaseParams.DebugMode = calavg_Debug;
+    mmitfc_BaseParams.DebugMode = mmitfc_Debug;
 
 }
 
@@ -1146,12 +1061,12 @@ MLOCAL VOID calavg_CfgInit(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-SINT32 calavg_CfgRead(VOID)
+SINT32 mmitfc_CfgRead(VOID)
 {
     SINT32  ret;
 
     /* Initialize configuration with values taken at module init */
-    calavg_CfgInit();
+    mmitfc_CfgInit();
 
     /* Read all task configuration settings from mconfig.ini */
     ret = Task_CfgRead();
@@ -1177,19 +1092,19 @@ SINT32 calavg_CfgRead(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-SINT32 calavg_SviSrvInit(VOID)
+SINT32 mmitfc_SviSrvInit(VOID)
 {
     SINT32  ret;
     UINT32  NbOfGlobVars = sizeof(SviGlobVarList) / sizeof(SVI_GLOBVAR);
     UINT32  i;
-    CHAR    Func[] = "calavg_SviSrvInit";
+    CHAR    Func[] = "mmitfc_SviSrvInit";
 
     /* If there are any SVI variables to be exported */
     if (NbOfGlobVars)
     {
         /* Initialize SVI-handler */
-        calavg_SviHandle = svi_Init(calavg_AppName, 0, 0);
-        if (!calavg_SviHandle)
+        mmitfc_SviHandle = svi_Init(mmitfc_AppName, 0, 0);
+        if (!mmitfc_SviHandle)
         {
             LOG_E(0, Func, "Could not initialize SVI server handle!");
             return (ERROR);
@@ -1197,14 +1112,14 @@ SINT32 calavg_SviSrvInit(VOID)
     }
     else
     {
-        calavg_SviHandle = 0;
+        mmitfc_SviHandle = 0;
         return (OK);
     }
 
     /* Add the global variables from the list SviGlobVarList */
     for (i = 0; i < NbOfGlobVars; i++)
     {
-        ret = svi_AddGlobVar(calavg_SviHandle, SviGlobVarList[i].VarName,
+        ret = svi_AddGlobVar(mmitfc_SviHandle, SviGlobVarList[i].VarName,
                              SviGlobVarList[i].Format, SviGlobVarList[i].Size,
                              SviGlobVarList[i].pVar, 0, SviGlobVarList[i].UserParam,
                              SviGlobVarList[i].pSviStart, SviGlobVarList[i].pSviEnd);
@@ -1225,7 +1140,7 @@ SINT32 calavg_SviSrvInit(VOID)
 
 /**
 ********************************************************************************
-* @brief Frees SVI server resources according to calavg_SviSrvInit()
+* @brief Frees SVI server resources according to mmitfc_SviSrvInit()
 *        Being called at module deinit by the bTask.
 *
 * @param[in]  N/A
@@ -1233,16 +1148,16 @@ SINT32 calavg_SviSrvInit(VOID)
 *
 * @retval     N/A
 *******************************************************************************/
-VOID calavg_SviSrvDeinit(VOID)
+VOID mmitfc_SviSrvDeinit(VOID)
 {
     /* If there was no or no successful SVI init */
-    if (!calavg_SviHandle)
+    if (!mmitfc_SviHandle)
         return;
 
-    if (svi_DeInit(calavg_SviHandle) < 0)
-        LOG_E(0, "calavg_SviSrvDeinit", "Could not de-initialize SVI server");
+    if (svi_DeInit(mmitfc_SviHandle) < 0)
+        LOG_E(0, "mmitfc_SviSrvDeinit", "Could not de-initialize SVI server");
 
-    calavg_SviHandle = 0;
+    mmitfc_SviHandle = 0;
 }
 
 /**
@@ -1270,15 +1185,6 @@ MLOCAL SINT32 SviClt_Init(VOID)
         LOG_W(0, Func, "Could not get SVI of module 'RES'!");
         return (ERROR);
     }
-// MATLABCODEGEN: OpenField Get Specified  App Module
-// MATLABCODEGEN: CloseField Get Specified App Module
-
-// MATLABCODEGEN: OpenField Get ITF SA Address
-// MATLABCODEGEN: CloseField Get ITF SA Address
-
-
-
-
 
     /* Convert symbolic address "Time_us" to binary SVI address. */
     if (svi_GetAddr(pSviLib, "Time_us", &TimeSviAddr, &SviFormat) != SVI_E_OK)
@@ -1324,24 +1230,6 @@ MLOCAL VOID SviClt_Deinit(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-MLOCAL SINT32 SviClt_Read()
-{
-    SINT32  ret;
-// MATLABCODEGEN: OpenField Size of Array definition
-// MATLABCODEGEN: CloseField Size of Array definition
-
-
-    // MATLABCODEGEN: OpenField assign variable from SA_Address
-    // MATLABCODEGEN: CloseField assign variable from SA_Address
-    return (ret);
-}
-MLOCAL SINT32 SviClt_Write(VOID)
-{
-    SINT32  ret;
-    // MATLABCODEGEN: OpenField assign variable in SviClt_Write
-    // MATLABCODEGEN: CloseField assign variable in SviClt_Write
-    return (ret);
-}
 MLOCAL SINT32 SviClt_Example(UINT32 * pTime_us)
 {
     SINT32  ret;

@@ -1,6 +1,6 @@
 /**
 ********************************************************************************
-* @file     calavg_app.c
+* @file     hcalc_app.c
 * @author   Bachmann electronic GmbH
 * @version  $Revision: 3.90 $ $LastChangedBy: BE $
 * @date     $LastChangeDate: 2013-06-10 11:00:00 $
@@ -37,35 +37,19 @@
 #include <lst_e.h>
 
 /* Project includes */
-#include "calavg.h"
-#include "calavg_e.h"
-#include "calavg_int.h"
-
-
-// MATLABCODEGEN: OpenField #IncludeHeader
-#include "calc_avg.h"
-// MATLABCODEGEN: CloseField #IncludeHeader
-
-
-// MATLABCODEGEN: OpenField #Include rt_OneStep
-void rt_OneStep(void);
-void rt_OneStep(void)
-{
-    /* Step the model */
-    calc_avg_step();
-}
-
-// MATLABCODEGEN: CloseField #Include rt_OneStep
+#include "hcalc.h"
+#include "hcalc_e.h"
+#include "hcalc_int.h"
 
 /* Functions: administration, to be called from outside this file */
-SINT32  calavg_AppEOI(VOID);
-VOID    calavg_AppDeinit(VOID);
-SINT32  calavg_CfgRead(VOID);
-SINT32  calavg_SviSrvInit(VOID);
-VOID    calavg_SviSrvDeinit(VOID);
+SINT32  hcalc_AppEOI(VOID);
+VOID    hcalc_AppDeinit(VOID);
+SINT32  hcalc_CfgRead(VOID);
+SINT32  hcalc_SviSrvInit(VOID);
+VOID    hcalc_SviSrvDeinit(VOID);
 
 /* Functions: administration, to be called only from within this file */
-MLOCAL VOID calavg_CfgInit(VOID);
+MLOCAL VOID hcalc_CfgInit(VOID);
 
 /* Functions: task administration, being called only within this file */
 MLOCAL SINT32 Task_CreateAll(VOID);
@@ -88,12 +72,8 @@ MLOCAL SINT32 SviClt_Example(UINT32 * pTime_us);
 MLOCAL SINT32 SviClt_Init(VOID);
 MLOCAL VOID SviClt_Deinit(VOID);
 
-
-MLOCAL SINT32 SviClt_Read();
-MLOCAL SINT32 SviClt_Write(VOID);
-
 /* Global variables: data structure for mconfig parameters */
-CALAVG_BASE_PARMS calavg_BaseParams;
+HCALC_BASE_PARMS hcalc_BaseParams;
 
 /* Global variables: SVI client */
 MLOCAL  SINT32(**pSviLib) () = NULL;    /* Information about external SVI server */
@@ -101,67 +81,8 @@ MLOCAL SVI_ADDR TimeSviAddr;            /* SVI address of server's variable */
 MLOCAL BOOL8 PrintTime = TRUE;
 
 
-
-// MATLABCODEGEN: OpenField SVI Server Definition
-
-MLOCAL SINT32  (**pSviLib_hcalc)  ()= NULL;
-
-// MATLABCODEGEN: CloseField SVI Server Definition
-
-
-// MATLABCODEGEN: OpenField SA Address and Variables to be read from interface
-
-REAL64 host_calc_avg_mmws110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_mmws110m;
-REAL64 host_calc_avg_mmws60m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_mmws60m;
-REAL64 host_calc_avg_mmwd110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_mmwd110m;
-REAL64 host_calc_avg_avgTI[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgTI;
-REAL64 host_calc_avg_avgws110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgws110m;
-REAL64 host_calc_avg_avgws60m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgws60m;
-REAL64 host_calc_avg_avgshearExp[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgshearExp;
-REAL64 host_calc_avg_avgwd110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgwd110m;
-REAL64 host_calc_avg_avginflowState[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avginflowState;
-
-// MATLABCODEGEN: CloseField SA Address and Variables to be read from interface
-
-
-MLOCAL SVI_ADDR SA_AppStatus;
-
-
 /* Global variables: miscellaneous */
 MLOCAL UINT32 CycleCount = 0;
-// MATLABCODEGEN: OpenField Output Variable Definition
-// MATLABCODEGEN: CloseField Output Variable Definition
-
-MLOCAL UINT16 AppStatus = 0;
-
-
-
-
-
-
-
-// MATLABCODEGEN: OpenField SVI Variables Definition
-
-MLOCAL REAL64 ws_110m=0;
-MLOCAL REAL64 ws_60m=0;
-MLOCAL REAL64 wd_110m=0;
-MLOCAL REAL64 avg_TI=0;
-MLOCAL REAL64 avg_ws_110m=0;
-MLOCAL REAL64 avg_ws_60m=0;
-MLOCAL REAL64 avg_shearExp=0;
-MLOCAL REAL64 avg_wd_110m=0;
-MLOCAL REAL64 inflowState=0;
-
-// MATLABCODEGEN: CloseField SVI Variables Definition
 
 /*
  * Global variables: Settings for application task
@@ -170,7 +91,7 @@ MLOCAL REAL64 inflowState=0;
  * in this initialization.
  */
 MLOCAL TASK_PROPERTIES TaskProperties_aControl = {
-    "aCALAVG_Ctrl",                 /* unique task name, maximum length 14 */
+    "aHCALC_Ctrl",                 /* unique task name, maximum length 14 */
     "ControlTask",                      /* configuration group name */
     Control_Main,                       /* task entry function (function pointer) */
     0,                                  /* default task priority (->Task_CfgRead) */
@@ -205,25 +126,8 @@ MLOCAL SVI_GLOBVAR SviGlobVarList[] = {
     {"CycleCounter", SVI_F_INOUT | SVI_F_UINT32, sizeof(UINT32), (UINT32 *) & CycleCount, 0, NULL,
      NULL}
     ,
-    {"ModuleVersion", SVI_F_OUT | SVI_F_STRING, sizeof(calavg_Version),
-     (UINT32 *) calavg_Version, 0, NULL, NULL},
-
-// MATLABCODEGEN: OpenField SVI Variables Coupling
-
-{"ws_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &ws_110m, 0, NULL, NULL},
-{"ws_60m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &ws_60m, 0, NULL, NULL},
-{"wd_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &wd_110m, 0, NULL, NULL},
-{"avg_TI", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_TI, 0, NULL, NULL},
-{"avg_ws_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_ws_110m, 0, NULL, NULL},
-{"avg_ws_60m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_ws_60m, 0, NULL, NULL},
-{"avg_shearExp", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_shearExp, 0, NULL, NULL},
-{"avg_wd_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_wd_110m, 0, NULL, NULL},
-{"inflowState", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &inflowState, 0, NULL, NULL},
-
-// MATLABCODEGEN: CloseField SVI Variables Coupling
-{"AppStatus", SVI_F_INOUT | SVI_F_UINT16, sizeof(UINT16[1]), (UINT32 *) &AppStatus, 0, NULL, NULL},
-
-
+    {"ModuleVersion", SVI_F_OUT | SVI_F_STRING, sizeof(hcalc_Version),
+     (UINT32 *) hcalc_Version, 0, NULL, NULL}
 };
 
 /**
@@ -256,31 +160,6 @@ MLOCAL VOID Control_Main(TASK_PROPERTIES * pTaskData)
         /* cycle end administration */
         Control_CycleEnd(pTaskData);
     }
-// MATLABCODEGEN: OpenField #terminate model
-    /* Terminate model */
-    calc_avg_terminate();
-
-// MATLABCODEGEN: CloseField #terminate model
-
-// MATLABCODEGEN: OpenField Terminate Variables
-
-avg_TI=0;
-avg_ws_110m=0;
-avg_ws_60m=0;
-avg_shearExp=0;
-avg_wd_110m=0;
-inflowState=0;
-
-// MATLABCODEGEN: CloseField Terminate Variables
-
-
-
-AppStatus = 0;
-SviClt_Write();
-
-
-
-
 }
 
 /**
@@ -294,17 +173,6 @@ SviClt_Write();
 *******************************************************************************/
 MLOCAL VOID Control_CycleInit(VOID)
 {
-// MATLABCODEGEN: OpenField #initialize model
-    calc_avg_initialize();
-
-// MATLABCODEGEN: CloseField #initialize model
-
-AppStatus = 1;
-
-
-
-
-
 
     /* TODO: add what is necessary before cyclic operation starts */
 
@@ -321,29 +189,6 @@ AppStatus = 1;
 *******************************************************************************/
 MLOCAL VOID Control_CycleStart(VOID)
 {
-if (SviClt_Read() < 0)
-    LOG_W(0, "Control_CycleStart", "Could not read all SVI variables!");
-
-
-
-
-// MATLABCODEGEN: OpenField Assign ITF Variables to HOST SVI
-
-ws_110m = host_calc_avg_mmws110m[0];
-ws_60m = host_calc_avg_mmws60m[0];
-wd_110m = host_calc_avg_mmwd110m[0];
-
-// MATLABCODEGEN: CloseField Assign ITF Variables to HOST SVI
-
-// MATLABCODEGEN: OpenField3 Simulink Model Input Assignment Definition
-
-calc_avg_U.input_ws_110m =  ws_110m;
-calc_avg_U.input_ws_60m =  ws_60m;
-calc_avg_U.input_wd_110m =  wd_110m;
-
-// MATLABCODEGEN: CloseField3 Simulink Model Input Assignment Definition
-
-
 
     /* TODO: add what is necessary at each cycle start */
 
@@ -365,32 +210,7 @@ MLOCAL VOID Control_Cycle(VOID)
     /* TODO: add operational code to be called in this task */
 
     /* Increase cycle counter */
-    CycleCount++;    rt_OneStep();
-// MATLABCODEGEN: OpenField Output Variable Assignment
-
-avg_TI =  calc_avg_Y.output_TI;
-avg_ws_110m =  calc_avg_Y.output_ws_110m;
-avg_ws_60m =  calc_avg_Y.output_ws_60m;
-avg_shearExp =  calc_avg_Y.output_shearExp;
-avg_wd_110m =  calc_avg_Y.output_wd_110m;
-inflowState =  calc_avg_Y.output_InflowOK;
-
-// MATLABCODEGEN: CloseField Output Variable Assignment
-
-// MATLABCODEGEN: OpenField Assign ITF output Variables to HOST SVI
-
-host_calc_avg_avgTI[0] = avg_TI;
-host_calc_avg_avgws110m[0] = avg_ws_110m;
-host_calc_avg_avgws60m[0] = avg_ws_60m;
-host_calc_avg_avgshearExp[0] = avg_shearExp;
-host_calc_avg_avgwd110m[0] = avg_wd_110m;
-host_calc_avg_avginflowState[0] = inflowState;
-
-// MATLABCODEGEN: CloseField Assign ITF output Variables to HOST SVI
-
-
-
-
+    CycleCount++;
 
     /*
      * In this example, all values are read in a separated function.
@@ -417,10 +237,6 @@ host_calc_avg_avginflowState[0] = inflowState;
 *******************************************************************************/
 MLOCAL VOID Control_CycleEnd(TASK_PROPERTIES * pTaskData)
 {
-    SviClt_Write();
-
-
-
 
     /* TODO: add what is to be called at each cycle end */
 
@@ -442,14 +258,14 @@ MLOCAL VOID Control_CycleEnd(TASK_PROPERTIES * pTaskData)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-SINT32 calavg_AppEOI(VOID)
+SINT32 hcalc_AppEOI(VOID)
 {
 
     /* do while(0), to be left as soon as there is an error */
     do
     {
         /* TODO: set module info string, maximum length is SMI_DESCLEN_A */
-        snprintf(calavg_ModuleInfoDesc, sizeof(calavg_ModuleInfoDesc), "TODO: set application specific module info string");
+        snprintf(hcalc_ModuleInfoDesc, sizeof(hcalc_ModuleInfoDesc), "TODO: set application specific module info string");
 
         /* TODO: add all initializations required by your application */
 
@@ -470,7 +286,7 @@ SINT32 calavg_AppEOI(VOID)
      * At this point, an init action returned an error.
      * The application code is being de-initialized.
      */
-    calavg_AppDeinit();
+    hcalc_AppDeinit();
     return (ERROR);
 }
 
@@ -485,7 +301,7 @@ SINT32 calavg_AppEOI(VOID)
 *
 * @retval     N/A
 *******************************************************************************/
-VOID calavg_AppDeinit(VOID)
+VOID hcalc_AppDeinit(VOID)
 {
 
     /* TODO: Free all resources which have been allocated by the application */
@@ -504,8 +320,8 @@ VOID calavg_AppDeinit(VOID)
 *        for all tasks registered in TaskList[].
 *        The task name in TaskList[] is being used as configuration group name.
 *        The initialization values in TaskList[] are being used as default values.
-*        For general configuration data, calavg_CfgParams is being used.
-*        Being called by calavg_CfgRead.
+*        For general configuration data, hcalc_CfgParams is being used.
+*        Being called by hcalc_CfgRead.
 *        All parameters are stored in the task properties data structure.
 *        All parameters are being treated as optional.
 *        There is no limitation checking of the parameters, the limits are being
@@ -531,7 +347,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
     CHAR    Func[] = "Task_CfgRead";
 
     /* section name is the application name, for all tasks */
-    snprintf(section, sizeof(section), calavg_BaseParams.AppName);
+    snprintf(section, sizeof(section), hcalc_BaseParams.AppName);
 
     /* For all application tasks listed in TaskList */
     for (idx = 0; idx < NbOfTasks; idx++)
@@ -562,7 +378,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
         snprintf(key, sizeof(key), "CycleTime");
         snprintf(TmpStrg, sizeof(TmpStrg), "%f", TaskList[idx]->CycleTime_ms);
         ret = pf_GetStrg(section, group, key, "", (CHAR *) & TmpStrg, sizeof(TmpStrg),
-                         calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                         hcalc_BaseParams.CfgLine, hcalc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -583,7 +399,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
          */
         snprintf(key, sizeof(key), "Priority");
         ret = pf_GetInt(section, group, key, TaskList[idx]->Priority, &TmpVal,
-                        calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                        hcalc_BaseParams.CfgLine, hcalc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -595,7 +411,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
             LOG_W(0, Func, "Missing configuration parameter '[%s](%s)%s'", section, group, key);
             if (TaskList[idx]->Priority == 0)
             {
-                TaskList[idx]->Priority = calavg_BaseParams.DefaultPriority;
+                TaskList[idx]->Priority = hcalc_BaseParams.DefaultPriority;
                 LOG_W(0, Func, " -> using base parms value of %d", TaskList[idx]->Priority);
             }
             else
@@ -609,7 +425,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
          */
         snprintf(key, sizeof(key), "WatchdogRatio");
         ret = pf_GetInt(section, group, key, TaskList[idx]->WDogRatio, &TmpVal,
-                        calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                        hcalc_BaseParams.CfgLine, hcalc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -629,7 +445,7 @@ MLOCAL SINT32 Task_CfgRead(VOID)
          */
         snprintf(key, sizeof(key), "TimeBase");
         ret = pf_GetInt(section, group, key, TaskList[idx]->TimeBase, &TmpVal,
-                        calavg_BaseParams.CfgLine, calavg_BaseParams.CfgFileName);
+                        hcalc_BaseParams.CfgLine, hcalc_BaseParams.CfgFileName);
         /* keyword has been found */
         if (ret >= 0)
         {
@@ -701,7 +517,7 @@ MLOCAL SINT32 Task_CreateAll(VOID)
             }
 
             wdogtime_us = (TaskList[idx]->CycleTime_ms * 1000) * TaskList[idx]->WDogRatio;
-            TaskList[idx]->WdogId = sys_WdogCreate(calavg_AppName, wdogtime_us);
+            TaskList[idx]->WdogId = sys_WdogCreate(hcalc_AppName, wdogtime_us);
             if (TaskList[idx]->WdogId == 0)
             {
                 LOG_E(0, Func, "Could not create watchdog!");
@@ -733,7 +549,7 @@ MLOCAL SINT32 Task_CreateAll(VOID)
 
         /* If no task name has been set: use application name and index */
         if (strlen(TaskList[idx]->Name) < 1)
-            snprintf(TaskList[idx]->Name, sizeof(TaskList[idx]->Name), "a%s_%d", calavg_AppName, idx + 1);
+            snprintf(TaskList[idx]->Name, sizeof(TaskList[idx]->Name), "a%s_%d", hcalc_AppName, idx + 1);
 
         snprintf(TaskName, sizeof(TaskList[idx]->Name), "%s", TaskList[idx]->Name);
 
@@ -743,7 +559,7 @@ MLOCAL SINT32 Task_CreateAll(VOID)
             TaskOptions |= VX_FP_TASK;
 
         /* Spawn task with properties set in task list */
-        TaskList[idx]->TaskId = sys_TaskSpawn(calavg_AppName, TaskName,
+        TaskList[idx]->TaskId = sys_TaskSpawn(hcalc_AppName, TaskName,
                                               TaskList[idx]->Priority, TaskOptions,
                                               TaskList[idx]->StackSize,
                                               (FUNCPTR) TaskList[idx]->pMainFunc, TaskList[idx]);
@@ -828,7 +644,7 @@ MLOCAL VOID Task_DeleteAll(VOID)
         /* If all tasks have terminated themselves */
         if (AllTasksQuitted)
         {
-            if (calavg_BaseParams.DebugMode & APP_DBG_INFO1)
+            if (hcalc_BaseParams.DebugMode & APP_DBG_INFO1)
                 LOG_I(0, Func, "All tasks have terminated by themselves");
             break;
         }
@@ -982,7 +798,7 @@ MLOCAL SINT32 Task_InitTiming_Sync(TASK_PROPERTIES * pTaskData)
     }
 
     /* Start sync session for this module (multiple starts are possible) */
-    pTaskData->SyncSessionId = mio_StartSyncSession(calavg_AppName);
+    pTaskData->SyncSessionId = mio_StartSyncSession(hcalc_AppName);
     if (pTaskData->SyncSessionId < 0)
     {
         LOG_E(0, Func, "Could not start sync session for task '%s'!", pTaskData->Name);
@@ -1189,7 +1005,7 @@ MLOCAL VOID Task_WaitCycle(TASK_PROPERTIES * pTaskData)
      * If the software module receives the RpcStart call,
      * it will give the state semaphore, and all tasks will continue.
      */
-    if ((calavg_ModState == RES_S_STOP) || (calavg_ModState == RES_S_EOI))
+    if ((hcalc_ModState == RES_S_STOP) || (hcalc_ModState == RES_S_EOI))
     {
         /* Disable software watchdog if present */
         if (pTaskData->WdogId)
@@ -1201,7 +1017,7 @@ MLOCAL VOID Task_WaitCycle(TASK_PROPERTIES * pTaskData)
          * semaphore will be given by SMI server with calls
          * RpcStart or RpcEndOfInit
          */
-        semTake(calavg_StateSema, WAIT_FOREVER);
+        semTake(hcalc_StateSema, WAIT_FOREVER);
     }
 }
 
@@ -1215,22 +1031,22 @@ MLOCAL VOID Task_WaitCycle(TASK_PROPERTIES * pTaskData)
 *
 * @retval     N/A
 *******************************************************************************/
-MLOCAL VOID calavg_CfgInit(VOID)
+MLOCAL VOID hcalc_CfgInit(VOID)
 {
     /* Configuration file name (profile name) */
-    strncpy(calavg_BaseParams.CfgFileName, calavg_ProfileName, M_PATHLEN);
+    strncpy(hcalc_BaseParams.CfgFileName, hcalc_ProfileName, M_PATHLEN);
 
     /* Application name */
-    strncpy(calavg_BaseParams.AppName, calavg_AppName, M_MODNAMELEN);
+    strncpy(hcalc_BaseParams.AppName, hcalc_AppName, M_MODNAMELEN);
 
     /* Line number in configuration file (used as start line for searching) */
-    calavg_BaseParams.CfgLine = calavg_CfgLine;
+    hcalc_BaseParams.CfgLine = hcalc_CfgLine;
 
     /* Worker task priority from module base parameters (BaseParms) */
-    calavg_BaseParams.DefaultPriority = calavg_AppPrio;
+    hcalc_BaseParams.DefaultPriority = hcalc_AppPrio;
 
     /* Debug mode from module base parameters (BaseParms) */
-    calavg_BaseParams.DebugMode = calavg_Debug;
+    hcalc_BaseParams.DebugMode = hcalc_Debug;
 
 }
 
@@ -1245,12 +1061,12 @@ MLOCAL VOID calavg_CfgInit(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-SINT32 calavg_CfgRead(VOID)
+SINT32 hcalc_CfgRead(VOID)
 {
     SINT32  ret;
 
     /* Initialize configuration with values taken at module init */
-    calavg_CfgInit();
+    hcalc_CfgInit();
 
     /* Read all task configuration settings from mconfig.ini */
     ret = Task_CfgRead();
@@ -1276,19 +1092,19 @@ SINT32 calavg_CfgRead(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-SINT32 calavg_SviSrvInit(VOID)
+SINT32 hcalc_SviSrvInit(VOID)
 {
     SINT32  ret;
     UINT32  NbOfGlobVars = sizeof(SviGlobVarList) / sizeof(SVI_GLOBVAR);
     UINT32  i;
-    CHAR    Func[] = "calavg_SviSrvInit";
+    CHAR    Func[] = "hcalc_SviSrvInit";
 
     /* If there are any SVI variables to be exported */
     if (NbOfGlobVars)
     {
         /* Initialize SVI-handler */
-        calavg_SviHandle = svi_Init(calavg_AppName, 0, 0);
-        if (!calavg_SviHandle)
+        hcalc_SviHandle = svi_Init(hcalc_AppName, 0, 0);
+        if (!hcalc_SviHandle)
         {
             LOG_E(0, Func, "Could not initialize SVI server handle!");
             return (ERROR);
@@ -1296,14 +1112,14 @@ SINT32 calavg_SviSrvInit(VOID)
     }
     else
     {
-        calavg_SviHandle = 0;
+        hcalc_SviHandle = 0;
         return (OK);
     }
 
     /* Add the global variables from the list SviGlobVarList */
     for (i = 0; i < NbOfGlobVars; i++)
     {
-        ret = svi_AddGlobVar(calavg_SviHandle, SviGlobVarList[i].VarName,
+        ret = svi_AddGlobVar(hcalc_SviHandle, SviGlobVarList[i].VarName,
                              SviGlobVarList[i].Format, SviGlobVarList[i].Size,
                              SviGlobVarList[i].pVar, 0, SviGlobVarList[i].UserParam,
                              SviGlobVarList[i].pSviStart, SviGlobVarList[i].pSviEnd);
@@ -1324,7 +1140,7 @@ SINT32 calavg_SviSrvInit(VOID)
 
 /**
 ********************************************************************************
-* @brief Frees SVI server resources according to calavg_SviSrvInit()
+* @brief Frees SVI server resources according to hcalc_SviSrvInit()
 *        Being called at module deinit by the bTask.
 *
 * @param[in]  N/A
@@ -1332,16 +1148,16 @@ SINT32 calavg_SviSrvInit(VOID)
 *
 * @retval     N/A
 *******************************************************************************/
-VOID calavg_SviSrvDeinit(VOID)
+VOID hcalc_SviSrvDeinit(VOID)
 {
     /* If there was no or no successful SVI init */
-    if (!calavg_SviHandle)
+    if (!hcalc_SviHandle)
         return;
 
-    if (svi_DeInit(calavg_SviHandle) < 0)
-        LOG_E(0, "calavg_SviSrvDeinit", "Could not de-initialize SVI server");
+    if (svi_DeInit(hcalc_SviHandle) < 0)
+        LOG_E(0, "hcalc_SviSrvDeinit", "Could not de-initialize SVI server");
 
-    calavg_SviHandle = 0;
+    hcalc_SviHandle = 0;
 }
 
 /**
@@ -1369,81 +1185,6 @@ MLOCAL SINT32 SviClt_Init(VOID)
         LOG_W(0, Func, "Could not get SVI of module 'RES'!");
         return (ERROR);
     }
-// MATLABCODEGEN: OpenField Get Specified  App Module
-
-pSviLib_hcalc = svi_GetLib("hcalc");
-if (!pSviLib_hcalc)
-{
-   LOG_W(0, Func, "Could not get SVI of module hcalc!");
-   return (ERROR);
-}
-
-
-// MATLABCODEGEN: CloseField Get Specified App Module
-
-// MATLABCODEGEN: OpenField Get ITF SA Address
-
-if (svi_GetAddr(pSviLib_hcalc, "mm_ws_110m", &SA_host_calc_avg_mmws110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_mmws110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "mm_ws_60m", &SA_host_calc_avg_mmws60m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_mmws60m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "mm_wd_110m", &SA_host_calc_avg_mmwd110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_mmwd110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_TI", &SA_host_calc_avg_avgTI, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgTI!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_ws_110m", &SA_host_calc_avg_avgws110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgws110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_ws_60m", &SA_host_calc_avg_avgws60m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgws60m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_shearExp", &SA_host_calc_avg_avgshearExp, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgshearExp!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_wd_110m", &SA_host_calc_avg_avgwd110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgwd110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_inflowState", &SA_host_calc_avg_avginflowState, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avginflowState!");
-    return (ERROR);
-}
-
-// MATLABCODEGEN: CloseField Get ITF SA Address
-
-if (svi_GetAddr(pSviLib_hcalc, "avg_inflow_AppStatus", &SA_AppStatus, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value AppStatus!");
-    return (ERROR);
-}
-
-
-
-
-
-
-
-
 
     /* Convert symbolic address "Time_us" to binary SVI address. */
     if (svi_GetAddr(pSviLib, "Time_us", &TimeSviAddr, &SviFormat) != SVI_E_OK)
@@ -1489,73 +1230,6 @@ MLOCAL VOID SviClt_Deinit(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-MLOCAL SINT32 SviClt_Read()
-{
-    SINT32  ret;
-// MATLABCODEGEN: OpenField Size of Array definition
-
-UINT32 host_calc_avg_mmws110m_size = sizeof(host_calc_avg_mmws110m);
-UINT32 host_calc_avg_mmws60m_size = sizeof(host_calc_avg_mmws60m);
-UINT32 host_calc_avg_mmwd110m_size = sizeof(host_calc_avg_mmwd110m);
-
-// MATLABCODEGEN: CloseField Size of Array definition
-
-
-    // MATLABCODEGEN: OpenField assign variable from SA_Address
-
-ret = svi_GetBlk(pSviLib_hcalc, SA_host_calc_avg_mmws110m, (UINT32*) &host_calc_avg_mmws110m,  &host_calc_avg_mmws110m_size);
-if (ret != SVI_E_OK)
-   LOG_W(0, "SviClt_Read", "Could not read value host_calc_avg_mmws110m!");
-ret = svi_GetBlk(pSviLib_hcalc, SA_host_calc_avg_mmws60m, (UINT32*) &host_calc_avg_mmws60m,  &host_calc_avg_mmws60m_size);
-if (ret != SVI_E_OK)
-   LOG_W(0, "SviClt_Read", "Could not read value host_calc_avg_mmws60m!");
-ret = svi_GetBlk(pSviLib_hcalc, SA_host_calc_avg_mmwd110m, (UINT32*) &host_calc_avg_mmwd110m,  &host_calc_avg_mmwd110m_size);
-if (ret != SVI_E_OK)
-   LOG_W(0, "SviClt_Read", "Could not read value host_calc_avg_mmwd110m!");
- // MATLABCODEGEN: CloseField assign variable from SA_Address
-    return (ret);
-}
-MLOCAL SINT32 SviClt_Write(VOID)
-{
-    SINT32  ret;
-    // MATLABCODEGEN: OpenField assign variable in SviClt_Write
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgTI, (UINT32*) &host_calc_avg_avgTI, sizeof(host_calc_avg_avgTI) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgTI!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgws110m, (UINT32*) &host_calc_avg_avgws110m, sizeof(host_calc_avg_avgws110m) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgws110m!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgws60m, (UINT32*) &host_calc_avg_avgws60m, sizeof(host_calc_avg_avgws60m) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgws60m!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgshearExp, (UINT32*) &host_calc_avg_avgshearExp, sizeof(host_calc_avg_avgshearExp) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgshearExp!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgwd110m, (UINT32*) &host_calc_avg_avgwd110m, sizeof(host_calc_avg_avgwd110m) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgwd110m!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avginflowState, (UINT32*) &host_calc_avg_avginflowState, sizeof(host_calc_avg_avginflowState) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avginflowState!");
-
- // MATLABCODEGEN: CloseField assign variable in SviClt_Write
-
-ret = svi_SetVal(pSviLib_hcalc, SA_AppStatus, *(UINT32*) &AppStatus );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value AppStatus!");
-
-
-
-
-
-    return (ret);
-}
 MLOCAL SINT32 SviClt_Example(UINT32 * pTime_us)
 {
     SINT32  ret;

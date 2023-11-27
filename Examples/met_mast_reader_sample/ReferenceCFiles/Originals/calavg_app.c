@@ -41,22 +41,6 @@
 #include "calavg_e.h"
 #include "calavg_int.h"
 
-
-// MATLABCODEGEN: OpenField #IncludeHeader
-#include "calc_avg.h"
-// MATLABCODEGEN: CloseField #IncludeHeader
-
-
-// MATLABCODEGEN: OpenField #Include rt_OneStep
-void rt_OneStep(void);
-void rt_OneStep(void)
-{
-    /* Step the model */
-    calc_avg_step();
-}
-
-// MATLABCODEGEN: CloseField #Include rt_OneStep
-
 /* Functions: administration, to be called from outside this file */
 SINT32  calavg_AppEOI(VOID);
 VOID    calavg_AppDeinit(VOID);
@@ -88,10 +72,6 @@ MLOCAL SINT32 SviClt_Example(UINT32 * pTime_us);
 MLOCAL SINT32 SviClt_Init(VOID);
 MLOCAL VOID SviClt_Deinit(VOID);
 
-
-MLOCAL SINT32 SviClt_Read();
-MLOCAL SINT32 SviClt_Write(VOID);
-
 /* Global variables: data structure for mconfig parameters */
 CALAVG_BASE_PARMS calavg_BaseParams;
 
@@ -101,67 +81,8 @@ MLOCAL SVI_ADDR TimeSviAddr;            /* SVI address of server's variable */
 MLOCAL BOOL8 PrintTime = TRUE;
 
 
-
-// MATLABCODEGEN: OpenField SVI Server Definition
-
-MLOCAL SINT32  (**pSviLib_hcalc)  ()= NULL;
-
-// MATLABCODEGEN: CloseField SVI Server Definition
-
-
-// MATLABCODEGEN: OpenField SA Address and Variables to be read from interface
-
-REAL64 host_calc_avg_mmws110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_mmws110m;
-REAL64 host_calc_avg_mmws60m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_mmws60m;
-REAL64 host_calc_avg_mmwd110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_mmwd110m;
-REAL64 host_calc_avg_avgTI[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgTI;
-REAL64 host_calc_avg_avgws110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgws110m;
-REAL64 host_calc_avg_avgws60m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgws60m;
-REAL64 host_calc_avg_avgshearExp[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgshearExp;
-REAL64 host_calc_avg_avgwd110m[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avgwd110m;
-REAL64 host_calc_avg_avginflowState[1];
-MLOCAL SVI_ADDR SA_host_calc_avg_avginflowState;
-
-// MATLABCODEGEN: CloseField SA Address and Variables to be read from interface
-
-
-MLOCAL SVI_ADDR SA_AppStatus;
-
-
 /* Global variables: miscellaneous */
 MLOCAL UINT32 CycleCount = 0;
-// MATLABCODEGEN: OpenField Output Variable Definition
-// MATLABCODEGEN: CloseField Output Variable Definition
-
-MLOCAL UINT16 AppStatus = 0;
-
-
-
-
-
-
-
-// MATLABCODEGEN: OpenField SVI Variables Definition
-
-MLOCAL REAL64 ws_110m=0;
-MLOCAL REAL64 ws_60m=0;
-MLOCAL REAL64 wd_110m=0;
-MLOCAL REAL64 avg_TI=0;
-MLOCAL REAL64 avg_ws_110m=0;
-MLOCAL REAL64 avg_ws_60m=0;
-MLOCAL REAL64 avg_shearExp=0;
-MLOCAL REAL64 avg_wd_110m=0;
-MLOCAL REAL64 inflowState=0;
-
-// MATLABCODEGEN: CloseField SVI Variables Definition
 
 /*
  * Global variables: Settings for application task
@@ -206,24 +127,7 @@ MLOCAL SVI_GLOBVAR SviGlobVarList[] = {
      NULL}
     ,
     {"ModuleVersion", SVI_F_OUT | SVI_F_STRING, sizeof(calavg_Version),
-     (UINT32 *) calavg_Version, 0, NULL, NULL},
-
-// MATLABCODEGEN: OpenField SVI Variables Coupling
-
-{"ws_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &ws_110m, 0, NULL, NULL},
-{"ws_60m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &ws_60m, 0, NULL, NULL},
-{"wd_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &wd_110m, 0, NULL, NULL},
-{"avg_TI", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_TI, 0, NULL, NULL},
-{"avg_ws_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_ws_110m, 0, NULL, NULL},
-{"avg_ws_60m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_ws_60m, 0, NULL, NULL},
-{"avg_shearExp", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_shearExp, 0, NULL, NULL},
-{"avg_wd_110m", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &avg_wd_110m, 0, NULL, NULL},
-{"inflowState", SVI_F_INOUT | SVI_F_BLK | SVI_F_REAL64, sizeof(REAL64[1]), (UINT32 *) &inflowState, 0, NULL, NULL},
-
-// MATLABCODEGEN: CloseField SVI Variables Coupling
-{"AppStatus", SVI_F_INOUT | SVI_F_UINT16, sizeof(UINT16[1]), (UINT32 *) &AppStatus, 0, NULL, NULL},
-
-
+     (UINT32 *) calavg_Version, 0, NULL, NULL}
 };
 
 /**
@@ -256,31 +160,6 @@ MLOCAL VOID Control_Main(TASK_PROPERTIES * pTaskData)
         /* cycle end administration */
         Control_CycleEnd(pTaskData);
     }
-// MATLABCODEGEN: OpenField #terminate model
-    /* Terminate model */
-    calc_avg_terminate();
-
-// MATLABCODEGEN: CloseField #terminate model
-
-// MATLABCODEGEN: OpenField Terminate Variables
-
-avg_TI=0;
-avg_ws_110m=0;
-avg_ws_60m=0;
-avg_shearExp=0;
-avg_wd_110m=0;
-inflowState=0;
-
-// MATLABCODEGEN: CloseField Terminate Variables
-
-
-
-AppStatus = 0;
-SviClt_Write();
-
-
-
-
 }
 
 /**
@@ -294,17 +173,6 @@ SviClt_Write();
 *******************************************************************************/
 MLOCAL VOID Control_CycleInit(VOID)
 {
-// MATLABCODEGEN: OpenField #initialize model
-    calc_avg_initialize();
-
-// MATLABCODEGEN: CloseField #initialize model
-
-AppStatus = 1;
-
-
-
-
-
 
     /* TODO: add what is necessary before cyclic operation starts */
 
@@ -321,29 +189,6 @@ AppStatus = 1;
 *******************************************************************************/
 MLOCAL VOID Control_CycleStart(VOID)
 {
-if (SviClt_Read() < 0)
-    LOG_W(0, "Control_CycleStart", "Could not read all SVI variables!");
-
-
-
-
-// MATLABCODEGEN: OpenField Assign ITF Variables to HOST SVI
-
-ws_110m = host_calc_avg_mmws110m[0];
-ws_60m = host_calc_avg_mmws60m[0];
-wd_110m = host_calc_avg_mmwd110m[0];
-
-// MATLABCODEGEN: CloseField Assign ITF Variables to HOST SVI
-
-// MATLABCODEGEN: OpenField3 Simulink Model Input Assignment Definition
-
-calc_avg_U.input_ws_110m =  ws_110m;
-calc_avg_U.input_ws_60m =  ws_60m;
-calc_avg_U.input_wd_110m =  wd_110m;
-
-// MATLABCODEGEN: CloseField3 Simulink Model Input Assignment Definition
-
-
 
     /* TODO: add what is necessary at each cycle start */
 
@@ -365,32 +210,7 @@ MLOCAL VOID Control_Cycle(VOID)
     /* TODO: add operational code to be called in this task */
 
     /* Increase cycle counter */
-    CycleCount++;    rt_OneStep();
-// MATLABCODEGEN: OpenField Output Variable Assignment
-
-avg_TI =  calc_avg_Y.output_TI;
-avg_ws_110m =  calc_avg_Y.output_ws_110m;
-avg_ws_60m =  calc_avg_Y.output_ws_60m;
-avg_shearExp =  calc_avg_Y.output_shearExp;
-avg_wd_110m =  calc_avg_Y.output_wd_110m;
-inflowState =  calc_avg_Y.output_InflowOK;
-
-// MATLABCODEGEN: CloseField Output Variable Assignment
-
-// MATLABCODEGEN: OpenField Assign ITF output Variables to HOST SVI
-
-host_calc_avg_avgTI[0] = avg_TI;
-host_calc_avg_avgws110m[0] = avg_ws_110m;
-host_calc_avg_avgws60m[0] = avg_ws_60m;
-host_calc_avg_avgshearExp[0] = avg_shearExp;
-host_calc_avg_avgwd110m[0] = avg_wd_110m;
-host_calc_avg_avginflowState[0] = inflowState;
-
-// MATLABCODEGEN: CloseField Assign ITF output Variables to HOST SVI
-
-
-
-
+    CycleCount++;
 
     /*
      * In this example, all values are read in a separated function.
@@ -417,10 +237,6 @@ host_calc_avg_avginflowState[0] = inflowState;
 *******************************************************************************/
 MLOCAL VOID Control_CycleEnd(TASK_PROPERTIES * pTaskData)
 {
-    SviClt_Write();
-
-
-
 
     /* TODO: add what is to be called at each cycle end */
 
@@ -1369,81 +1185,6 @@ MLOCAL SINT32 SviClt_Init(VOID)
         LOG_W(0, Func, "Could not get SVI of module 'RES'!");
         return (ERROR);
     }
-// MATLABCODEGEN: OpenField Get Specified  App Module
-
-pSviLib_hcalc = svi_GetLib("hcalc");
-if (!pSviLib_hcalc)
-{
-   LOG_W(0, Func, "Could not get SVI of module hcalc!");
-   return (ERROR);
-}
-
-
-// MATLABCODEGEN: CloseField Get Specified App Module
-
-// MATLABCODEGEN: OpenField Get ITF SA Address
-
-if (svi_GetAddr(pSviLib_hcalc, "mm_ws_110m", &SA_host_calc_avg_mmws110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_mmws110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "mm_ws_60m", &SA_host_calc_avg_mmws60m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_mmws60m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "mm_wd_110m", &SA_host_calc_avg_mmwd110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_mmwd110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_TI", &SA_host_calc_avg_avgTI, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgTI!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_ws_110m", &SA_host_calc_avg_avgws110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgws110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_ws_60m", &SA_host_calc_avg_avgws60m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgws60m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_shearExp", &SA_host_calc_avg_avgshearExp, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgshearExp!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_wd_110m", &SA_host_calc_avg_avgwd110m, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avgwd110m!");
-    return (ERROR);
-}
-if (svi_GetAddr(pSviLib_hcalc, "avg_inflowState", &SA_host_calc_avg_avginflowState, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value host_calc_avg_avginflowState!");
-    return (ERROR);
-}
-
-// MATLABCODEGEN: CloseField Get ITF SA Address
-
-if (svi_GetAddr(pSviLib_hcalc, "avg_inflow_AppStatus", &SA_AppStatus, &SviFormat) != SVI_E_OK)
-{
-    LOG_W(0, Func, "Could not get address of value AppStatus!");
-    return (ERROR);
-}
-
-
-
-
-
-
-
-
 
     /* Convert symbolic address "Time_us" to binary SVI address. */
     if (svi_GetAddr(pSviLib, "Time_us", &TimeSviAddr, &SviFormat) != SVI_E_OK)
@@ -1489,73 +1230,6 @@ MLOCAL VOID SviClt_Deinit(VOID)
 * @retval     = 0 .. OK
 * @retval     < 0 .. ERROR
 *******************************************************************************/
-MLOCAL SINT32 SviClt_Read()
-{
-    SINT32  ret;
-// MATLABCODEGEN: OpenField Size of Array definition
-
-UINT32 host_calc_avg_mmws110m_size = sizeof(host_calc_avg_mmws110m);
-UINT32 host_calc_avg_mmws60m_size = sizeof(host_calc_avg_mmws60m);
-UINT32 host_calc_avg_mmwd110m_size = sizeof(host_calc_avg_mmwd110m);
-
-// MATLABCODEGEN: CloseField Size of Array definition
-
-
-    // MATLABCODEGEN: OpenField assign variable from SA_Address
-
-ret = svi_GetBlk(pSviLib_hcalc, SA_host_calc_avg_mmws110m, (UINT32*) &host_calc_avg_mmws110m,  &host_calc_avg_mmws110m_size);
-if (ret != SVI_E_OK)
-   LOG_W(0, "SviClt_Read", "Could not read value host_calc_avg_mmws110m!");
-ret = svi_GetBlk(pSviLib_hcalc, SA_host_calc_avg_mmws60m, (UINT32*) &host_calc_avg_mmws60m,  &host_calc_avg_mmws60m_size);
-if (ret != SVI_E_OK)
-   LOG_W(0, "SviClt_Read", "Could not read value host_calc_avg_mmws60m!");
-ret = svi_GetBlk(pSviLib_hcalc, SA_host_calc_avg_mmwd110m, (UINT32*) &host_calc_avg_mmwd110m,  &host_calc_avg_mmwd110m_size);
-if (ret != SVI_E_OK)
-   LOG_W(0, "SviClt_Read", "Could not read value host_calc_avg_mmwd110m!");
- // MATLABCODEGEN: CloseField assign variable from SA_Address
-    return (ret);
-}
-MLOCAL SINT32 SviClt_Write(VOID)
-{
-    SINT32  ret;
-    // MATLABCODEGEN: OpenField assign variable in SviClt_Write
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgTI, (UINT32*) &host_calc_avg_avgTI, sizeof(host_calc_avg_avgTI) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgTI!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgws110m, (UINT32*) &host_calc_avg_avgws110m, sizeof(host_calc_avg_avgws110m) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgws110m!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgws60m, (UINT32*) &host_calc_avg_avgws60m, sizeof(host_calc_avg_avgws60m) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgws60m!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgshearExp, (UINT32*) &host_calc_avg_avgshearExp, sizeof(host_calc_avg_avgshearExp) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgshearExp!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avgwd110m, (UINT32*) &host_calc_avg_avgwd110m, sizeof(host_calc_avg_avgwd110m) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avgwd110m!");
-
-ret = svi_SetBlk(pSviLib_hcalc, SA_host_calc_avg_avginflowState, (UINT32*) &host_calc_avg_avginflowState, sizeof(host_calc_avg_avginflowState) );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value host_calc_avg_avginflowState!");
-
- // MATLABCODEGEN: CloseField assign variable in SviClt_Write
-
-ret = svi_SetVal(pSviLib_hcalc, SA_AppStatus, *(UINT32*) &AppStatus );
-if (ret != SVI_E_OK)
-     LOG_W(0, "SviClt_Write", "Could not read value AppStatus!");
-
-
-
-
-
-    return (ret);
-}
 MLOCAL SINT32 SviClt_Example(UINT32 * pTime_us)
 {
     SINT32  ret;

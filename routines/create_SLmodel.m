@@ -12,7 +12,7 @@ TargetLang = 'C';  % target language
 
 ff = fullfile(repo.SimulinkModels,foldername);
 
-if exist(ff, 'dir')
+if sum(exist(ff, 'dir') == [1 2 4])
 
     answer = questdlg('The simulink model you are trying to create already exists. If you proceed, all its content will be erased. Do you want to proceed?', ...
         'Warning Dialog', ...
