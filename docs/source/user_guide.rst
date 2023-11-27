@@ -28,7 +28,8 @@ The framework is equipped with a Graphic User Interface (GUI) that simplifies th
 Project Definition
 -----------------------
 
-When creating a new project through the GUI (Section XX), two excel files are created by default: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
+When creating a new project through the GUI (Section XX), a folder with the name of the project is created. Additionally, two default folders created, namely a "ReferenceCFiles" and a "SimulinkModels" folders, which are used to store the reference PLC source code and the Simulink models necessary for the SUBMODELs. 
+Additionally, two excel files are created: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
 
 Inputfile.xlsx
 ^^^^^^^^^^^^^^^^^^^^
@@ -251,9 +252,9 @@ Then, we need to specify the new project name. We'll call it "met_mast_reader" a
    :width: 1000
    :name: mmr_new
 
-   Test tab
+   Define new project view
 
-Now, we have three main panels, each linked to a specific application type. We must create at least three applications:
+In the three main panels linked to the three layers . We must create at least three applications:
 1.	ITFC for data transmission and testing.
 2.	The host, responsible for managing output data.
 3.	A Simulink model performing the averaging function.
