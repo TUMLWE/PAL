@@ -42,4 +42,4 @@ html_theme = 'sphinx_rtd_theme'
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
-numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Listing %s'}
+numfig_format = {'figure': 'Figure %s:', 'table': 'Table %s', 'code-block': 'Listing %s'}
