@@ -126,11 +126,9 @@ eActivesheetRange.Value = {
 eActivesheetRange = get(s5,'Range','B2:B10');
 eActivesheetRange.Value = {
     fullfile(prj_path,'SVI_definition.xlsx')
-    ''
     'true'
     'true'
     'true'
-    '40'
     '0.1'
     'Bachmann'
     'dictionary_bachmann.xlsx'

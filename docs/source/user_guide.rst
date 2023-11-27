@@ -243,9 +243,15 @@ Example 1: Met-Mast data reader
 
 In this first example, we are going to create a simple framework to read data from a met-mast ITFC app, calculate moving averages and some additional inflow quantities, which are written back to the ITFC.
 
-The first step is to open the framework by double-clicking on the main file. This opens a GUI. There will be two options for us to choose: load an existing file or create a new one. we click on "new,"a window will appear where we can specify the folder for our new project. We open the folder in which we want to create the new model and click ok.
+The first step is to open the framework by double-clicking on the main file "mail.mlapp". This opens the main GUI. There will be two options for us to choose: load an existing file or create a new one. we click on "new". A window will appear where we can specify the folder for our new project. We open the "Examples" folder and click OK.
 
-Then, we need to specify the new project name. We'll call it " met_mast_reader" and click OK. This will create a set of subfolders, as explained in sectionXX
+Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in sectionXX
+
+.. figure:: images/mmr_new.png
+   :width: 1000
+   :name: mmr_new
+
+   Test tab
 
 Now, we have three main panels, each linked to a specific application type. We must create at least three applications:
 1.	ITFC for data transmission and testing.
