@@ -1,4 +1,4 @@
-﻿Variable,Value,Comment
+﻿KeyName,KeyValue,Comment
 ExcelPLCFileName, "root\PAL\Examples\met_mast_reader\SVI_definition.xlsx",
 FlagGenerate_ITFC,TRUE,
 FlagGenerate_PLCApps,TRUE,
