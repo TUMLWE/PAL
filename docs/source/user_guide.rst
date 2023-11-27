@@ -185,12 +185,10 @@ We want now to create a dummy interface to emulate real-world conditions. For th
 
    #. Create a variable named "exchange_data_mm" for the purpose of storing and writing output values from the HOST to the ITFC. "InputNumber" must be 2, set "VarType" to double and "VarSize" to 5. Set "Access" to WRITE.
 
-
 The resulting sheet can be viewed in the following table.
 
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - ITFC
    :file: SVI_Definition_itfc_mmreader.csv
-   :widths: 30, 60, 10
    :header-rows: 1
    :name: SVI_Definition_itfc_mmreader 
 
