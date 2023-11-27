@@ -181,7 +181,7 @@ We want now to create a dummy interface to emulate real-world conditions. For th
        #. Wind Speed at 110 Meters, named "ws_110m"
        #. Wind Speed at 60 Meters, named "ws_60m"
        #. Wind Direction at 110 Meters, named "wd_110m"
-   Ensure that the "InputNumber" for each subvariable matches that of the structure, leave "AppName" empty, specify "VarType" as "double," set "VarSize" to 1, and mark "Create" as true for each of these subvariables. "Access" can be left empty, since it will be inherited from the structure.
+      Ensure that the "InputNumber" for each subvariable matches that of the structure, leave "AppName" empty, specify "VarType" as "double," set "VarSize" to 1, and mark "Create" as true for each of these subvariables. "Access" can be left empty, since it will be inherited from the structure.
 
    #. Create a variable named "exchange_data_mm" for the purpose of storing and writing output values from the HOST to the ITFC. "InputNumber" must be 2, set "VarType" to double and "VarSize" to 5. Set "Access" to WRITE.
 
