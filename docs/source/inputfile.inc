@@ -30,7 +30,9 @@ One row for each ITFC application. Each can take as input a test interface in th
    :widths: 30, 30, 40
    :header-rows: 1
 
-HOST
+.. _user_guide_inputfile_host: 
+
+HOST 
 """""""""
 
 One row for each HOST application. IMPORTANT: only one HOST application can be used for each project. 

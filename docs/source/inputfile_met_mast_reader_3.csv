@@ -1,0 +1,2 @@
+﻿appTag;PLCApp_folder;refC_name;Flag_Generate_PLC_app;FAST_FREQ_RATIO;SLOW_FREQ_RATIO;CTRL_FREQ_RATIO;out_filename;output_path_in_PLC;output_file_duration_s;Comment
+host_calc_avg;host_calc_avg;hcalc;FALSE;1;10;10;hcalc_outputs;/usbBulk0/CALCAVG/;600;
