@@ -34,7 +34,7 @@ Additionally, two excel files are created: “inputfile.xlsx” and “SVI_defin
 Inputfile.xlsx
 ^^^^^^^^^^^^^^^^^^^^
 
-.. include:: inputfile.rst
+.. include:: inputfile.inc
 
 
 SVI_Definition.xlsx
@@ -45,7 +45,7 @@ SVI_Definition.xlsx
 Graphic User Interface
 -----------------------
 
-.. include:: gui_guide.rst
+.. include:: gui_guide.inc
 
 
 Examples
