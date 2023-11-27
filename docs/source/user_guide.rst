@@ -69,6 +69,9 @@ Then, we need to specify the new project name. We'll call it "met_mast_reader" a
 
    Define new project view
 
+
+:ref:`user_guide_svi_definition_itfc`
+
 In the three main panels linked to the three layers . We must create at least three applications:
 1.	ITFC for data transmission and testing.
 2.	The host, responsible for managing output data.
