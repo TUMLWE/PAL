@@ -108,11 +108,11 @@ We must create at least three applications, one for each data layer:
 
    #. Right-click on the "C ref found" light and select "Add Matlab Fields" (:numref:`mmr_new3`). This modified the reference files enabling variables interconnection.
 
-.. figure:: images/mmr_new3.png
-   :width: 1000
-   :name: mmr_new3
+      .. figure:: images/mmr_new3.png
+         :width: 1000
+         :name: mmr_new3
 
-   Add Matlab Fields for the SUBMODEL "calc_avg" 
+         Add Matlab Fields for the SUBMODEL "calc_avg" 
 
    #. Create the Simulink model in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg". If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one. As already mentioned.
 
@@ -123,7 +123,7 @@ We must create at least three applications, one for each data layer:
        #.	Met mast wind direction at 110m. 
 
       The reference heights in this example are based on the IEA Task 39 reference wind turbine (INSERT REFERENCE). The model checks if variables are broken (e.g. frozen) and then calculates moving averages. Several outputs are computed:
-      
+
        #.	Moving average of the wind speed at 110m
        #.	Turbulence intensity
        #.	Moving average of the wind speed at 60m
