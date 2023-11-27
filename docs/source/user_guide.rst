@@ -186,7 +186,7 @@ We want now to create a dummy interface to emulate real-world conditions. For th
       Ensure that the "InputNumber" for each subvariable matches that of the structure, leave "AppName" empty, specify "VarType" as "double," set "VarSize" to 1, and mark "Create" as true for each of these subvariables. "Access" can be left empty, since it will be inherited from the structure
    #. Create a variable named "exchange_data_mm" for the purpose of storing and writing output values from the HOST to the ITFC. "InputNumber" must be 2, set "VarType" to double and "VarSize" to 5. Set "Access" to WRITE
 
-The resulting sheet can be viewed in the following table.
+The resulting sheet can be viewed in the :ref:`Table<SVI_Definition_itfc_mmreader>`.
 
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - ITFC
    :file: SVI_Definition_itfc_mmreader.csv
