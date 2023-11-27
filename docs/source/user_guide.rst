@@ -49,6 +49,21 @@ Graphic User Interface
 .. include:: gui_guide.inc
 
 
+Appendix
+-----------------------
+
+.. _user_guide_appendix_createbachmann:
+Create Bachmann Applications 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To create e new PLC application in Bachmann, open the Bachmann solution center and follow the steps:
+
+
+   (1) In the Solution Navigator: right click C/C++ projects, new, C Project.
+   (2) Define a project name, which could be any name. Under Project Type, select Bachmann module -> C Template. Under Toolchains, select Bachmann 2.95 Toolchain. Next.
+   (3) Insert your module name, which should be your "AppName". Check the “SVI client for reading SVI variables”. Finish.
+   (4) A new C project will be created. Under its “Source Files” folder, copy the “AppName_app.c” file into “ReferenceCFiles\\Originals”. IMPORTANT: this file name, without the appendix "_app.c" is the "refC_name" to be written in "inputfile.xlsx". This is the main application file, which needs to be modified to include the app interconnections.
+
+
 Examples
 -----------------------
 
@@ -86,11 +101,9 @@ We must create at least three applications, one for each data layer:
 
    Overview of newly created "calc_avg"  
 
-   (2) First, create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the model in the specified folder and an "init_MODELTAG.m" file used for initializing data and constants. The green light indicates the model's presence in the Matlab path.
+   (2) Create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the Simulink model in the model folder and an "init_MODELTAG.m" file which can be used for initializing data and constants. A green light under "SLmodel-Ready" indicates the model's presence in the Matlab path.
 
-
-
-3.	Next, create a new Bachman Empty project within Solution Center as detailed in the "CREATE BACHMANN APP" section. Ensure the main app file is copied into the reference C folder, located at "ProjectName\ReferenceCfiles\Originals." If the file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light signifies that it can locate the reference file.
+   (3) Next, create a new Bachman Empty project within Solution Center as detailed in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main app file is copied into the reference C folder, located at "ProjectName\ReferenceCfiles\Originals." If the file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light signifies that it can locate the reference file.
 4.	Right-click on the "C ref found" light and select "Add Matlab Fields.". This allows the framework to later modify this file.
 5.	To create your Simulink model, you can either modify the empty one, copy and paste into the existing model, or use the example provided. If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one.
 
