@@ -122,7 +122,8 @@ We must create at least three applications, one for each data layer:
        #.	Met mast wind speed at 60m
        #.	Met mast wind direction at 110m. 
 
-   (7) The reference heights in this example are based on the IEA Task 39 reference wind turbine (INSERT REFERENCE). The model checks if variables are broken (e.g. frozen) and then calculates moving averages. Several outputs are computed:
+      The reference heights in this example are based on the IEA Task 39 reference wind turbine (INSERT REFERENCE). The model checks if variables are broken (e.g. frozen) and then calculates moving averages. Several outputs are computed:
+      
        #.	Moving average of the wind speed at 110m
        #.	Turbulence intensity
        #.	Moving average of the wind speed at 60m
