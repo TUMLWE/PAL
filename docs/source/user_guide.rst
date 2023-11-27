@@ -104,9 +104,16 @@ We must create at least three applications, one for each data layer:
 
    (2) Create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the Simulink model in the model folder and an "init_MODELTAG.m" file which can be used for initializing data and constants. A green light under "SLmodel-Ready" indicates the model's presence in the Matlab path.
 
-   (3) Next, create a new Bachman Empty project within Solution Center as detailed in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main app file is copied into the reference C folder, located at "ProjectName\ReferenceCfiles\Originals." If the file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light signifies that it can locate the reference file.
-   
-4.	Right-click on the "C ref found" light and select "Add Matlab Fields.". This allows the framework to later modify this file.
+   (3) Next, create a new Bachman Empty project within Solution Center as detailed in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals". If the source file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light indicates that the reference C file was found by the framework.
+
+   (3) Right-click on the "C ref found" light and select "Add Matlab Fields" (:numref:`mmr_new3`). This modified the reference files enabling variables interconnection.
+
+.. figure:: images/mmr_new3.png
+   :width: 1000
+   :name: mmr_new3
+
+   Overview of newly created "calc_avg"  
+
 5.	To create your Simulink model, you can either modify the empty one, copy and paste into the existing model, or use the example provided. If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one.
 
 6.	Open the model provided. The model has three main inputs: 
