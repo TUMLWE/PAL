@@ -169,17 +169,15 @@ Below an overview of the different tabs in "inputfile.xlsx"
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - ITFC
    :file: inputfile_met_mast_reader_2.csv
-   :widths: 30, 30, 40
    :header-rows: 1
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - HOST
    :file: inputfile_met_mast_reader_3.csv
-   :widths: 30, 30, 40
    :header-rows: 1
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - Settings
    :file: inputfile_met_mast_reader_4.csv
-   :widths: 30, 30, 40
+   :widths: 30, 70
    :header-rows: 1
 
 **Modify the “SVI_Definition”**
