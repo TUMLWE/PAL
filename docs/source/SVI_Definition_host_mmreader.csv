@@ -1,0 +1,11 @@
+﻿TagName,VarName,AppName,VarType,VarSize,Create,parent_App,parent_TagName,parent_SubVar,Action,Flag_Assign_InitialValue,Initial_Value,Units,Print_output,output_freq,Comments
+mm_ws_110m,mm_ws_110m,host_calc_avg,inherit,-1,1,met_mast_ITFC,met_mast,ws_110m,READ,0,0,[m/s],1,fast,
+mm_ws_60m,mm_ws_60m,host_calc_avg,inherit,-1,1,met_mast_ITFC,met_mast,ws_60m,READ,0,0,[m/s],1,fast,
+mm_wd_110m,mm_wd_110m,host_calc_avg,inherit,-1,1,met_mast_ITFC,met_mast,wd_110m,READ,0,0,[deg],1,fast,
+avg_TI,avg_TI,host_calc_avg,inherit,-1,1,met_mast_ITFC,exchange_data_mm,1,WRITE,0,0,[-],1,slow,
+avg_ws_110m,avg_ws_110m,host_calc_avg,inherit,-1,1,met_mast_ITFC,exchange_data_mm,2,WRITE,0,0,[m/s],1,slow,
+avg_ws_60m,avg_ws_60m,host_calc_avg,inherit,-1,1,met_mast_ITFC,exchange_data_mm,3,WRITE,0,0,[m/s],1,slow,
+avg_shearExp,avg_shearExp,host_calc_avg,inherit,-1,1,met_mast_ITFC,exchange_data_mm,4,WRITE,0,0,[-],1,slow,
+avg_wd_110m,avg_wd_110m,host_calc_avg,inherit,-1,1,met_mast_ITFC,exchange_data_mm,5,WRITE,0,0,[deg],1,slow,
+avg_inflowState,avg_inflowState,host_calc_avg,double,1,1,,,,,0,0,[-],1,ctrl,
+avg_inflow_AppStatus,avg_inflow_AppStatus,host_calc_avg,uint16,1,1,,,,,0,0,[-],1,ctrl,
