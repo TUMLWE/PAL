@@ -24,8 +24,9 @@ Empty C Source projects should be generated for each PLC application through Bac
 The framework is equipped with a Graphic User Interface (GUI) that simplifies the development process and which is divided into Develop/Deploy (Section XX) and Test (Section XX).
 
 
+.. _user_guide_project_definition:
 
-Project Definition
+Project Definition 
 -----------------------
 
 When creating a new project through the GUI (Section XX), a folder with the name of the project is created. Additionally, two default folders created, namely a "ReferenceCFiles" and a "SimulinkModels" folders, which are used to store the reference PLC source code and the Simulink models necessary for the SUBMODELs. 
@@ -61,7 +62,7 @@ In this first example, we are going to create a simple framework to read data fr
 
 The first step is to open the framework by double-clicking on the main file "mail.mlapp". This opens the main GUI. There will be two options for us to choose: load an existing file or create a new one. we click on "new". A window will appear where we can specify the folder for our new project. We open the "Examples" folder and click OK.
 
-Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`user_guide_svi_definition_itfc`
+Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`Project Definition<user_guide_project_definition>`
 
 .. figure:: images/mmr_new.png
    :width: 1000
