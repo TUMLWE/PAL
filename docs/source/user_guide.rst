@@ -60,9 +60,9 @@ Example 1: Met-Mast data reader
 
 In this first example, we are going to create a simple framework to read data from a met-mast ITFC app, calculate moving averages and some additional inflow quantities, which are written back to the ITFC.
 
-The first step is to open the framework by double-clicking on the main file "mail.mlapp". This opens the main GUI. There will be two options for us to choose: load an existing file or create a new one. we click on "new". A window will appear where we can specify the folder for our new project. We open the "Examples" folder and click OK.
+The first step is to open the framework by double-clicking on the main file "mail.mlapp". This opens the main GUI. There will be two options for us to choose: load an existing file or create a new one. We click on "new". A window will appear where we can specify the folder for our new project. We open the "Examples" folder and click OK.
 
-Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`Project Definition<user_guide_project_definition>`
+Then, we need to specify the new project name. We'll call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`Project Definition<user_guide_project_definition>`.
 
 .. figure:: images/mmr_new.png
    :width: 1000
@@ -70,19 +70,26 @@ Then, we need to specify the new project name. We'll call it "met_mast_reader" a
 
    Define new project view
 
+We must create at least three applications, one for each data layer:
+
+   (1) A Simulink model performing the averaging function, together with its SUBMODEL
+   (2) An ITFC for data transmission and testing
+   (3) An HOST, responsible for managing output data
+
+**Create a new SUBMODEL**
+
+   (1) Let us start by creating a Simulink model. Click on "Add SUBMODEL" and provide the name, such as "calc_avg". Click OK. This model takes inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
+
+.. figure:: images/mmr_new2.png
+   :width: 1000
+   :name: mmr_new2
+
+   Overview of newly created "calc_avg"  
+
+   (2) First, create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the model in the specified folder and an "init_MODELTAG.m" file used for initializing data and constants. The green light indicates the model's presence in the Matlab path.
 
 
 
-In the three main panels linked to the three layers . We must create at least three applications:
-1.	ITFC for data transmission and testing.
-2.	The host, responsible for managing output data.
-3.	A Simulink model performing the averaging function.
-
-**Create a new submodel**
-
-
-1.	Let us start by creating a Simulink model. Click on "Add Simulink model" and provide the name, such as "calc_avg". This model takes inputs from wind speed and wind direction data to calculate averages based on the desired window size. Click OK. You'll notice a new model appears in the first row of the relative panel, which is affected indicated by several red lights. 
-2.	A new model will appear in the relative panel's first row with several red indicator lights. First, create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the model in the specified folder and an "init_MODELTAG.m" file used for initializing data and constants. The green light indicates the model's presence in the Matlab path.
 3.	Next, create a new Bachman Empty project within Solution Center as detailed in the "CREATE BACHMANN APP" section. Ensure the main app file is copied into the reference C folder, located at "ProjectName\ReferenceCfiles\Originals." If the file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light signifies that it can locate the reference file.
 4.	Right-click on the "C ref found" light and select "Add Matlab Fields.". This allows the framework to later modify this file.
 5.	To create your Simulink model, you can either modify the empty one, copy and paste into the existing model, or use the example provided. If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one.
