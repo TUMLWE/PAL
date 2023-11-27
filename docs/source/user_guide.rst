@@ -191,7 +191,7 @@ The resulting sheet can be viewed in the following table.
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - ITFC
    :file: SVI_Definition_itfc_mmreader.csv
    :header-rows: 1
-
+   :name: SVI_Definition_itfc_mmreader
 
 **HOST**
 
