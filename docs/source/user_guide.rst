@@ -136,7 +136,7 @@ Create a new HOST
    #.  Complete all required fields using the "Details" button, following the guidance provided in the :ref:`inputfile definition <user_guide_inputfile_host>` section
    #.  Create a new empty PLC code following :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>`. Name the source  application "hcalc". Copy and paste the reference app file into the "Originals" folder and update the app "Details"
    #.  Add the necessary Matlab fields. The "PLCgen-Ready" indicator turns green. 
-   #.  Specify "out_filename" field in "Details" as "hcalc_outputs" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup.
+   #.  Specify "out_filename" field in "Details" as "hcalc_outputs" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup
    #.  At this point, the basic applications have been created. Don't forget to save your progress by clicking the “Save” button below. This will write the excel file “inputfile.xlsx”
 
 Modify the "inputfile.xlsx"
@@ -177,6 +177,7 @@ In this step we will define the variables for each application and the relative 
 We want now to create a dummy interface to emulate real-world conditions. For the present met-mast case, we want to define two variables: one is a structure which will contain the met-mast variables to be read by the HOST "host_calc_avg". The second is a vector of double, which contains all variables that the HOST will write back to the ITFC. 
 
    #. Create the structure: set both "TagName" and "VarName" as "met_mast". Set 'InputNumber' to 1 and verify that "AppName" matches the HOST app in "inputfile.xlsx." Specify "VarType" as "struct," type "READ" in the "Access" field, and ensure "Create" is set to true. It's worth reminding that structures can handle variables of different data types. The "VarSize" field is used to specify the size in bytes of the structure's content, which may vary based on the data types included. For now, it can be left empty.
+
    #. Define three subvariables under "met_mast." These subvariables are: 
        #. Wind Speed at 110 Meters, named "ws_110m"
        #. Wind Speed at 60 Meters, named "ws_60m"
@@ -190,7 +191,6 @@ The resulting sheet can be viewed in the following table.
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - ITFC
    :file: SVI_Definition_itfc_mmreader.csv
    :header-rows: 1
-   :name: SVI_Definition_itfc_mmreader 
 
 
 **HOST**
