@@ -74,7 +74,6 @@ In the three main panels linked to the three layers . We must create at least th
 2.	The host, responsible for managing output data.
 3.	A Simulink model performing the averaging function.
 
-
 **Create a new submodel**
 
 
