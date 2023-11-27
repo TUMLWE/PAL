@@ -19,13 +19,13 @@ classdef wfc_framework < handle
             % define main folders
             table = readtable(input_file,'Sheet','Main Folders');
 
-            if length(table.VariableName)~=length(table.FolderName)
+            if length(table.KeyName)~=length(table.KeyValue)
                 error('Error reading "%s". VariableName and FolderName have different lengths', input_file)
             end
 
-            for iL = 1 : length(table.VariableName)
+            for iL = 1 : length(table.KeyName)
 
-                repo.(table.VariableName{iL}) = table.FolderName{iL};
+                repo.(table.KeyName{iL}) = table.KeyValue{iL};
 
             end
 
@@ -38,13 +38,13 @@ classdef wfc_framework < handle
 
             % define settings
             table = readtable(input_file,opts,'Sheet','Settings');
-            if length(table.Variable)~=length(table.Value)
+            if length(table.KeyName)~=length(table.KeyValue)
                 error('Error reading "Settings" sheet in "%s". Variable and Value have different lengths', input_file)
             end
 
-            for iL = 1 : length(table.Variable)
-                vn = table.Variable{iL};
-                value = table.Value{iL};
+            for iL = 1 : length(table.KeyName)
+                vn = table.KeyName{iL};
+                value = table.KeyValue{iL};
 
                 if strcmp(vn,'duration') || strcmp(vn,'sample_time')
                     value = recastToType(vn, value,'double');
