@@ -101,7 +101,7 @@ Create a new SUBMODEL
       :width: 1000
       :name: mmr_new2
 
-   Overview of newly created "calc_avg"  
+      Overview of newly created "calc_avg"  
 
    #. Create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the Simulink model in the model folder and an "init_MODELTAG.m" file which can be used for initializing data and constants. A green light under "SLmodel-Ready" indicates the model's presence in the Matlab path.
 

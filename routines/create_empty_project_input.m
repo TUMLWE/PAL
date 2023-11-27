@@ -25,7 +25,7 @@ WS = Workbook.Worksheets;
 s1 = get(WS, 'Item', 1);
 s1.Name = 'Main Folders';
 eActivesheetRange = get(s1,'Range','A1:B1');
-eActivesheetRange.Value = {'VariableName', 'FolderName'};
+eActivesheetRange.Value = {'KeyName', 'KeyValue'};
 set(eActivesheetRange.Font, 'Bold', true)
 
 eActivesheetRange = get(s1,'Range','A2:A6');
@@ -104,8 +104,8 @@ s5 = Add(WS, [], s4);
 s5.Name = 'Settings';
 eActivesheetRange = get(s5,'Range','A1:C1');
 eActivesheetRange.Value = {
-    'Variable'
-    'Value'
+    'KeyName'
+    'KeyValue'
     'Comment'
     }';
 set(eActivesheetRange.Font, 'Bold', true)
