@@ -106,28 +106,29 @@ We must create at least three applications, one for each data layer:
 
    (3) Next, create a new Bachman Empty project within Solution Center as detailed in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals". If the source file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light indicates that the reference C file was found by the framework.
 
-   (3) Right-click on the "C ref found" light and select "Add Matlab Fields" (:numref:`mmr_new3`). This modified the reference files enabling variables interconnection.
+   (4) Right-click on the "C ref found" light and select "Add Matlab Fields" (:numref:`mmr_new3`). This modified the reference files enabling variables interconnection.
 
 .. figure:: images/mmr_new3.png
    :width: 1000
    :name: mmr_new3
 
-   Overview of newly created "calc_avg"  
+   Add Matlab Fields for the SUBMODEL "calc_avg" 
 
-5.	To create your Simulink model, you can either modify the empty one, copy and paste into the existing model, or use the example provided. If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one.
+   (5) Create the Simulink model in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg". If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one. As already mentioned.
 
-6.	Open the model provided. The model has three main inputs: 
-a.	Met mast wind speed at 110m
-b.	Met mast wind speed at 60m
-c.	Met mast wind direction at 110m. 
+   (6) Open the model provided. The model has three main inputs: 
+       a.	Met mast wind speed at 110m
+       b.	Met mast wind speed at 60m
+       c.	Met mast wind direction at 110m. 
 
-7.	The reference heights in this example are based on the IEA Task 39. The application checks if variables are broken (e.g., frozen) and then calculates moving averages. Several outputs are computed:
-a.	Moving average of the wind speed at 110m
-b.	Turbulence intensity
-c.	Moving average of the wind speed at 60m
-d.	Shear exponent
-e.	Moving average of the wind direction at 110m
-f.	Status check to monitor runtime activity
+   (7) The reference heights in this example are based on the IEA Task 39 reference wind turbine (INSERT REFERENCE). The application checks if variables are broken (e.g., frozen) and then calculates moving averages. Several outputs are computed:
+       a.	Moving average of the wind speed at 110m
+       b.	Turbulence intensity
+       c.	Moving average of the wind speed at 60m
+       d.	Shear exponent
+       e.	Moving average of the wind direction at 110m
+       f.	Status check to monitor runtime activity
+
 8.	The model requires specific quantities defined, which you can inspect by opening the relevant “init_calc_avg.m”file. Quantities like startup time, moving average interval, and error time are here set to 600, ensuring averages are calculated over a 10-minute period.
 9.	With these settings in place, your Simulink model is ready to use.
 
