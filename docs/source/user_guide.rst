@@ -94,7 +94,7 @@ We must create at least three applications, one for each data layer:
 
 **Create a new SUBMODEL**
 
-   (1) Let us start by creating a Simulink model. Click on "Add SUBMODEL" and provide the name, such as "calc_avg". Click OK. This model takes inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
+   #. Let us start by creating a Simulink model. Click on "Add SUBMODEL" and provide the name, such as "calc_avg". Click OK. This model takes inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
 
 .. figure:: images/mmr_new2.png
    :width: 1000
@@ -102,11 +102,11 @@ We must create at least three applications, one for each data layer:
 
    Overview of newly created "calc_avg"  
 
-   (2) Create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the Simulink model in the model folder and an "init_MODELTAG.m" file which can be used for initializing data and constants. A green light under "SLmodel-Ready" indicates the model's presence in the Matlab path.
+   #. Create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the Simulink model in the model folder and an "init_MODELTAG.m" file which can be used for initializing data and constants. A green light under "SLmodel-Ready" indicates the model's presence in the Matlab path.
 
-   (3) Next, create a new Bachman Empty project within Solution Center as detailed in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals". If the source file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light indicates that the reference C file was found by the framework.
+   #. Next, create a new Bachman Empty project within Solution Center as detailed in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals". If the source file name was changed, update it by clicking "Details" and altering "refC_name" to the new name (“calavg” in the present case) The green "C ref found" light indicates that the reference C file was found by the framework.
 
-   (4) Right-click on the "C ref found" light and select "Add Matlab Fields" (:numref:`mmr_new3`). This modified the reference files enabling variables interconnection.
+   #. Right-click on the "C ref found" light and select "Add Matlab Fields" (:numref:`mmr_new3`). This modified the reference files enabling variables interconnection.
 
 .. figure:: images/mmr_new3.png
    :width: 1000
@@ -114,7 +114,7 @@ We must create at least three applications, one for each data layer:
 
    Add Matlab Fields for the SUBMODEL "calc_avg" 
 
-   (5) Create the Simulink model in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg". If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one. As already mentioned.
+   #. Create the Simulink model in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg". If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one. As already mentioned.
 
    #. Open the model provided. The model has three main inputs: 
 
@@ -123,12 +123,12 @@ We must create at least three applications, one for each data layer:
        #.	Met mast wind direction at 110m. 
 
    (7) The reference heights in this example are based on the IEA Task 39 reference wind turbine (INSERT REFERENCE). The model checks if variables are broken (e.g. frozen) and then calculates moving averages. Several outputs are computed:
-       a.	Moving average of the wind speed at 110m
-       b.	Turbulence intensity
-       c.	Moving average of the wind speed at 60m
-       d.	Shear exponent
-       e.	Moving average of the wind direction at 110m
-       f.	Status check to monitor runtime activity
+       #.	Moving average of the wind speed at 110m
+       #.	Turbulence intensity
+       #.	Moving average of the wind speed at 60m
+       #.	Shear exponent
+       #.	Moving average of the wind direction at 110m
+       #.	Status check to monitor runtime activity
 
 8.	The model requires specific quantities defined, which you can inspect by opening the relevant “init_calc_avg.m”file. Quantities like startup time, moving average interval, and error time are here set to 600, ensuring averages are calculated over a 10-minute period.
 9.	With these settings in place, your Simulink model is ready to use.
