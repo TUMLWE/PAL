@@ -116,10 +116,11 @@ We must create at least three applications, one for each data layer:
 
    (5) Create the Simulink model in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg". If you plan to use a custom Simulink model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one. As already mentioned.
 
-   (6) Open the model provided. The model has three main inputs: 
-       a.	Met mast wind speed at 110m
-       b.	Met mast wind speed at 60m
-       c.	Met mast wind direction at 110m. 
+   #. Open the model provided. The model has three main inputs: 
+
+       #.	Met mast wind speed at 110m
+       #.	Met mast wind speed at 60m
+       #.	Met mast wind direction at 110m. 
 
    (7) The reference heights in this example are based on the IEA Task 39 reference wind turbine (INSERT REFERENCE). The model checks if variables are broken (e.g. frozen) and then calculates moving averages. Several outputs are computed:
        a.	Moving average of the wind speed at 110m
