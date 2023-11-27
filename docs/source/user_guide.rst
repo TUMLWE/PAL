@@ -40,7 +40,7 @@ Inputfile.xlsx
 SVI_Definition.xlsx
 ^^^^^^^^^^^^^^^^^^^^
 
-.. include:: svi_definition.rst
+.. include:: svi_definition.inc
 
 Graphic User Interface
 -----------------------
