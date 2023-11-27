@@ -218,9 +218,9 @@ The SUBMODEL "calc_avg" must be defined, according to the input port of the unde
 Save and close the “SVI_Definition” file.
 
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - SUBMODELS
-   :file: SVI_Definition_host_mmreader.csv
+   :file: SVI_Definition_sm_mmreader.csv
    :header-rows: 1
-   :name: SVI_Definition_host_mmreader
+   :name: SVI_Definition_sm_mmreader
 
 
 **Generate the test interface**
