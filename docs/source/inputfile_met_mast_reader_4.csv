@@ -1,5 +1,5 @@
 ﻿Variable,Value,Comment
-ExcelPLCFileName, "root"\PAL\Examples\met_mast_reader\SVI_definition.xlsx,
+ExcelPLCFileName, ""root"\PAL\Examples\met_mast_reader\SVI_definition.xlsx",
 FlagGenerate_ITFC,TRUE,
 FlagGenerate_PLCApps,TRUE,
 SaveModelParametersFlag,TRUE,
