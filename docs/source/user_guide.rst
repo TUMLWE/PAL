@@ -195,35 +195,35 @@ The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_it
 
 **HOST**
 
-The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_Definition_itfc_mmreader>`: 
-
-   #. Create three variables that correspond to the inputs of your Simulink model. These variables must be read from the interface structure, therefore "parent_App," "parent_TagName," and "parent_SubVar" must be defined. Set "Action" to "READ" and set the "output_freq" as "fast" for these input variables.
-   #. Specify the outputs of our Simulink model, which consist of six variables. Out of these six variables, five are exchanged with the interface, so we must provide information in the "parent_App," "parent_TagName," and "parent_SubVar" fields for these. The last variable, "avg_inflow State," will not be written back to the interface. For the averaged quantities, we define "output_freq" as "slow", while for the “avg_inflowState”, we print it at “ctrl” frequency.
-   #. It is mandatory to include an “AppStatus” variable for each submodel included in the framework. Since here we have a single submodel named “calc_avg”, the variable “avg_inflow_AppStatus” is added. the type of this quantity can be a 16 bit unsigned integer. This variable is outputted at “ctrl” frequency.
-
-.. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - HOST
-   :file: SVI_Definition_host_mmreader.csv
-   :header-rows: 1
-   :name: SVI_Definition_host_mmreader
+    The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_Definition_itfc_mmreader>`: 
+    
+       #. Create three variables that correspond to the inputs of your Simulink model. These variables must be read from the interface structure, therefore "parent_App," "parent_TagName,      " and "parent_SubVar" must be defined. Set "Action" to "READ" and set the "output_freq" as "fast" for these input variables.
+       #. Specify the outputs of our Simulink model, which consist of six variables. Out of these six variables, five are exchanged with the interface, so we must provide information in       the "parent_App," "parent_TagName," and "parent_SubVar" fields for these. The last variable, "avg_inflow State," will not be written back to the interface. For the averaged       quantities, we define "output_freq" as "slow", while for the “avg_inflowState”, we print it at “ctrl” frequency.
+       #. It is mandatory to include an “AppStatus” variable for each submodel included in the framework. Since here we have a single submodel named “calc_avg”, the variable       “avg_inflow_AppStatus” is added. the type of this quantity can be a 16 bit unsigned integer. This variable is outputted at “ctrl” frequency.
+    
+    .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - HOST
+       :file: SVI_Definition_host_mmreader.csv
+       :header-rows: 1
+       :name: SVI_Definition_host_mmreader
 
 **Submodels**
 
-The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying Simulink model and its application status.
-
-#. Define three variables, which are the inputs of the Simulink model. Set "IO" as "input". The fields "parent_App" and "parent_TagName" must be specified. Ensure that the "Action" is set as "READ”.
-#. Define six variables that represent the outputs of the Simulink model. Set "IO" as "output". The fields "parent_App" and "parent_TagName" must be specified. Ensure that the "Action" is set as "WRITE.
-#. It's crucial to correctly define the “PortNumber” of both inputs and outputs variables correctly based on the port numbering of the Simulink model. Also the “PortName” should match those in the Simulink model.
-#. Create an "AppStatus" variable, indicated by the "IO" field set as "status." This variable doesn't require a port number, and the port name should be set as "AppStatus." Set this variable to "write."
-
-Save and close the “SVI_Definition” file.
-
-.. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - SUBMODELS
-   :file: SVI_Definition_sm_mmreader.csv
-   :header-rows: 1
-   :name: SVI_Definition_sm_mmreader
-
+    The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying Simulink model and its application status.
+    
+    #. Define three variables, which are the inputs of the Simulink model. Set "IO" as "input". The fields "parent_App" and "parent_TagName" must be specified. Ensure that the "Action"     is set as "READ”.
+    #. Define six variables that represent the outputs of the Simulink model. Set "IO" as "output". The fields "parent_App" and "parent_TagName" must be specified. Ensure that the     "Action" is set as "WRITE.
+    #. It's crucial to correctly define the “PortNumber” of both inputs and outputs variables correctly based on the port numbering of the Simulink model. Also the “PortName” should     match those in the Simulink model.
+    #. Create an "AppStatus" variable, indicated by the "IO" field set as "status." This variable doesn't require a port number, and the port name should be set as "AppStatus." Set this     variable to "write."
+    
+    Save and close the “SVI_Definition” file.
+    
+    .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - SUBMODELS
+       :file: SVI_Definition_sm_mmreader.csv
+       :header-rows: 1
+       :name: SVI_Definition_sm_mmreader
 
 **Generate the test interface**
+
 An error will occur, saying:
 ITFC App "met_mast_ITFC" - variable "met_mast" is a struct of size NaN Bytes, but its subvariables sum up to 24. Please check the excel file.
 This is caused by the fact that we left empty the “VarSize” field of the ITFC variable “met_mast”. 
