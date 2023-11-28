@@ -375,17 +375,37 @@ The steps to modify the "inputfile.xlsx" are the same described in (SECTION XX).
 Modify the “SVI_Definition”
 """"""""""""""""""""""""""""""""
 
+Unlike the "met_mast_reader", a more complex variable mapping is necessary for the "SCADA_reader". Each layer is detailed with a dedicated section.
+
+**ITFC**
+
+The test ITFC applications are here designed to simulate a realistic case in which data is coming from different hardware and applications, and operating in a three wind turbines wind farm. For each ITFC application, the following variables are included:
+
+#. itfc_scada contains 6 variables. SCADA data is provided through a structure variable, one for each turbine. Each structure includes subfields related to different quantities such as rotorspeed, pitch, power, and so on. In addition, vibrations are measured as well for each turbine and in the three directions, through double arrays
+#. itfc_mm contains 1 structure. This ITFC app replicates "met_mast_ITFC" of the "met_mast_reader"
+#. itfc_loads contains 1 structure, which provide data in terms of blade loads for the three wind turbines
+#. two additional WRITE variables are included within the ITFC app "itfc_scada". The first is a 10-element double array used for control purposes. The second is a structure in which the in-plane and out-of-plane bending loads are written by the HOST
+
+An overview of the ITFC variables is shown below
+
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - ITFC
    :file: SVI_Definition_scada_itfc.csv
    :header-rows: 1
+
+**HOST**
 
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - HOST
    :file: SVI_Definition_scada_host.csv
    :header-rows: 1
 
+**SUBMODEL**
+
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - SUBMODEL
    :file: SVI_Definition_scada_sm.csv
    :header-rows: 1
+
+
+
 
 
 Appendix
