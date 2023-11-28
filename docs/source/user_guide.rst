@@ -372,6 +372,21 @@ The steps to modify the "inputfile.xlsx" are the same described in (SECTION XX).
    :widths: 30, 60, 10
    :header-rows: 1
 
+Modify the “SVI_Definition”
+""""""""""""""""""""""""""""""""
+
+.. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - ITFC
+   :file: SVI_Definition_scada_itfc.csv
+   :header-rows: 1
+
+.. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - HOST
+   :file: SVI_Definition_scada_host.csv
+   :header-rows: 1
+
+.. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - SUBMODEL
+   :file: SVI_Definition_scada_sm.csv
+   :header-rows: 1
+
 
 Appendix
 -----------------------

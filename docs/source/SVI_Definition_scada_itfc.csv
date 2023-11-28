@@ -1,0 +1,89 @@
+﻿InputNumber,TagName,VarName,AppName,VarType,VarSize,Access,Create
+1,WT1_scada,WT1_scada,itfc_scada,struct,127,READ,1
+1,Timestamp_UTC,Timestamp_UTC,,char,32,,1
+1,GeneratorSpeed,GeneratorSpeed,,double,1,,1
+1,ConverterTorque,ConverterTorque,,double,1,,1
+1,NacelleDirection                  ,NacelleDirection                  ,,double,1,,1
+1,PitchAngle                        ,PitchAngle                        ,,double,1,,1
+1,PitchAngle1                       ,PitchAngle1                       ,,double,1,,1
+1,PitchAngle2                       ,PitchAngle2                       ,,double,1,,1
+1,PitchAngle3                       ,PitchAngle3                       ,,double,1,,1
+1,Power                             ,Power                             ,,double,1,,1
+1,RotorRpm                          ,RotorRpm                          ,,double,1,,1
+1,TurbineState                      ,TurbineState                      ,,uint16,1,,1
+1,WindSpeed                         ,WindSpeed                         ,,double,1,,1
+1,YawError                          ,YawError                          ,,double,1,,1
+1,ref_signal,ref_signal,,single,1,,1
+1,isConnected,isConnected,,logical,1,,1
+2,WT2_scada,WT2_scada,itfc_scada,struct,127,READ,1
+2,Timestamp_UTC,Timestamp_UTC,,char,32,,1
+2,GeneratorSpeed,GeneratorSpeed,,double,1,,1
+2,ConverterTorque,ConverterTorque,,double,1,,1
+2,NacelleDirection                  ,NacelleDirection                  ,,double,1,,1
+2,PitchAngle                        ,PitchAngle                        ,,double,1,,1
+2,PitchAngle1                       ,PitchAngle1                       ,,double,1,,1
+2,PitchAngle2                       ,PitchAngle2                       ,,double,1,,1
+2,PitchAngle3                       ,PitchAngle3                       ,,double,1,,1
+2,Power                             ,Power                             ,,double,1,,1
+2,RotorRpm                          ,RotorRpm                          ,,double,1,,1
+2,TurbineState                      ,TurbineState                      ,,uint16,1,,1
+2,WindSpeed                         ,WindSpeed                         ,,double,1,,1
+2,YawError                          ,YawError                          ,,double,1,,1
+2,ref_signal,ref_signal,,single,1,,1
+2,isConnected,isConnected,,logical,1,,1
+3,WT3_scada,WT3_scada,itfc_scada,struct,127,READ,1
+3,Timestamp_UTC,Timestamp_UTC,,char,32,,1
+3,GeneratorSpeed,GeneratorSpeed,,double,1,,1
+3,ConverterTorque,ConverterTorque,,double,1,,1
+3,NacelleDirection                  ,NacelleDirection                  ,,double,1,,1
+3,PitchAngle                        ,PitchAngle                        ,,double,1,,1
+3,PitchAngle1                       ,PitchAngle1                       ,,double,1,,1
+3,PitchAngle2                       ,PitchAngle2                       ,,double,1,,1
+3,PitchAngle3                       ,PitchAngle3                       ,,double,1,,1
+3,Power                             ,Power                             ,,double,1,,1
+3,RotorRpm                          ,RotorRpm                          ,,double,1,,1
+3,TurbineState                      ,TurbineState                      ,,uint16,1,,1
+3,WindSpeed                         ,WindSpeed                         ,,double,1,,1
+3,YawError                          ,YawError                          ,,double,1,,1
+3,ref_signal,ref_signal,,single,1,,1
+3,isConnected,isConnected,,logical,1,,1
+4,WT1_XYZ_vibrations,WT1_XYZ_vibrations,itfc_scada,double,3,READ,1
+5,WT2_XYZ_vibrations,WT2_XYZ_vibrations,itfc_scada,double,3,READ,1
+6,WT3_XYZ_vibrations,WT3_XYZ_vibrations,itfc_scada,double,3,READ,1
+7,met_mast,met_mast,itfc_mm,struct,88,READ,1
+7,Timestamp_UTC,Timestamp_UTC,,char,32,,1
+7,ws_110m,ws_110m,,double,1,,1
+7,ws_60m,ws_60m,,double,1,,1
+7,wd_110m,wd_110m,,double,1,,1
+7,wd_60m,wd_60m,,double,1,,1
+7,temperature,temperature,,double,1,,1
+7,humidity,humidity,,double,1,,1
+7,pressure,pressure,,double,1,,1
+8,wf_loads,wf_loads,itfc_loads,struct,176,READ,1
+8,Timestamp_UTC,Timestamp_UTC,,char,32,,1
+8,wt1_blade1_root_edge,wt1_blade1_root_edge,,double,1,,1
+8,wt1_blade1_root_flap,wt1_blade1_root_flap,,double,1,,1
+8,wt1_blade2_root_edge,wt1_blade2_root_edge,,double,1,,1
+8,wt1_blade2_root_flap,wt1_blade2_root_flap,,double,1,,1
+8,wt1_blade3_root_edge,wt1_blade3_root_edge,,double,1,,1
+8,wt1_blade3_root_flap,wt1_blade3_root_flap,,double,1,,1
+8,wt2_blade1_root_edge,wt2_blade1_root_edge,,double,1,,1
+8,wt2_blade1_root_flap,wt2_blade1_root_flap,,double,1,,1
+8,wt2_blade2_root_edge,wt2_blade2_root_edge,,double,1,,1
+8,wt2_blade2_root_flap,wt2_blade2_root_flap,,double,1,,1
+8,wt2_blade3_root_edge,wt2_blade3_root_edge,,double,1,,1
+8,wt2_blade3_root_flap,wt2_blade3_root_flap,,double,1,,1
+8,wt3_blade1_root_edge,wt3_blade1_root_edge,,double,1,,1
+8,wt3_blade1_root_flap,wt3_blade1_root_flap,,double,1,,1
+8,wt3_blade2_root_edge,wt3_blade2_root_edge,,double,1,,1
+8,wt3_blade2_root_flap,wt3_blade2_root_flap,,double,1,,1
+8,wt3_blade3_root_edge,wt3_blade3_root_edge,,double,1,,1
+8,wt3_blade3_root_flap,wt3_blade3_root_flap,,double,1,,1
+9,exchange_data_ctrl,exchange_data_ctrl,itfc_scada,double,10,WRITE,1
+10,exchange_data_loads,exchange_data_loads,itfc_scada,struct,48,WRITE,1
+10,wt1_blade1_IP,wt1_blade1_IP,,double,1,,1
+10,wt1_blade2_IP,wt1_blade2_IP,,double,1,,1
+10,wt1_blade3_IP,wt1_blade3_IP,,double,1,,1
+10,wt1_blade1_OOP,wt1_blade1_OOP,,double,1,,1
+10,wt1_blade2_OOP,wt1_blade2_OOP,,double,1,,1
+10,wt1_blade3_OOP,wt1_blade3_OOP,,double,1,,1
