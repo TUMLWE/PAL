@@ -205,7 +205,7 @@ The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_D
    :file: SVI_Definition_host_mmreader.csv
    :header-rows: 1
    :name: SVI_Definition_host_mmreader
-   
+
 **Submodels**
 
  The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying Simulink model and its application status.
@@ -224,8 +224,10 @@ The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_D
 
 **Generate the test interface**
 
-An error will occur, saying:
-ITFC App "met_mast_ITFC" - variable "met_mast" is a struct of size NaN Bytes, but its subvariables sum up to 24. Please check the excel file.
+After modifying the "SVI_Definition.xlsx", the project needs to be reloaded. An error will now happen, saying::
+
+    ITFC App "met_mast_ITFC" - variable "met_mast" is a struct of size NaN Bytes, but its subvariables sum up to 24. Please check the excel file.
+
 This is caused by the fact that we left empty the “VarSize” field of the ITFC variable “met_mast”. 
 , which is caused by the fact that we have not specified the ”
 ADD TO THE FRAMEWORK AUTOMATIC SUMMATION
