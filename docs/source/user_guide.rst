@@ -222,7 +222,8 @@ The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_D
     :header-rows: 1
     :name: SVI_Definition_sm_mmreader
 
-**Generate the test interface**
+Generate the test interface
+""""""""""""""""""""""""""""""""
 
 After modifying the "SVI_Definition.xlsx", the project needs to be reloaded. An error will now happen, saying::
 
@@ -240,14 +241,16 @@ It is now time to create a dummy interface:
     
     #. Open the details of your ITFC_App and set its "Flag_Create_test_ITFC" to TRUE. Click on "Load ITFC".
 
-**Generate the PLC code**
+Generate the PLC code
+""""""""""""""""""""""""""""""""
 
 To generate the PLC code, make sure all "Generate PLC" checkboxes are ticked, save your project and then click on the "Generate PLC" button at the bottom of the GUI.
 
 Consequently, three folders will be created under the directory labeled "PLCApps." To conclude this process, you should transfer the contents of each of these folders into the corresponding applications folder within your PLC path.
 
 
-**Testing the framework**
+Testing the framework
+""""""""""""""""""""""""""""""""
 
 The applications can be now run through the Bachmann Solution Center. It is important to run the different applications in a specific order: start with the ITFC, proceed to HOST, and conclude with the submodel.
 
@@ -308,7 +311,7 @@ Verify the last two variables, "avg_inflow_AppStatus," which should be 0 when th
 Save your results by clicking on "Save" with the desired output file name to generate a ".mat" file for future reference.
 This concludes the present tutorial. Your applications are now ready for execution.
 
-Example 1: SCADA data reader
+Example 2: SCADA data reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The present tutorial aims at developing a SCADA data reader for wind energy applications. As a prerequisite, the user is reccommended to have follower the tutorial "Met-Mast data reader", since this tutorial will focus mostly on the differences with respect to the previous case.
@@ -394,17 +397,28 @@ An overview of the ITFC variables is shown below
 
 **HOST**
 
+The following table presents the list of the HOST variables implemented in the "SVI_Definition.xlsx". It is possible to notice that the variables fed to "exchange_data_ctrl" has been assigned an initial value equal to 1. Beside the greater number of variables, there is not many differences with respect to the "met_mast_reader". 
+
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - HOST
    :file: SVI_Definition_scada_host.csv
    :header-rows: 1
 
 **SUBMODEL**
 
+Similarly, an overview of the SUBMODELS variables is provided below.
+
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - SUBMODEL
    :file: SVI_Definition_scada_sm.csv
    :header-rows: 1
 
+Generate the test interface
+""""""""""""""""""""""""""""""""
 
+Generate the PLC code
+""""""""""""""""""""""""""""""""
+
+Testing the framework
+""""""""""""""""""""""""""""""""
 
 
 
