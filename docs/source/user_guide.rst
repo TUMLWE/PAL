@@ -84,11 +84,11 @@ Create a new SUBMODEL
 
    #. Let us start by creating a Simulink model. Click on "Add SUBMODEL" and provide the name, such as "calc_avg". Click OK. This model takes inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
 
-   .. figure:: images/mmr_new2.png
-      :width: 1000
-      :name: mmr_new2
-
-      Overview of newly created "calc_avg"  
+       .. figure:: images/mmr_new2.png
+          :width: 1000
+          :name: mmr_new2
+    
+          Overview of newly created "calc_avg"  
 
    #. Create an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This generates the Simulink model in the model folder and an "init_MODELTAG.m" file which can be used for initializing data and constants. A green light under "SLmodel-Ready" indicates the model's presence in the Matlab path.
 
@@ -294,11 +294,66 @@ To correct this time shift, click "Find delay" and manually adjust the ITFC sign
 
    Syncronized data
 
-When we choose "avg_ws_110m," we notice that we can only see the host results. Our goal is now to confirm that the Simulink models work the same way in both the PLC and Matlab. To do this, we run the Simulink model by clicking "Run Simulink models," using the same inputs as the host application. This helps us compare and make sure the C model is working correctly.
+When we choose "avg_ws_110m," (or any variable which should be an output of a Simulink model) we notice that we can only see the "host_calc_avg" results. We would like to confirm that the Simulink model work the same way in both the PLC and Matlab. To do this, we run the Simulink model by clicking "Run Simulink models," which uses the same inputs as the host application. This helps us compare and make sure the C model is working correctly. Simulink outputs will display as well.
+
+.. figure:: images/mmr_new8.png
+   :width: 1000
+   :name: mmr_new8
+
+   PLC vs Simulink time histories for the entry "avg_ws_60m"
+
+
 The comparison should align well after the initial ramp-up time required for the moving average.
 Verify the last two variables, "avg_inflow_AppStatus," which should be 0 when the submodel "calc_avg" was not running and 1 otherwise, and "avg_inflowState," which should be 0 when the submodel is running correctly and a number between 1 and 7 otherwise.
 Save your results by clicking on "Save" with the desired output file name to generate a ".mat" file for future reference.
-This concludes the tutorial. Your applications are now ready for execution.
+This concludes the present tutorial. Your applications are now ready for execution.
+
+Example 1: SCADA data reader
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The present tutorial aims at developing a SCADA data reader for wind energy applications. As a prerequisite, the user is reccommended to have follower the tutorial "Met-Mast data reader", since this tutorial will focus mostly on the differences with respect to the previous case.
+
+Create a new project, and name it "SCADA_reader".
+
+In this tutorial,several applications will be created:
+
+    #. 3 SUBMODELS, connected to Simulink models performing inflow averagine, wind farm monitoring, and loads postprocessing
+    #. 3 ITFC, which simulate data provided by different clients
+    #. An HOST, responsible for managing output data
+
+Create SUBMODEL apps
+"""""""""""""""""""""""""""
+
+The procedure to create new SUBMODELS is the same described in the previous example (INSERT LINK). SUBMODELS naming goes as follows:
+
+    #. Create three submodels, named "avg_inflow", "WF_status", "loads_process".
+    #. Create empty Simulink models for the three SUBMODELS
+    #. Create new Bachmann C projects and name them "avginflw", "wfstatus", "loadsprc". Copy into the reference C folder. Update the names it by clicking “Details” and changing “refC_name”
+    #. Right-click on the “C ref found” light and select “Add Matlab Fields”
+    #. Create the Simulink models. For simplicify, use the models provided under "Examples\\SCADA_reader_sample"
+    #. If you inspect the Simulink models provided, you will notice that "avg_inflow" is equivalent to "avg_calc" of the previous example. "WF_status" simply check whether a turbine is producing power and whether the wind direction is within a specific range. "loads_process" calculates out-of-plane and in-plane blade root bending moments from flapwise and edgewise moments.
+
+Create ITFC apps
+"""""""""""""""""""""""""""
+
+#. Create three ITFC apps, named "itfc_scada", "itfc_mm" and "itfc_loads".
+#.  As already done for the SUBMODEL apps, create empty PLC code and paste the reference source codes. Name them "ifcscada", "ifcmm", "ifcloads"
+#.   Update "Details" reference C codes.
+#.   Right-click on the "C ref found" light and select "Add Matlab Fields"
+
+Create HOST apps
+"""""""""""""""""""""""""""
+#. Create one HOST apps, named "host_scada"
+#. As already done for the SUBMODEL apps, create empty PLC code and paste the reference source codes. Name it "hstscada"
+#.   Update "Details" reference C codes.
+#.   Right-click on the "C ref found" light and select "Add Matlab Fields"
+#.  Specify “out_filename” field in “Details” as "host_scada" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup
+#.  Save
+
+Modify the “SVI_Definition”
+""""""""""""""""""""""""""""""""
+
+
 
 
 Appendix
