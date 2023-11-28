@@ -1,0 +1,4 @@
+﻿appTag,PLCApp_folder,refC_name,Flag_Generate_PLC_app,Flag_Create_test_ITFC,test_ITFC_filename,Comment
+itfc_scada,itfc_scada,ifcscada,FALSE,FALSE,,
+itfc_mm,itfc_mm,ifcmm,FALSE,FALSE,,
+itfc_loads,itfc_loads,ifcloads,FALSE,FALSE,,

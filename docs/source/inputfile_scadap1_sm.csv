@@ -1,0 +1,4 @@
+﻿modelTag,PLCApp_folder,slmodel_folder,slmodel_name,slccode_folder,refC_name,Flag_Generate_PLC_app,host_apptag,Comment
+avg_inflow,avg_inflow,avg_inflow,avg_inflow,avg_inflow,avginflw,FALSE,host_scada,
+WF_status,WF_status,WF_status,WF_status,WF_status,wfstatus,FALSE,host_scada,
+loads_process,loads_process,loads_process,loads_process,loads_process,loadsprc,FALSE,host_scada,

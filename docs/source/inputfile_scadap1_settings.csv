@@ -1,0 +1,8 @@
+﻿KeyName,KeyValue,Comment
+ExcelPLCFileName,"D:\Work\PhD\Codes\Github\PAL\Examples\SCADA_reader\SVI_definition.xlsx",
+FlagGenerate_ITFC,TRUE,
+FlagGenerate_PLCApps,TRUE,
+SaveModelParametersFlag,TRUE,
+sample_time,0.1,
+PLC_system,Bachmann,
+DataTypes_dict_filename,dictionary_bachmann.xlsx,

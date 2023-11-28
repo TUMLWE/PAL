@@ -350,10 +350,27 @@ Create HOST apps
 #.  Specify “out_filename” field in “Details” as "host_scada" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup
 #.  Save
 
-Modify the “SVI_Definition”
+Modify the "inputfile.xlsx"
 """"""""""""""""""""""""""""""""
 
+The steps to modify the "inputfile.xlsx" are the same described in (SECTION XX). The different tabs are reported below, for completeness.
 
+.. csv-table::  SCADA_reader - "inputfile.xlsx" - SUBMODEL
+   :file: inputfile_scadap1_sm.csv
+   :header-rows: 1
+
+.. csv-table::  SCADA_reader - "inputfile.xlsx" - ITFC
+   :file: inputfile_scadap1_itfc.csv
+   :header-rows: 1
+
+.. csv-table::  SCADA_reader - "inputfile.xlsx" - HOST
+   :file: inputfile_scadap1_host.csv
+   :header-rows: 1
+
+.. csv-table::  SCADA_reader - "inputfile.xlsx" - Settings
+   :file: inputfile_scadap1_settings.csv
+   :widths: 30, 60, 10
+   :header-rows: 1
 
 
 Appendix
