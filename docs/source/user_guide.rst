@@ -228,37 +228,72 @@ After modifying the "SVI_Definition.xlsx", the project needs to be reloaded. An 
 
     ITFC App "met_mast_ITFC" - variable "met_mast" is a struct of size NaN Bytes, but its subvariables sum up to 24. Please check the excel file.
 
-This is caused by the fact that we left empty the “VarSize” field of the ITFC variable “met_mast”. 
-, which is caused by the fact that we have not specified the ”
-ADD TO THE FRAMEWORK AUTOMATIC SUMMATION
+This is caused by the fact that we left empty the “VarSize” field of the ITFC variable “met_mast”. We can therefore insert 24 in the field (3 doubles of 8 bytes each).
 
-Now, it's time to load the model and test it. To perform the testing, we'll need to create a dummy interface. Here are the steps to follow:
-Open your "inputfile.xlsx," and in the "ITFC" sheet, fill in the "test_ITFC_filename" for your ITFC model, including any relative path. Let's create this file in "./Examples/met_mast_reader/mm_ITFC.mat."
-Click now on the button "Create Random ITFC." This action will prompt you to specify the duration of the time histories. The default value is 100 seconds. Keep in mind that if it's too long, it might pose storage issues on your PLC. However, in this case, since we have only a few variables, it shouldn't be a problem. Let's set it to 1000 seconds and click "OK."
-You'll notice that a new "mm_ITFC.mat" file has been generated. If you open it, you'll find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables will be populated with random data according to their data type. However, this will not be realistic for wind speed and direction data. You have two options: either replace the random data with your own or use the provided dummy variables containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
-To load the interface, you need to open the details of your ITFC_App and set its "Flag_Create_test_ITFC" to TRUE.
+It is now time to create a dummy interface:
+
+    #. Open your the details of the ITFC app "met_mast_ITFC" and fill in the "test_ITFC_filename" for your ITFC app, including any relative path. Let's create this file in "./Examples/met_mast_reader/mm_ITFC.mat"
+
+    #. Click now on the button "Create Random ITFC." This action will prompt you to specify the duration of the time histories. The default value is 100 seconds. Keep in mind that if it's too long, it might pose storage issues on your PLC. However, in this case, since we have only a few variables, it shouldn't be a problem. Let's set it to 1000 seconds and click "OK."
+
+    #. You'll notice that a new "mm_ITFC.mat" file has been generated. If you open it, you'll find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables will be populated with random data according to their data type. However, this will not be realistic for wind speed and direction data. You have two options: either replace the random data with your own or use the provided dummy variables containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
+    
+    #. Open the details of your ITFC_App and set its "Flag_Create_test_ITFC" to TRUE. Click on "Load ITFC".
 
 **Generate the PLC code**
 
-Now, it is time to generate the PLC Applications.
-Ensure that all the "Generate PLC" boxes within your application are checked.
-Save your project to retaub all recent changes.
-Subsequently, click on the "Generate PLC" button situated at the bottom of the GUI.
+To generate the PLC code, make sure all "Generate PLC" checkboxes are ticked, save your project and then click on the "Generate PLC" button at the bottom of the GUI.
+
 Consequently, three folders will be created under the directory labeled "PLCApps." To conclude this process, you should transfer the contents of each of these folders into the corresponding applications folder within your PLC path.
 
 
 **Testing the framework**
 
 The applications can be now run through the Bachmann Solution Center. It is important to run the different applications in a specific order: start with the ITFC, proceed to HOST, and conclude with the submodel.
+
 Within the HOST applications, a variable called "Flag_Record" is created. You can use it to control the generation of output files.
 Wait for the test to complete, which will take 1000 seconds. Once it's done, copy the output files back to the Matlab folder.
+
 In the GUI "Test" tab, generate a ".mat" file that aggregates your outputs by clicking "Generate MAT file from HOST outputs." Select all the outputs (FAST, SLOW, and CTRL). This will create a file named "hcalc_outputs.mat."
-Choose the host application you wish to check and load the HOST data using the ".mat" file you just created. All the host variables will be visible in the dropdown menu.
+Choose the HOST "host_calc_avg" and load its data through the "Load Host data", using the ".mat" file you just created. All the host variables will be visible in the dropdown menu.
 
 Select a variable, such as "mm_ws_110m." You will see two curves, one from the ITFC data and the other from the output of the HOST application. Through this step we can verify whether the two signals are identical.
-If discrepancies are observed in the HOST data, it may indicate data transmission errors. In our case, we've observed that the HOST's time history is affected by these issues, primarily due to recording data after the ITFC time history has ended, leading to the transmission of random data.
-To rectify this, use the "Brush Data" feature to select the data you wish to retain. Right-click, and choose "Brush Data / Sync ITFC App" to ensure both signals match. They might still have a time shift because the ITFC application began earlier than the HOST application.
-To fix this time shift, click "Find delay" and manually adjust the ITFC signal using the "+” and “-” buttons. Once synchronization is achieved, select the data to keep and employ the "Brush Data / Sync ITFC App" function once more. This will synchronize all variables originating from the same ITFC application, eliminating the need to do it individually for HOST variables. This synchronization process extends to other variables like “mm_ws_60m” and “mm_wd_110m” read from the interface.
+If discrepancies are observed in the HOST data, it may indicate data transmission errors. In the present case, we will see something like this:
+
+.. figure:: images/mmr_new4.png
+   :width: 1000
+   :name: mmr_new4
+
+   Data trasmission error: excessive recording time
+
+
+We can see that the "host_calc_avg" time history goes to unrealistic values after the end of the "met_mast_ITFC". This is due to the fact that, after the 1000 s embedded in the ITFC application, random values where trasmitted to the HOST application. This portion of data is not representative of real data trasmission and should be trimmed.
+
+To do that, use the "Brush Data" feature to select the data you wish to retain. Right-click, and choose "Brush Data / Sync ITFC App".
+
+.. figure:: images/mmr_new5.png
+   :width: 1000
+   :name: mmr_new5
+
+   Data brushing to trim time history endings
+
+
+The signals might still have a time shift because the ITFC application began earlier than the HOST application.
+
+.. figure:: images/mmr_new6.png
+   :width: 1000
+   :name: mmr_new6
+
+   Data brushing to trim time history endings
+
+To correct this time shift, click "Find delay" and manually adjust the ITFC signal using the "+” and “-” buttons. Once synchronization is achieved, select the data to keep and employ the "Brush Data / Sync ITFC App" function once more. This function will synchronize all variables originating from the same ITFC application, eliminating the need to do it individually for each HOST variables. Therefore, also the variables “mm_ws_60m” and “mm_wd_110m” will be syncronized. At this point we should check whether the data are perfectly coincident of there still are some transmission errors, which may be a sign of incorrect setup of the "SVI_Definition.xlsx" or some PLC errors. 
+
+.. figure:: images/mmr_new7.png
+   :width: 1000
+   :name: mmr_new7
+
+   Syncronized data
+
 When we choose "avg_ws_110m," we notice that we can only see the host results. Our goal is now to confirm that the Simulink models work the same way in both the PLC and Matlab. To do this, we run the Simulink model by clicking "Run Simulink models," using the same inputs as the host application. This helps us compare and make sure the C model is working correctly.
 The comparison should align well after the initial ramp-up time required for the moving average.
 Verify the last two variables, "avg_inflow_AppStatus," which should be 0 when the submodel "calc_avg" was not running and 1 otherwise, and "avg_inflowState," which should be 0 when the submodel is running correctly and a number between 1 and 7 otherwise.
