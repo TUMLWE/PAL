@@ -5,4 +5,5 @@
    introduction
    requirements
    user_guide
+   support
    licensing
