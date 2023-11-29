@@ -14,7 +14,7 @@ System Requirements
 PLC Requirements
 ~~~~~~~~~~~~~~~~
 
-The tool requires the following PLC specifications:
+The framework requires the following PLC specifications:
 
 - **PLC Type:** Bachmann M1
 - **Bachmann Solution Center Version:** MBase V4.25
