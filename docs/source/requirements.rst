@@ -12,7 +12,7 @@ System Requirements
   - Simulink V10.6 or higher
 
 PLC Requirements
-----------------
+~~~~~~~~~~~~~~~~
 
 The tool requires the following PLC specifications:
 
