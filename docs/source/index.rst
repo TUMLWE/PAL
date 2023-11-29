@@ -9,3 +9,4 @@ Test tietle
    user_guide
    support
    licensing
+   acknowledgements
