@@ -1,5 +1,5 @@
 ########################
-PAL Documentation
+PAL documentation
 ########################
 
 .. toctree::
