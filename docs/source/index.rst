@@ -1,4 +1,5 @@
-Test tietle
+PAL Documentation
+=============
 
 .. toctree::
    :maxdepth: 2
