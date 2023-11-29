@@ -413,12 +413,29 @@ Similarly, an overview of the SUBMODELS variables is provided below.
 
 Generate the test interface
 """"""""""""""""""""""""""""""""
+After modifying the “SVI_Definition.xlsx”, the project needs to be reloaded. Similarly to the "met_mast_reader", the correct size will need to be provided for the structure variables.
+
+    #. Dummy interfaces need to be generated for the different ITFC applications. Define the "test_ITFC_filename" fields for each ITFC app, named:
+        #. ./Examples/SCADA_reader/itfc_scada.mat
+        #. ./Examples/SCADA_reader/itfc_mm.mat
+        #. ./Examples/SCADA_reader/itfc_loads.mat
+    #. Click on "Create Random ITFC"
+    #. You will notice that new .mat files are generated for the three ITFC applications. Again, this will not contain realistic data. You have two options: either replace the random data with your own or use the provided dummy variables containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
+    #. Open the details of the ITFC apps and set their “Flag_Create_test_ITFC” to TRUE. Click on “Load ITFC”.
 
 Generate the PLC code
 """"""""""""""""""""""""""""""""
 
+Save as (SECTION XX)
+
+
 Testing the framework
 """"""""""""""""""""""""""""""""
+
+The testing of the project follows very closely what was done for the "met_mast_reader". A few remarks:
+    #. The syncronization must be performed on all three ITFC applications
+    #. SUBMODELS will be run at "FAST" frequency, which may differ from the HOST variables
+
 
 
 

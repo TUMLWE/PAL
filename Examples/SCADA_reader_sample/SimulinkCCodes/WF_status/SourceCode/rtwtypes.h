@@ -5,11 +5,11 @@
  *
  * File: rtwtypes.h
  *
- * Code generated for Simulink model 'loads_process'.
+ * Code generated for Simulink model 'WF_status'.
  *
- * Model version                  : 1.2
+ * Model version                  : 1.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Tue Oct 17 10:32:05 2023
+ * C/C++ source code generated on : Wed Nov 29 01:10:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)

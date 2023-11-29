@@ -5,11 +5,11 @@
  *
  * File: ert_main.c
  *
- * Code generated for Simulink model 'loads_process'.
+ * Code generated for Simulink model 'WF_status'.
  *
- * Model version                  : 1.2
+ * Model version                  : 1.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Tue Oct 17 10:32:05 2023
+ * C/C++ source code generated on : Wed Nov 29 01:10:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -19,7 +19,7 @@
 
 #include <stddef.h>
 #include <stdio.h>            /* This example main program uses printf/fflush */
-#include "loads_process.h"             /* Model header file */
+#include "WF_status.h"                 /* Model header file */
 
 /*
  * Associating rt_OneStep with a real-time clock or interrupt service routine
@@ -41,7 +41,7 @@ void rt_OneStep(void)
 
   /* Check for overrun */
   if (OverrunFlag) {
-    rtmSetErrorStatus(loads_process_M, "Overrun");
+    rtmSetErrorStatus(WF_status_M, "Overrun");
     return;
   }
 
@@ -52,7 +52,7 @@ void rt_OneStep(void)
   /* Set model inputs here */
 
   /* Step the model */
-  loads_process_step();
+  WF_status_step();
 
   /* Get model outputs here */
 
@@ -77,7 +77,7 @@ int_T main(int_T argc, const char *argv[])
   (void)(argv);
 
   /* Initialize model */
-  loads_process_initialize();
+  WF_status_initialize();
 
   /* Attach rt_OneStep to a timer or interrupt service routine with
    * period 0.1 seconds (base rate of the model) here.
@@ -89,12 +89,12 @@ int_T main(int_T argc, const char *argv[])
          "Generated ERT main won't simulate model step behavior. "
          "To change this behavior select the 'MAT-file logging' option.\n");
   fflush((NULL));
-  while (rtmGetErrorStatus(loads_process_M) == (NULL)) {
+  while (rtmGetErrorStatus(WF_status_M) == (NULL)) {
     /*  Perform application tasks here */
   }
 
   /* Terminate model */
-  loads_process_terminate();
+  WF_status_terminate();
   return 0;
 }
 

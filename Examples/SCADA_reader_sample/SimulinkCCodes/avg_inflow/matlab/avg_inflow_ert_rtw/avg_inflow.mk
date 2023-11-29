@@ -2,7 +2,7 @@
 ## Makefile generated for component 'avg_inflow'. 
 ## 
 ## Makefile     : avg_inflow.mk
-## Generated on : Tue Oct 17 09:16:58 2023
+## Generated on : Wed Nov 29 01:10:09 2023
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)\avg_inflow.exe
 ## Product type : executable
 ## 
@@ -23,7 +23,7 @@ MAKEFILE                  = avg_inflow.mk
 MATLAB_ROOT               = C:\PROGRA~1\MATLAB\R2022b
 MATLAB_BIN                = C:\PROGRA~1\MATLAB\R2022b\bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)\win64
-START_DIR                 = D:\Work\PhD\Codes\GitLab\tum_plc_linker\Examples\SCADA_reader\SimulinkCCodes\avg_inflow\matlab
+START_DIR                 = D:\Work\PhD\Codes\Github\PAL\Examples\SCADA_reader_sample\SimulinkCCodes\avg_inflow\matlab
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0

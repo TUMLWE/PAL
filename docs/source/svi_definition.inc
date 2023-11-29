@@ -20,8 +20,6 @@ Beside the already mentioned **data type** , ITFC variables in the form of struc
    :widths: 30, 30, 40
    :header-rows: 1
 
-
-
 HOST
 """""""""
 

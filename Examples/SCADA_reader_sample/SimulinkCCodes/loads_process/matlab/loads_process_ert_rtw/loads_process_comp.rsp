@@ -1,0 +1,7 @@
+﻿-ID:\Work\PhD\Codes\Github\PAL\Examples\SCADA_reader_sample\SimulinkCCodes\loads_process\matlab
+-ID:\Work\PhD\Codes\Github\PAL\Examples\SCADA_reader_sample\SimulinkCCodes\loads_process\matlab\loads_process_ert_rtw
+-I"C:\Program Files\MATLAB\R2022b\extern\include"
+-I"C:\Program Files\MATLAB\R2022b\simulink\include"
+-I"C:\Program Files\MATLAB\R2022b\rtw\c\src"
+-I"C:\Program Files\MATLAB\R2022b\rtw\c\src\ext_mode\common"
+-I"C:\Program Files\MATLAB\R2022b\rtw\c\ert"

@@ -1,5 +1,5 @@
-﻿-ID:\Work\PhD\Codes\GitLab\tum_plc_linker\Examples\SCADA_reader\SimulinkCCodes\avg_inflow\matlab
--ID:\Work\PhD\Codes\GitLab\tum_plc_linker\Examples\SCADA_reader\SimulinkCCodes\avg_inflow\matlab\avg_inflow_ert_rtw
+﻿-ID:\Work\PhD\Codes\Github\PAL\Examples\SCADA_reader_sample\SimulinkCCodes\avg_inflow\matlab
+-ID:\Work\PhD\Codes\Github\PAL\Examples\SCADA_reader_sample\SimulinkCCodes\avg_inflow\matlab\avg_inflow_ert_rtw
 -I"C:\Program Files\MATLAB\R2022b\extern\include"
 -I"C:\Program Files\MATLAB\R2022b\simulink\include"
 -I"C:\Program Files\MATLAB\R2022b\rtw\c\src"
