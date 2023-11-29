@@ -15,19 +15,19 @@ Interfaces are the lowest-level applications responsible for tasks such as senso
 This application operates in the middle layer and is responsible for tasks like data reading and writing to and from ITFC applications. HOST also manages variables crucial for experiment execution, monitoring, and communication between SUBMODEL applications. It generates output files in text format. Please note that as of release 1.0, each project supports only one HOST application. Data sharing is performed through a shared variable interface (SVI), allowing read and write access by SUBMODEL apps.
 
 **SUBMODEL:**
-This is the top layer, comprising the primary application models based on Simulink models. Simulink inputs and outputs are connected to HOST SVIs. Any number of SUBMODELS can be implemented within a project.
+This is the top layer, comprising the primary application models based on *Simulink* models. *Simulink* inputs and outputs are connected to HOST SVIs. Any number of SUBMODELS can be implemented within a project.
 
 One sampling frequency must be specified for the execution of the whole framework. As of release 1.0, different frequency execution for different applications is not supported. An exemplary sketch of the framework data flow is shown in the figure :ref:`below<data_flow_chart>`.
 
-Empty C Source projects should be generated for each PLC application through Bachmann SolutionCenter. These source codes are then automatically modified by the framework to incorporate all the necessary variable interconnections required by the different applications.
+Empty C source projects should be generated for each PLC application through *Bachmann SolutionCenter*. These source codes are then automatically modified by the framework to incorporate all the necessary variable interconnections required by the different applications.
 
-The framework is equipped with a Graphic User Interface (GUI) that simplifies the development process and which is divided into Develop/Deploy (Section XX) and Test (Section XX).
+The framework is equipped with a :ref:`Graphic User Interface (GUI )<_user_guide_GUI>` that simplifies the development process and which is divided into :ref:`Develop/Deploy<_user_guide_gui_dd>` and :ref:`Test<_user_guide_gui_test>`.
 
 .. figure:: images/data_flow_chart.png
    :width: 1000
    :name: data_flow_chart
 
-   Define new project view
+   Data flow between the different layers
 
 
 .. _user_guide_project_definition:
@@ -48,6 +48,8 @@ SVI_Definition.xlsx
 ^^^^^^^^^^^^^^^^^^^^
 
 .. include:: svi_definition.inc
+
+.. _user_guide_GUI:
 
 Graphic User Interface
 -----------------------

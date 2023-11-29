@@ -1,5 +1,8 @@
 To start a new session, open the App Designer file “main.mlapp” and run it. A new GUI will open. There are two main tabs that are devoted to two specific operations of the framework: the “Develop/Deploy” and the “test” tab. 
 
+
+.. _user_guide_gui_dd:
+
 Develop/Deploy
 ^^^^^^^^^^^^^^^^^^^
 
@@ -43,6 +46,8 @@ ITFC
 HOST
 """""""""
 Same as SUBMODEL panel.
+
+.. _user_guide_gui_test:
 
 Test
 ^^^^^^^^^^^^^^^^^^^
