@@ -1,4 +1,6 @@
 Licensing
 =====
 
-Describe how users can use your project effectively.
+The PAL software is licensed under `Apache License Version 2.0 <SO>`_.
+    
+.. _SO: https://www.apache.org/licenses/LICENSE-2.0
