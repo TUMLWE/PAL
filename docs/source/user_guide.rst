@@ -17,7 +17,7 @@ This application operates in the middle layer and is responsible for tasks like 
 **SUBMODEL:**
 This is the top layer, comprising the primary application models based on *Simulink* models. *Simulink* inputs and outputs are connected to *HOST* SVIs. Any number of *SUBMODELS* can be implemented within a project.
 
-One sampling frequency must be specified for the execution of the whole framework. As of release 1.0, different frequency execution for different applications is not supported. An exemplary sketch of the framework data flow is shown in the figure :ref:`below<data_flow_chart>`.
+One sampling frequency must be specified for the execution of the whole framework. As of release 1.0, different frequency execution for different applications is not supported. An exemplary sketch of the framework data flow is shown in :numref:`below<data_flow_chart>`.
 
 Empty C source projects should be generated for each PLC application through *Bachmann SolutionCenter*. These source codes are then automatically modified by the framework to incorporate all the necessary variable interconnections required by the different applications.
 
