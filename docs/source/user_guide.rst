@@ -453,3 +453,5 @@ Appendix
 -----------------------
 
 .. include:: appendix.inc
+
+.. include:: types.inc
