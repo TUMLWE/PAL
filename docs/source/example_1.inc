@@ -45,7 +45,7 @@ Create a new SUBMODEL
          :width: 1000
          :name: mmr_new3
 
-         Add *Matlab Fields for the SUBMODEL "calc_avg" 
+         Add *Matlab* Fields for the SUBMODEL "calc_avg" 
 
     #. Create the *Simulink Model* in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg." If you plan to use a custom *Simulink* model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one, as previously mentioned.
 
