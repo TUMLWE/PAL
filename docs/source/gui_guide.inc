@@ -63,7 +63,7 @@ After the generation of PLC applications, the framework can be executed on the P
 application generates .txt outputs, which can be used through the *Test* tab to verify the correctness of the data transmission between the different applications. The tab provides tools for reading HOST outputs and comparing results between PLC and *Simulink*, among other functions. It is important to mention that, since applications are loaded onto the PLC sequentially, from lower to higher layers (*ITFC*, *HOST*, and then *SUBMODEL*), a residual delay exists between
 test *ITFC* data and *HOST* data, which is of course not physical but purely introduced by this delay. 
 
-A depiction of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`.
+An example of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`.
 
 .. figure:: images/paltest.png
    :width: 1000
@@ -71,11 +71,10 @@ A depiction of the GUI for the example project "met_mast_reader" is shown in :nu
 
    Test tab
 
-
 .. csv-table::  GUI - overview Test tab
    :file: gui_guide_test.csv
    :widths: 30, 30, 40
    :header-rows: 1
 
-Before running the Simulink models, unphysical data should be trimmed by using the Brush function, together with the "Brush Data/ sync ITFC app" (right-click on the figure). The user should familiarize with the testing functionality by following the **examples**
+Before running *Simulink* models, unphysical data should be trimmed using the Brush function, along with the "Brush Data/sync ITFC app" (right-click on the figure). Users should familiarize themselves with the testing functionality by following the examples provided.
 
