@@ -37,7 +37,7 @@ Project Definition
 
 When a new project is initiated using the :ref:`Graphical User Interface (GUI)<user_guide_GUI>`, a folder is automatically generated with the project's name. Two additional folders, **ReferenceCFiles** and **SimulinkModels**, are created to store the reference PLC source code and necessary *Simulink* models for the *SUBMODEL* apps.
 
-Additionally, two Excel files, **inputfile.xlsx** and **SVI_definition.xlsx** are created along with the folders. These files are crucial for project definition, outlining the layers of the applications architecture, and showing how data is exchanged among each application. Both these files are described in the following paragraphs.
+Additionally, two *Excel* files, **inputfile.xlsx** and **SVI_definition.xlsx** are created along with the folders. These files are crucial for project definition, outlining the layers of the applications architecture, and showing how data is exchanged among each application. Both these files are described in the following paragraphs.
 
 
 Inputfile.xlsx
