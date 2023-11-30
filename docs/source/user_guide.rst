@@ -138,30 +138,38 @@ Create a new SUBMODEL
 Create a new ITFC
 """"""""""""""""""""""""""""""""
 
-   #. Create a new ITFC app by clicking the "Add ITFC" button and name it "met_mast_ITFC"
-   #. As done for "calc_avg", create a new empty PLC code following :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>`. Name the source application "mmitfc". Copy and paste the reference app file into the "Originals" folder and update the app "Details".
-   #.  Right-click on the "C ref found" light and select "Add Matlab Fields" 
+   #. Click on the "Add *ITFC*" button, and in the dialog box that appears, assign the name "*met_mast_ITFC*" to the *ITFC* app.
+   #. Similar to the steps taken for the "*calc_avg*" *SUBMODEL*, you'll need to generate a new empty *PLC* code. Refer to the :ref:`Create *Bachmann* Applications<user_guide_appendix_createbachmann>` section for detailed guidance. Within *SolutionCenter*, name this application "*mmitfc*." Copy and paste the reference app file into the "Originals" folder and update the "refC_name" to the new name through "Details".
+
+   #. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`). 
 
 Create a new HOST
 """"""""""""""""""""""""""""""""
 
-   #.  Create a new HOST app by clicking the "Add HOST" button and name it "met_mast_ITFC"
-   #.  Complete all required fields using the "Details" button, following the guidance provided in the :ref:`inputfile definition <user_guide_inputfile_host>` section
-   #.  Create a new empty PLC code following :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>`. Name the source  application "hcalc". Copy and paste the reference app file into the "Originals" folder and update the app "Details"
-   #.  Add the necessary Matlab fields. The "PLCgen-Ready" indicator turns green. 
-   #.  Specify "out_filename" field in "Details" as "hcalc_outputs" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup
-   #.  At this point, the basic applications have been created. Don't forget to save your progress by clicking the “Save” button below. This will write the excel file “inputfile.xlsx”
+Now, let's delve into the process of establishing a new *HOST* application to manage output data effectively within the framework. Follow these step-by-step instructions:
+
+#. Begin by clicking the "Add *HOST*" button. Assign "*host_calc_avg*," to your new host application *AppName*. 
+
+#. Complete all the required fields by clicking the "Details" button. Detailed guidance on these fields is provided in the :ref:`inputfile definition<user_guide_inputfile_host>` section.
+
+#. Similar to the previous steps, generate a new empty *PLC* code for the host application following the instructions in the :ref:`Create *Bachmann* Applications<user_guide_appendix_createbachmann>` section. Name this source application "*hcalc*."
+
+#. Copy and paste the reference app file into the "*Originals*" folder, updating the details of the app accordingly. Right-click on the "*C ref found*" light, and from the menu that appears, select "Add *Matlab* Fields.".
+
+#. Set the "out_filename" field in the "Details" section as "*hcalc_outputs*" and provide the "*output_path_in_PLC*" (note that this will be dependent on your PLC folder path). Ensure that the corresponding folder is pre-created on the PLC to prevent potential issues during framework startup.
+
+#. The basic applications – *SUBMODEL*, *ITFC*, and *HOST* – have been successfully created. Save your progress by clicking the “Save” button below, which updates the excel file “inputfile.xlsx.”
 
 Modify the "inputfile.xlsx"
 """"""""""""""""""""""""""""""""
 
-Open the "inputfile.xlsx". Any changes made to the “Submodels”, “ITFC” and “HOST” tabs will be reflected in the application the next time it's loaded.
+Open the "inputfile.xlsx" to configure settings for the *met-mast reader* application. Changes made to the *Submodels*, *ITFC*, and *HOST* tabs will be seamlessly reflected in the application upon the next project load.
 
-Click on the "Settings" tab, and adjust the parameter "sample_time" to the desired value. In this case 0.1 seconds is chosen. All framework applications will run at this frequency. As already mentioned, only Bachmann systems can be selected in the "PLC_system" column.
+#. Click on the *Settings* tab. Adjust the *sample_time* parameter to your desired value. Here, 0.1 seconds is chosen. This setting determines the operating frequency for all the project applications. Note that only *Bachmann* systems can be selected in the *PLC_system* column.
 
-Next, navigate to the "Submodels" tab. In the "host_apptag" column of "calc_avg", specify "host_calc_avg". This indicates the host application which the submodel application exchanges data with. As already said, only one host application should be used for every SUBMODEL. Save and close the file.
+#. Navigate to the *Submodels* tab. In the *host_apptag* column for *calc_avg*, specify *host_calc_avg*. This designates the host application with which the *SUBMODEL* application exchanges data. As mentioned earlier, it's crucial to use only one host application for every *SUBMODEL*. Save your changes and close the file.
 
-Below an overview of the different tabs in "inputfile.xlsx"
+Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_reader" project.
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_met_mast_reader_1.csv
