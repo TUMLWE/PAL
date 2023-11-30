@@ -1,12 +1,12 @@
 Introduction
 =============
 
-The objective of this tool is to provide a Matlab-based framework for the development, deployment, and testing of interconnected applications (provided as Simulink models), to be executed on real-time PLC systems. As of October 2023, deployment is only possible on `Bachmann M1 systems <http://www.bachmann.info>`_ , therefore the sections relative to deployment and testing of the present manual are addressed to such systems. Compatibility with other systems may be added in the future.
+The objective of this tool is to provide a *Matlab*-based framework for the development, deployment, and testing of interconnected applications (provided as *Simulink* models), to be executed on real-time PLC systems. As of the present release, deployment is only possible on `Bachmann M1 systems <http://www.bachmann.info>`_ , therefore the sections relative to deployment and testing of the present manual are addressed to such systems. Compatibility with other systems may be added in the future.
 
-The present tool is developed by the Wind Energy Institute of the Technical University of Munich. Therefore, particular effort was put into addressing specific issues of research projects, including:
+The present tool is developed by the **Wind Energy Institute** of the **Technical University of Munich**. Therefore, particular effort was put into addressing specific issues of research projects, including:
 
 #. **Easier Model Deployment:**
-   Simulink and Matlab are powerful tools for researchers, offering a user-friendly environment for designing and testing new models and theories. In industrial projects, it is common to deploy these models on real-time systems, which are the industry standard for industrial automation. This framework allows researchers, even those without in-depth PLC knowledge, to deploy applications on real-time machines.
+   *Simulink* and *Matlab* are powerful tools for researchers, offering a user-friendly environment for designing and testing new models and theories. In industrial projects, it is common to deploy these models on real-time systems, which are the industry standard for industrial automation. This framework allows researchers, even those without in-depth PLC knowledge, to deploy applications on real-time machines.
 
 #. **Streamlining Model Deployment:**
    Typically, models are handed over to the industrial partner, who then handles the deployment process. This can create an additional burden for the partners, who need to understand the model and have access to Matlab, Simulink, and other associated products. This situation becomes even more complex when multiple research institutions collaborate with the same industrial partner. However, this framework provides a solution by enabling the establishment of a 'shared' PLC, capable of managing all aspects of the experiment and facilitating data exchange between partners.
