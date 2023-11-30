@@ -35,8 +35,10 @@ The framework is equipped with a :ref:`Graphic User Interface (GUI)<user_guide_G
 Project Definition 
 -----------------------
 
-When creating a new project through the :ref:`GUI<user_guide_GUI>`, a folder with the name of the project is created. Additionally, two default folders created, namely a "ReferenceCFiles" and a "SimulinkModels" folders, which are used to store the reference PLC source code and the Simulink models necessary for the SUBMODELs. 
-Additionally, two excel files are created: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
+When a new project is initiated using the :ref:`Graphical User Interface (GUI)<user_guide_GUI>`, a folder is automatically generated with the project's name. Two additional folders, **ReferenceCFiles** and **SimulinkModels**, are created to store the reference PLC source code and necessary *Simulink* models for the *SUBMODEL* apps.
+
+Additionally, two Excel files, **inputfile.xlsx** and **SVI_definition.xlsx** are created along with the folders. These files are crucial for project definition, outlining the layers of the applications architecture, and showing how data is exchanged among each application. Both these files are described in the following paragraphs.
+
 
 Inputfile.xlsx
 ^^^^^^^^^^^^^^^^^^^^
