@@ -1,4 +1,4 @@
-Example 1: Met-Mast data reader
+Example 1: Met-Mast Data Reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this first example, the user creates a simple framework to read
@@ -21,6 +21,8 @@ Now create at least three applications, one for each data layer:
    #. A *SUBMODEL*, performing the averaging function
    #. An *ITFC* for data transmission and testing
    #. A *HOST*, responsible for managing output data
+
+.. _user_guide_example1_createsubmodel:
 
 Create a new SUBMODEL
 """""""""""""""""""""""""""
@@ -90,6 +92,8 @@ Now, let's delve into the process of establishing a new *HOST* application to ma
 #. Set the "out_filename" field in the "Details" section as "*hcalc_outputs*" and provide the "*output_path_in_PLC*" (note that this will be dependent on your PLC folder path). Ensure that the corresponding folder is pre-created on the PLC to prevent potential issues during framework startup.
 
 #. The basic applications – *SUBMODEL*, *ITFC*, and *HOST* – have been successfully created. Save your progress by clicking the “Save” button below, which updates the excel file “inputfile.xlsx.”
+
+.. _user_guide_example1_inputfile:
 
 Modify the "inputfile.xlsx"
 """"""""""""""""""""""""""""""""

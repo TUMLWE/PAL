@@ -72,49 +72,56 @@ perform moving averages for monitoring purposes, and a
 Example 2: SCADA data reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The present tutorial aims at developing a SCADA data reader for wind energy applications. As a prerequisite, the user is reccommended to have follower the tutorial "Met-Mast data reader", since this tutorial will focus mostly on the differences with respect to the previous case.
+The second example in this tutorial focuses on developing a SCADA data reader for wind energy applications. It assumes that users have already followed the "Met-Mast Data Reader" tutorial, as this example will highlight the differences between the two cases.
 
-Create a new project, and name it "SCADA_reader".
+Begin by creating a new project and naming it "SCADA_reader."
 
-In this tutorial,several applications will be created:
+In this tutorial, several applications will be created:
 
-    #. 3 SUBMODELS, connected to Simulink models performing inflow averagine, wind farm monitoring, and loads postprocessing
-    #. 3 ITFC, which simulate data provided by different clients
-    #. An HOST, responsible for managing output data
+#. 3 *SUBMODEL* apps: These are connected to Simulink models responsible for inflow averaging, wind farm monitoring, and loads post-processing
+    #. avg_inflow: A SUBMODEL connected to a Simulink model performing inflow averaging
+    #. WF_status: A SUBMODEL monitoring wind farm status
+    #. loads_process: A SUBMODEL for loads post-processing
+#. 3 *ITFC* apps: These ITFC applications simulate data provided by different clients
+    #. itfc_scada: Simulating data from SCADA for different turbines, including rotor speed, pitch, power, vibrations, and control variables
+    #. itfc_mm: Simulating data from a meteorological mast, replicating "met_mast_ITFC" from the previous example
+    #. itfc_loads: Simulating data for blade loads on three wind turbines.
+#. An *HOST* app: This application is responsible for managing the output data within the framework
+    #. host_scada: A HOST application coordinating the overall functionality and data output
 
 Create SUBMODEL apps
 """""""""""""""""""""""""""
 
-The procedure to create new SUBMODELS is the same described in the previous example (INSERT LINK). SUBMODELS naming goes as follows:
+The procedure to create new *SUBMODEL* is the same described in the previous example :ref:`example (GUI)<user_guide_example1_createsubmodel>`:
 
-    #. Create three submodels, named "avg_inflow", "WF_status", "loads_process".
-    #. Create empty Simulink models for the three SUBMODELS
-    #. Create new Bachmann C projects and name them "avginflw", "wfstatus", "loadsprc". Copy into the reference C folder. Update the names it by clicking “Details” and changing “refC_name”
+    #. Create three *SUBMODEL*, named "avg_inflow", "WF_status", "loads_process"
+    #. Create empty *Simulink* models for all the *SUBMODEL* apps
+    #. Create new *Bachmann* C projects and name them "avginflw", "wfstatus", "loadsprc". Copy them into the reference C folder. Update the "refC_name" field using the “Details” menu
     #. Right-click on the “C ref found” light and select “Add Matlab Fields”
-    #. Create the Simulink models. For simplicify, use the models provided under "Examples\\SCADA_reader_sample"
-    #. If you inspect the Simulink models provided, you will notice that "avg_inflow" is equivalent to "avg_calc" of the previous example. "WF_status" simply check whether a turbine is producing power and whether the wind direction is within a specific range. "loads_process" calculates out-of-plane and in-plane blade root bending moments from flapwise and edgewise moments.
+    #. Create the *Simulink* models. For simplicify, use the models provided under "Examples\\SCADA_reader_sample"
+    #. Inspect the Simulink models; "avg_inflow" corresponds to "avg_calc" from the previous example. "WF_status" checks turbine power production and wind direction within a specified range. "loads_process" calculates out-of-plane and in-plane blade root bending moments from flapwise and edgewise bending moments.
 
 Create ITFC apps
 """""""""""""""""""""""""""
 
-#. Create three ITFC apps, named "itfc_scada", "itfc_mm" and "itfc_loads".
-#.  As already done for the SUBMODEL apps, create empty PLC code and paste the reference source codes. Name them "ifcscada", "ifcmm", "ifcloads"
-#.   Update "Details" reference C codes.
-#.   Right-click on the "C ref found" light and select "Add Matlab Fields"
+#. Create three *ITFC* apps, named "itfc_scada", "itfc_mm" and "itfc_loads".
+#. As already done for the SUBMODEL apps, create empty PLC code and paste the reference source codes. Name them "ifcscada", "ifcmm", "ifcloads"
+#. Update "Details" reference C codes.
+#. Right-click on the "C ref found" light and select "Add Matlab Fields"
 
 Create HOST apps
 """""""""""""""""""""""""""
 #. Create one HOST apps, named "host_scada"
 #. As already done for the SUBMODEL apps, create empty PLC code and paste the reference source codes. Name it "hstscada"
-#.   Update "Details" reference C codes.
-#.   Right-click on the "C ref found" light and select "Add Matlab Fields"
-#.  Specify “out_filename” field in “Details” as "host_scada" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup
+#. Update "Details" reference C codes.
+#. Right-click on the "C ref found" light and select "Add Matlab Fields"
+#. Specify “out_filename” field in “Details” as "host_scada" and provide the "output_path_in_PLC" (note that this may vary on your PLC). Ensure the corresponding folder is pre-created on the PLC; otherwise, the entire framework will crash on startup
 #.  Save
 
 Modify the "inputfile.xlsx"
 """"""""""""""""""""""""""""""""
 
-The steps to modify the "inputfile.xlsx" are the same described in (SECTION XX). The different tabs are reported below, for completeness.
+The steps to modify the "inputfile.xlsx" are the same described in the previous :ref:`example (GUI)<user_guide_example1_inputfile>`. The different tabs are reported below, for completeness.
 
 .. csv-table::  SCADA_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_scadap1_sm.csv
