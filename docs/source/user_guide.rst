@@ -191,21 +191,24 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 Modify the “SVI_Definition”
 """"""""""""""""""""""""""""""""
 
-In this step we will define the variables for each application and the relative variable interconnections between different layers. Open the "SVI definition.xlsx." The definitions relative to each layer is specified in the following sections.
+In this step, you will define the variables for each application and establish the necessary variable interconnections across different layers. Open "SVI definition.xlsx." The definitions for each layer are specified in the following sections.
+
 
 **ITFC**
 
-We want now to create a dummy interface to emulate real-world conditions. For the present met-mast case, we want to define two variables: one is a structure which will contain the met-mast variables to be read by the HOST "host_calc_avg". The second is a vector of double, which contains all variables that the HOST will write back to the ITFC. 
+Begin by creating a dummy interface to emulate real-world conditions. For the current met-mast case, define two variables in the "ITFC":
 
-   #. Create the structure: set both "TagName" and "VarName" as "met_mast". Set 'InputNumber' to 1 and verify that "AppName" matches the HOST app in "inputfile.xlsx." Specify "VarType" as "struct," type "READ" in the "Access" field, and ensure "Create" is set to true. It's worth reminding that structures can handle variables of different data types. The "VarSize" field is used to specify the size in bytes of the structure's content, which may vary based on the data types included. For now, it can be left empty
 
-   #. Define three subvariables under "met_mast." These subvariables are: 
-       #. Wind Speed at 110 Meters, named "ws_110m"
-       #. Wind Speed at 60 Meters, named "ws_60m"
-       #. Wind Direction at 110 Meters, named "wd_110m"
-      
-      Ensure that the "InputNumber" for each subvariable matches that of the structure, leave "AppName" empty, specify "VarType" as "double," set "VarSize" to 1, and mark "Create" as true for each of these subvariables. "Access" can be left empty, since it will be inherited from the structure
-   #. Create a variable named "exchange_data_mm" for the purpose of storing and writing output values from the HOST to the ITFC. "InputNumber" must be 2, set "VarType" to double and "VarSize" to 5. Set "Access" to WRITE
+#. Create a structure named "met_mast". Set both "TagName" and "VarName" to "met_mast." Set 'InputNumber' to 1, ensuring "AppName" matches the HOST app in "inputfile.xlsx." Specify "VarType" as "struct," type "READ" in the "Access" field, and set "Create" to true. Note that structures can handle variables of different data types, but their size should be 1 for all numeric variables. You can leave the "VarSize" field empty for now.
+
+#. Define three subvariables under "met_mast":
+    #. Wind Speed at 110 Meters, named "ws_110m"
+    #. Wind Speed at 60 Meters, named "ws_60m"
+    #. Wind Direction at 110 Meters, named "wd_110m"
+
+    For each subvariable, ensure "InputNumber" matches that of the structure, leave "AppName" empty, set "VarType" as "double," "VarSize" to 1, and mark "Create" as true. The "Access" field can be left empty since it will be inherited from the structure variable.
+
+#. Create a variable named "exchange_data_mm" to store and write output values from the HOST to the ITFC. Set "InputNumber" to 2, "VarType" to double, "VarSize" to 5, and "Access" to WRITE.
 
 The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_itfc_mmreader>`.
 
@@ -216,11 +219,15 @@ The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_it
 
 **HOST**
 
-The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_Definition_itfc_mmreader>`: 
+The "host_calc_avg" app is equipped with 10 variables:
 
-   #. Create three variables that correspond to the inputs of your Simulink model. These variables must be read from the interface structure, therefore "parent_App," "parent_TagName,      " and "parent_SubVar" must be defined. Set "Action" to "READ" and set the "output_freq" as "fast" for these input variables.
-   #. Specify the outputs of our Simulink model, which consist of six variables. Out of these six variables, five are exchanged with the interface, so we must provide information in       the "parent_App," "parent_TagName," and "parent_SubVar" fields for these. The last variable, "avg_inflow State," will not be written back to the interface. For the averaged       quantities, we define "output_freq" as "slow", while for the “avg_inflowState”, we print it at “ctrl” frequency.
-   #. It is mandatory to include an “AppStatus” variable for each submodel included in the framework. Since here we have a single submodel named “calc_avg”, the variable       “avg_inflow_AppStatus” is added. the type of this quantity can be a 16 bit unsigned integer. This variable is outputted at “ctrl” frequency.
+#. Create three variables corresponding to the inputs of your *Simulink* model. These variables, being read from the interface structure, necessitate defining "parent_App," "parent_TagName," and "parent_SubVar." Set "Action" to "READ" and designate "output_freq" as "fast" for these input variables.
+
+#. Specify the outputs of the Simulink model, which comprises six variables. Among these, five are exchanged with the interface. Therefore, provide information in the "parent_App," "parent_TagName," and "parent_SubVar" fields for these. The last variable, "avg_inflow State," will not be written back to the interface. For the averaged quantities, set "output_freq" as "slow," while for the “avg_inflowState,” print it at “ctrl” frequency.
+
+#. Include a mandatory “AppStatus” variable for each submodel in the framework. As there is a single submodel named “calc_avg” in this example, add the variable “avg_inflow_AppStatus.” The type of this quantity can be a 16-bit unsigned integer. Output this variable at “ctrl” frequency.
+
+The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_host_mmreader>`.
 
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - HOST
    :file: SVI_Definition_host_mmreader.csv
@@ -229,15 +236,16 @@ The "host_calc_avg" app contains 10 variables, as shown in the :ref:`table<SVI_D
 
 **Submodels**
 
- The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying Simulink model and its application status.
- 
- #. Define three variables, which are the inputs of the Simulink model. Set "IO" as "input". The fields "parent_App" and "parent_TagName" must be specified. Ensure that the "Action"     is set as "READ”.
- #. Define six variables that represent the outputs of the Simulink model. Set "IO" as "output". The fields "parent_App" and "parent_TagName" must be specified. Ensure that the     "Action" is set as "WRITE.
- #. It's crucial to correctly define the “PortNumber” of both inputs and outputs variables correctly based on the port numbering of the Simulink model. Also the “PortName” should     match those in the Simulink model.
- #. Create an "AppStatus" variable, indicated by the "IO" field set as "status." This variable doesn't require a port number, and the port name should be set as "AppStatus." Set this     variable to "write."
- 
- Save and close the “SVI_Definition” file.
- 
+The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying *Simulink* model and its application status.
+
+#. Define three variables, corresponding to the inputs of the Simulink model. Set "IO" as "input." Specify the fields "parent_App" and "parent_TagName." Ensure that the "Action" is set as "READ.”
+#. Define six variables corresponding to the outputs of the Simulink model. Set "IO" as "output." Specify the fields "parent_App" and "parent_TagName." Ensure that the "Action" is set as "WRITE.”
+#. Correctly define the “PortNumber” for both input and output variables based on the port numbering of the *Simulink* model. Additionally, ensure that the “PortName” matches the names in the *Simulink* model.
+#. Create an "AppStatus" variable, denoted by the "IO" field set as "status." This variable doesn't require a port number, and the port name should be set as "AppStatus." Set this variable to "WRITE."
+
+Remember to save and close the “SVI_Definition” file after making these modifications.
+
+
  .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - SUBMODELS
     :file: SVI_Definition_sm_mmreader.csv
     :header-rows: 1
