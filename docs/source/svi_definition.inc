@@ -75,8 +75,8 @@ SUBMODEL
 
 Below in :numref:`sketch_data_transmission`, an illustrative sketch exemplifies the data transmission involving two *ITFC* variables (a structure and an array). These variables are exchanged with a *Simulink* model.
 
-.. figure:: images/org_chart.png
-   :width: 1000
-   :name: sketch_data_trasmission
-
-   Example of data transmission among *ITFC*, *HOST*, and *SUBMODEL* layers
+    .. figure:: images/org_chart.png
+       :width: 1000
+       :name: sketch_data_trasmission
+    
+       Example of data transmission among *ITFC*, *HOST*, and *SUBMODEL* layers
