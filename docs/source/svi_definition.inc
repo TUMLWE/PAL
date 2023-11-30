@@ -77,6 +77,6 @@ Below in :numref:`sketch_data_transmission`, an illustrative sketch exemplifies 
 
     .. figure:: images/org_chart.png
        :width: 1000
-       :name: sketch_data_trasmission
+       :name: sketch_data_transmission
     
        Example of data transmission among *ITFC*, *HOST*, and *SUBMODEL* layers
