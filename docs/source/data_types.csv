@@ -1,8 +1,8 @@
-Matlab data type
-single
-double
-char
-logical
-uint16
-int8
-int16
+Matlab data type, C data type
+single, float
+double,double
+char,char
+logical,unsigned char
+uint16,unsigned short
+int8, signed char
+int16,short
