@@ -1,6 +1,13 @@
-This excel file defined the data flow between the different layers of each project. Variables for each application must be specified, as well as data trasmission to other applications. 
+This *Excel* file defines the data flow among different
+layers in each project. It outlines the variables for each
+application and defines their transmission to other applications.
 
-Generally speaking, each application hosts a "shared variable interface" (SVI), which can be read and written by other applications. There are three sheets in the SVI_Definition file, one for each layer of the framework (ITFC, HOST, Submodel). Allowed variables data types are common for each layer and can be found **here**. Exceptions exist for ITFC variables, as specified below.
+In general, each application manages a *shared variable
+interface* (SVI), which is read and written by
+other applications. The **SVI_Definition** file comprises three
+sheets, each dedicated to a layer of the framework (*ITFC*,
+*HOST*, *Submodel*). Common variable data types are detailed in the
+:ref:`appendix<user_guide_appendix_supporteddata>`.
 
 .. _user_guide_svi_definition_itfc:
 

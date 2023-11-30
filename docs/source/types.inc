@@ -1,4 +1,6 @@
 
+.. _user_guide_appendix_supporteddata:
+
 Supported Data Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
