@@ -58,10 +58,6 @@ Graphic User Interface
 
 .. include:: gui_guide.inc
 
-
-
-
-
 Examples
 -----------------------
 
