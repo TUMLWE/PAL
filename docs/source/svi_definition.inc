@@ -66,7 +66,7 @@ SUBMODEL
 
 *SUBMODEL* variables can perform READ/WRITE operations to a *HOST* variable, but they do not perform actions on other *SUBMODEL* apps. For each *Simulink* model, it is recommended to include **all** model inputs and outputs as *SUBMODEL* variables (with the correct port numbering). Additionally, for each *SUBMODEL* app, include an **AppStatus** status variable, which informs the *HOST* application about the execution of the *SUBMODEL*.
 
-*SUBMODEL* variables must be single numerical values; arrays are not allowed. The "IO" type field must match the type of the Simulink model port, except for "status" variables. Generally, each *SUBMODEL* will contain nI + nO + 1 variables, where nI/nO indicates the number of input/output ports of a Simulink model.
+*SUBMODEL* variables must be single numerical values; arrays are not allowed. The "IO" type field must match the type of the *Simulink* model port, except for "status" variables. Generally, each *SUBMODEL* will contain nI + nO + 1 variables, where nI/nO indicates the number of input/output ports of a *Simulink* model.
 
 .. csv-table::  SVI_Definition - SUBMODELS sheet
    :file: svi_definition_submodels.csv
