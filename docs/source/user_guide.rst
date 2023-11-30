@@ -21,7 +21,7 @@ One sampling frequency must be specified for the execution of the whole framewor
 
 Empty C source projects should be generated for each PLC application through *Bachmann SolutionCenter*. These source codes are then automatically modified by the framework to incorporate all the necessary variable interconnections required by the different applications.
 
-The framework is equipped with a :ref:`Graphic User Interface (GUI)<_user_guide_GUI>` that simplifies the development process and is divided into :ref:`Develop/Deploy<_user_guide_gui_dd>` and :ref:`Test<_user_guide_gui_test>`.
+The framework is equipped with a :ref:`Graphic User Interface (GUI)<user_guide_GUI>` that simplifies the development process and is divided into :ref:`Develop/Deploy<user_guide_gui_dd>` and :ref:`Test<user_guide_gui_test>`.
 
 .. figure:: images/data_flow_chart.png
    :width: 1000
@@ -35,7 +35,7 @@ The framework is equipped with a :ref:`Graphic User Interface (GUI)<_user_guide_
 Project Definition 
 -----------------------
 
-When creating a new project through the :ref:`GUI<_user_guide_GUI>`, a folder with the name of the project is created. Additionally, two default folders created, namely a "ReferenceCFiles" and a "SimulinkModels" folders, which are used to store the reference PLC source code and the Simulink models necessary for the SUBMODELs. 
+When creating a new project through the :ref:`GUI<user_guide_GUI>`, a folder with the name of the project is created. Additionally, two default folders created, namely a "ReferenceCFiles" and a "SimulinkModels" folders, which are used to store the reference PLC source code and the Simulink models necessary for the SUBMODELs. 
 Additionally, two excel files are created: “inputfile.xlsx” and “SVI_definition.xlsx”. Those files define each project and are used to define the application layers described above, as well as the data exchange between each application.
 
 Inputfile.xlsx
