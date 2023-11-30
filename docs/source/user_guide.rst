@@ -143,16 +143,18 @@ The steps to modify the "inputfile.xlsx" are the same described in the previous 
 Modify the “SVI_Definition”
 """"""""""""""""""""""""""""""""
 
-Unlike the "met_mast_reader", a more complex variable mapping is necessary for the "SCADA_reader". Each layer is detailed with a dedicated section.
+For the "SCADA_reader," a more intricate variable mapping is required compared to the "met_mast_reader." Each layer, including *ITFC*, *HOST*, and *SUBMODEL*, is detailed in the following sections.
 
 **ITFC**
 
-The test ITFC applications are here designed to simulate a realistic case in which data is coming from different hardware and applications, and operating in a three wind turbines wind farm. For each ITFC application, the following variables are included:
+The ITFC applications simulate a realistic scenario with data coming from various hardware and applications in a three-wind-turbine wind farm. Each ITFC application includes the following variables:
 
-#. itfc_scada contains 6 variables. SCADA data is provided through a structure variable, one for each turbine. Each structure includes subfields related to different quantities such as rotorspeed, pitch, power, and so on. In addition, vibrations are measured as well for each turbine and in the three directions, through double arrays
-#. itfc_mm contains 1 structure. This ITFC app replicates "met_mast_ITFC" of the "met_mast_reader"
-#. itfc_loads contains 1 structure, which provide data in terms of blade loads for the three wind turbines
-#. two additional WRITE variables are included within the ITFC app "itfc_scada". The first is a 10-element double array used for control purposes. The second is a structure in which the in-plane and out-of-plane bending loads are written by the HOST
+#. **itfc_scada** contains 6 variables. SCADA data is provided through a structure variable, one for each turbine. Each structure includes subfields related to different quantities such as rotorspeed, pitch, power, and so on. In addition, vibrations are measured as well for each turbine and in the three directions, through double arrays
+#. **itfc_mm** contains 1 structure. This *ITFC* app replicates "met_mast_ITFC" of the "met_mast_reader"
+#. **itfc_loads** contains 1 structure, which provide data in terms of blade loads for the three wind turbines
+#. Two additional WRITE variables are included within the ITFC app "itfc_scada":
+    #. A 10-element double array used for control purposes.
+    #. A structure in which the in-plane and out-of-plane bending loads are written by the *HOST*.
 
 An overview of the ITFC variables is shown below
 
@@ -162,7 +164,7 @@ An overview of the ITFC variables is shown below
 
 **HOST**
 
-The following table presents the list of the HOST variables implemented in the "SVI_Definition.xlsx". It is possible to notice that the variables fed to "exchange_data_ctrl" has been assigned an initial value equal to 1. Beside the greater number of variables, there is not many differences with respect to the "met_mast_reader". 
+The table below presents the list of *HOST* variables implemented in the "SVI_Definition.xlsx." The variables fed to "exchange_data_ctrl" have been assigned an initial value equal to 1. Besides the greater number of variables, the data handling is similar to that of "met_mast_reader."
 
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - HOST
    :file: SVI_Definition_scada_host.csv
@@ -180,19 +182,20 @@ Generate the test interface
 """"""""""""""""""""""""""""""""
 After modifying the “SVI_Definition.xlsx”, the project needs to be reloaded. Similarly to the "met_mast_reader", the correct size will need to be provided for the structure variables.
 
-    #. Dummy interfaces need to be generated for the different ITFC applications. Define the "test_ITFC_filename" fields for each ITFC app, named:
+    #. Dummy interfaces need to be generated for the different *ITFC* applications. Define the "test_ITFC_filename" fields for each *ITFC* app, named:
         #. ./Examples/SCADA_reader/itfc_scada.mat
         #. ./Examples/SCADA_reader/itfc_mm.mat
         #. ./Examples/SCADA_reader/itfc_loads.mat
     #. Click on "Create Random ITFC"
-    #. You will notice that new .mat files are generated for the three ITFC applications. Again, this will not contain realistic data. You have two options: either replace the random data with your own or use the provided dummy variables containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
+    #. New .mat files are generated for the three ITFC applications. Note that this data will not contain realistic values. You have two options:
+        #. Replace the random data with your own.
+        #. Use the provided dummy variables containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
     #. Open the details of the ITFC apps and set their “Flag_Create_test_ITFC” to TRUE. Click on “Load ITFC”.
 
 Generate the PLC code
 """"""""""""""""""""""""""""""""
 
-Save as (SECTION XX)
-
+:ref:`See previous example<user_guide_example1_generateplccode>`
 
 Testing the framework
 """"""""""""""""""""""""""""""""
@@ -200,8 +203,6 @@ Testing the framework
 The testing of the project follows very closely what was done for the "met_mast_reader". A few remarks:
     #. The syncronization must be performed on all three ITFC applications
     #. SUBMODELS will be run at "FAST" frequency, which may differ from the HOST variables
-
-
 
 
 Appendix

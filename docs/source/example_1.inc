@@ -206,6 +206,8 @@ Now, proceed with creating a dummy interface:
 
     #. Open the details of your ITFC_App and set its "Flag_Create_test_ITFC" to TRUE. Click on "Load ITFC."
 
+.. _user_guide_example1_generateplccode:
+
 Generate the PLC code
 """"""""""""""""""""""""""""""""
 
