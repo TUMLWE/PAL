@@ -10,7 +10,7 @@ testing interconnected applications on real-time PLC
 systems, specifically compatible with *Bachmann M1
 systems*. PAL addresses key challenges in research
 projects, simplifying the deployment of interconnected *Simulink* models on PLC systems.
-PAL includes an user-friendly GUI for model deployment on real-time systems, streamlining collaboration by
+PAL includes an user-friendly graphics user interface (GUI) for model deployment on real-time systems, streamlining collaboration by
 establishing a shared PLC, ensuring confidentiality
 through modular development, fostering enhanced
 research cooperation and generating simple text outputs
