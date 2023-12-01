@@ -28,8 +28,6 @@ perform reading or writing operations on any other application's
 SVI. *HOST* applications, on the other hand, can read and write
 information to *ITFC* SVIs.
 
-**ITFC Variables** 
-
 In addition to the mentioned :ref:`data types<user_guide_appendix_supporteddata>`, *ITFC* variables
 can also be implemented as structures, where all subfields share the
 same "Access" property. While numerical arrays for subfields
