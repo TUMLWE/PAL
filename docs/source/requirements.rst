@@ -4,12 +4,12 @@ System Requirements
 #. **Operating System:** Windows
 #. **MATLAB:** Version 2022 or higher
     #. **MATLAB Toolboxes:**
-      #. Communications Toolbox
-      #. DSP System Toolbox
-      #. Embedded Coder
-      #. Signal Processing Toolbox
-      #. Simulink Coder
-      #. Simulink V10.6 or higher
+        #. Communications Toolbox
+        #. DSP System Toolbox
+        #. Embedded Coder
+        #. Signal Processing Toolbox
+        #. Simulink Coder
+        #. Simulink V10.6 or higher
 
 PLC Requirements
 ~~~~~~~~~~~~~~~~
