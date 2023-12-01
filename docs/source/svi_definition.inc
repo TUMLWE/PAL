@@ -3,9 +3,8 @@ layers in each project. It outlines the variables for each
 application and defines their transmission to other applications.
 
 In general, each application manages a *shared variable
-interface* (SVI), which is read and written by
-other applications. The **SVI_Definition** file comprises three
-sheets, each dedicated to a layer of the framework (*ITFC*,
+interface* (SVI), which is read and written by other applications. The SVI_Definition.xlsx file comprises three
+tabs, each dedicated to a layer of the framework (*ITFC*,
 *HOST*, *SUBMODEL*). Common variable data types are detailed in the
 :ref:`appendix<user_guide_appendix_supporteddata>`.
 
@@ -18,7 +17,7 @@ To promote the separation between hardware-specific and
 research-specific operations, the *ITFC* layer should be ideally
 developed by the hardware owner. Within the present framework, this layer serves the unique
 purpose of testing, ensuring the proper functioning of the
-framework components, primarily the *Simulink* submodels.
+framework applications, primarily the *Simulink* submodels.
 Thus, it is crucial that the SVI of *ITFC* applications
 precisely replicates the one encountered during experimentation.
 
@@ -30,11 +29,11 @@ information to *ITFC* SVIs.
 
 In addition to the mentioned :ref:`data types<user_guide_appendix_supporteddata>`, *ITFC* variables
 can also be implemented as structures, where all subfields share the
-same "Access" property. While numerical arrays for subfields
+same "Access" property. Numerical arrays for subfields
 are not yet supported (except for string arrays), a detailed
 description of all table elements is provided below.
 
-.. csv-table::  SVI_Definition - ITFC sheet
+.. csv-table::  SVI_Definition - ITFC tab
    :file: svi_definition_itfc.csv
    :widths: 30, 30, 40
    :header-rows: 1
@@ -42,19 +41,19 @@ description of all table elements is provided below.
 HOST
 """""""""
 
-An *HOST* variable can be READ/WRITE to an *ITFC* variable, but cannot be transmitted to *SUBMODEL* variables.
+An *HOST* variable can READ/WRITE data to an *ITFC* variable, but cannot be transmitted to *SUBMODEL* variables.
 
-*HOST* Variables serve various purposes, including:
+*HOST* variables serve various purposes, including:
    #. Reading variables from *ITFC* and host them to be read by *SUBMODEL* apps.
    #. Read variable from ITFC for monitoring purposes
    #. Creating static variables for *SUBMODEL*, particularly useful for constant definitions
-   #. Receiving output from *SUBMODEL* and writing it back to *ITFC*
-   #. Receiving *SUBMODEL* output for monitoring purposes
-   #. Receiving the AppStatus variable from *SUBMODEL* to assess the application's operation
+   #. Receiving outputs from *SUBMODEL* and writing it back to *ITFC*
+   #. Receiving *SUBMODEL* outputs for monitoring purposes
+   #. Receiving the *AppStatus* variable from *SUBMODEL* to assess the application's operation
 
-Apart from string variables, *HOST* variables **MUST** consist of a single numerical value; arrays are not allowed. It is important to remind that, when exchanging variables with an *ITFC* app, the "Action" of a *HOST* Variable aligns with the "Access" of an *ITFC* Variable. By default, *HOST* applications generate three .txt outputs at different sampling times: "fast," "slow," "ctrl." For each *HOST* variable, this behavior can be controlled by the "output_freq" field.
+Except string variables, *HOST* variables *VarSize* **MUST** be equal to 1; arrays are not allowed. When exchanging variables with an *ITFC* app, the *Action* of a *HOST* Variable must align with the *Access* of an *ITFC* Variable. By default, *HOST* applications generate three ".txt" outputs at different sampling times: *fast,* *slow,* *ctrl.* For each *HOST* variable, this behavior can be controlled by the *output_freq* field.
 
-.. csv-table::  SVI_Definition - HOST sheet
+.. csv-table::  SVI_Definition - HOST tab
    :file: svi_definition_host.csv
    :widths: 30, 30, 40
    :header-rows: 1
@@ -62,11 +61,11 @@ Apart from string variables, *HOST* variables **MUST** consist of a single numer
 SUBMODEL
 """""""""
 
-*SUBMODEL* variables can perform READ/WRITE operations to a *HOST* variable, but they do not perform actions on other *SUBMODEL* apps. For each *Simulink* model, it is recommended to include **all** model inputs and outputs as *SUBMODEL* variables (with the correct port numbering). Additionally, for each *SUBMODEL* app, include an **AppStatus** status variable, which informs the *HOST* application about the execution of the *SUBMODEL*.
+*SUBMODEL* variables can perform READ/WRITE operations to a *HOST* variable, but not on other *SUBMODEL* apps. For each *Simulink* model, it is recommended to include **all** model inputs and outputs as *SUBMODEL* variables (with the correct port numbering). Additionally, for each *SUBMODEL* app, include an **AppStatus** status variable, which informs the *HOST* application about whether the *SUBMODEL* is running.
 
-*SUBMODEL* variables must be single numerical values; arrays are not allowed. The "IO" type field must match the type of the *Simulink* model port, except for "status" variables. Generally, each *SUBMODEL* will contain nI + nO + 1 variables, where nI/nO indicates the number of input/output ports of a *Simulink* model.
+*SUBMODEL* variables must be single numerical values; arrays are not allowed. The *IO* type field must match the type of the *Simulink* model port, except for "status" variables. Generally, each *SUBMODEL* will contain nI + nO + 1 variables, where nI/nO indicates the number of input/output ports of a *Simulink* model.
 
-.. csv-table::  SVI_Definition - SUBMODELS sheet
+.. csv-table::  SVI_Definition - SUBMODELS tab
    :file: svi_definition_submodels.csv
    :widths: 30, 30, 40
    :header-rows: 1
