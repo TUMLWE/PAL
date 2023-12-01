@@ -5,22 +5,20 @@
 **PAL (PLC Applications Linker)** is a *Matlab*-based
 framework developed by the *Wind Energy Institute* at
 the *Technical University of Munich*, providing a
-seamless solution for developing, deploying, and
+framework for developing, deploying, and
 testing interconnected applications on real-time PLC
 systems, specifically compatible with *Bachmann M1
 systems*. PAL addresses key challenges in research
 projects, simplifying the deployment of interconnected *Simulink* models on PLC systems.
-Noteworthy strengths include facilitating *easier
-model deployment*, streamlining collaboration by
+PAL includes an user-friendly GUI for model deployment on real-time systems, streamlining collaboration by
 establishing a shared PLC, ensuring confidentiality
 through modular development, fostering enhanced
-research cooperation, providing adaptability for
-runtime changes, and generating simple text outputs
-for effective experiment monitoring. PAL empowers
+research cooperation and generating simple text outputs
+for effective experiment monitoring. The basic idea of PAL is to give
 researchers, even those without extensive PLC
 knowledge, to deploy applications on real-time
 machines, contributing to efficient experimentation
-and collaboration within industrial projects.
+and collaboration within academic and industrial projects.
 
 ## Documentation
 
