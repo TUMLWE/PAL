@@ -72,7 +72,7 @@ An example of the GUI for the example project "met_mast_reader" is shown in :num
    :widths: 30, 30, 40
    :header-rows: 1
 
-Before running *Simulink* models, unphysical data should be trimmed using the Brush function, along with the "Brush Data/sync ITFC app" (right-click on the figure). Users should familiarize themselves with the testing functionality by following the :ref:`examples provided<_user_guide_example1>`.
+Before running *Simulink* models, unphysical data should be trimmed using the Brush function, along with the "Brush Data/sync ITFC app" (right-click on the figure). Users should familiarize themselves with the testing functionality by following the :ref:`examples provided<user_guide_example1>`.
 
 
 
