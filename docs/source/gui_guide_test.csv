@@ -1,5 +1,5 @@
 ﻿N°,KeyName,Description
-1,Generate MAT file from HOST outputs,Aggregate HOST output files. Select all HOST "".txt"" files to convert them to a unique "".mat"" file 
+1,Generate MAT file from HOST outputs,
 2,Run Simulink models,"Run the Simulink models with the HOST inputs currently loaded. WARNING: trim unphysical data before use!"
 3,Select HOST,"Select the HOST app to Test. Currently only one HOST app is supported for each project"
 4,Load HOST Data,"Load MAT file generate by the button ""Generate MAT file from HOST outputs"""
