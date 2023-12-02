@@ -167,10 +167,10 @@ The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_ho
 
 The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying *Simulink* model and its application status.
 
-#. Define three variables, corresponding to the inputs of the Simulink model. Set "IO" as "input." Specify the fields "parent_App" and "parent_TagName." Ensure that the "Action" is set as "READ.”
-#. Define six variables corresponding to the outputs of the Simulink model. Set "IO" as "output." Specify the fields "parent_App" and "parent_TagName." Ensure that the "Action" is set as "WRITE.”
-#. Correctly define the “PortNumber” for both input and output variables based on the port numbering of the *Simulink* model. Additionally, ensure that the “PortName” matches the names in the *Simulink* model.
-#. Create an "AppStatus" variable, denoted by the "IO" field set as "status." This variable doesn't require a port number, and the port name should be set as "AppStatus." Set this variable to "WRITE."
+#. Define three variables, corresponding to the inputs of the Simulink model. Set *IO* as "input." Specify the fields *parent_App* and *parent_TagName*. Ensure that the *Action* is set as "READ.”
+#. Define six variables corresponding to the outputs of the Simulink model. Set *IO* as "output." Specify the fields *parent_App* and *parent_TagName*. Ensure that the *Action* is set as "WRITE.”
+#. Correctly define the *PortNumber* for both input and output variables based on the port numbering of the *Simulink* model. Additionally, ensure that the *PortName* matches the names in the *Simulink* model.
+#. Create an "*AppStatus*" variable, denoted by the *IO* field set as "status." This variable doesn't require a port number, and the port name should be set as "*AppStatus*." Set this variable to "WRITE."
 
 Remember to save and close the “SVI_Definition” file after making these modifications.
 
@@ -196,16 +196,16 @@ Now, proceed with creating a dummy interface:
 
     #. Click on the "Create Random ITFC" button. Specify the duration of the time histories; the default is 100 seconds. Keep in mind storage considerations on your PLC. If the duration is too long, it might pose storage issues on your PLC. However, in this case, since we have only a few variables, it shouldn't be a problem. Let's set it to 1000 seconds and click "OK."
 
-    #. A new "mm_ITFC.mat" file is generated. If you open it, you will find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables are populated with random data based on their data type. However, this might not be realistic for wind speed and direction data. You have two options: replace the random data with your own or use provided dummy variables included within the folder "Examples\\met_mast_reader_sample", which contains with realistic data. By default, only the "read" variables are filled with random numbers, while *write* variables are set to 0.
+    #. A new "mm_ITFC.mat" file is generated. If you open it, you will find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables are populated with random data based on their data type. However, this might not be realistic for wind speed and direction data. You have two options: replace the random data with your own or use the provided dummy variables included within the folder "Examples\\met_mast_reader_sample", which contains with realistic data. By default, only the "read" variables are filled with random numbers, while "WRITE" variables are set to 0.
 
-    #. Open the details of your ITFC_App and set its "Flag_Create_test_ITFC" to TRUE. Click on "Load ITFC."
+    #. Open the details of your ITFC_App and set its *Flag_Create_test_ITFC* to TRUE. Click on "Load ITFC."
 
 .. _user_guide_example1_generateplccode:
 
 Generate the PLC code
 """"""""""""""""""""""""""""""""
 
-To generate the PLC code, make sure all "Generate PLC" checkboxes are ticked, save your project, and then click on the "Generate PLC" button at the bottom of the GUI.
+To generate the PLC code, make sure all "*Generate PLC*" checkboxes are ticked, save your project, and then click on the "*Generate PLC*" button at the bottom of the GUI.
 
 As a result, three folders will be created under the directory labeled *PLCApps*. To complete this process, transfer the contents of each of these folders into the corresponding applications folder within your PLC path.
 
@@ -221,15 +221,15 @@ Testing the framework
 
 #. Choose the HOST "*host_calc_avg*" from the dropdown menu, and load its data through the "Load Host data" button, using the ".mat" file you just created. All the host variables will be visible in the dropdown menu.
 
-#. Select a variable, such as "*mm_ws_110m*." You will see two curves, one from the ITFC data and the other from the HOST application. Use the figurer to verify whether the two signals are identical. In the present case, you will see something like this:
+#. Select a variable, such as "*mm_ws_110m*." You will see two curves, one from the *ITFC* data and the other from the *HOST* application. Use the figurer to verify whether the two signals are identical. In the present case, you will see something like this:
 
 .. figure:: images/mmr_new4.png
    :width: 1000
    :name: mmr_new4
 
-   Data trasmission error: excessive HOST recording time
+   Data trasmission error: excessive *HOST* recording time
 
-At the end of the time history, unphysical values are provided by the "host_calc_avg" application. This anomaly occurs because, after the 1000 seconds embedded in the ITFC application, random values are transmitted to the HOST application. To rectify this, you'll need to trim the unnecessary data. The "Brush Data" feature facilitates this process.
+At the end of the time history, unphysical values are provided by the "*host_calc_avg*" application. This anomaly occurs because, after the 1000 seconds embedded in the ITFC application, random values are transmitted to the HOST application. To rectify this, you'll need to trim the unnecessary data. The "Brush Data" feature facilitates this process.
 
     #. Use "Brush Data" to select the data you wish to retain.
     #. Right-click and choose "Brush Data / Sync ITFC App."
@@ -240,7 +240,7 @@ At the end of the time history, unphysical values are provided by the "host_calc
 
    Data brushing to trim time history endings
 
-The signals might still be affected by a time shift because the ITFC application was started earlier than the HOST application.
+The signals might still be affected by a time shift because the *ITFC* application was started earlier than the *HOST* application.
 
 .. figure:: images/mmr_new6.png
    :width: 1000
@@ -248,7 +248,7 @@ The signals might still be affected by a time shift because the ITFC application
 
    Data brushing to trim time history endings
 
-To correct this time shift, click "Find delay" and manually adjust the ITFC signal using the "+” and “-” buttons. Once synchronization is achieved, select the data to keep and use the "Brush Data / Sync ITFC App" function once more. This function will synchronize all variables originating from the same ITFC application, eliminating the need to do it individually for each *HOST* variables, such as "mm_ws_60m" and "mm_wd_110m." After this synchronization, check whether the data are perfectly coincident or if there are still some transmission errors, which may be a sign of incorrect setup of the "SVI_Definition.xlsx" or some PLC errors. 
+To correct this time shift, click "Find delay" and manually adjust the *ITFC* signal using the "+” and “-” buttons. Once synchronization is achieved, select the data to keep and use the "*Brush Data / Sync ITFC App*" function once more. This function will synchronize all variables originating from the same *ITFC* application, eliminating the need to do it individually for each *HOST* variables, such as "*mm_ws_60m*" and "*mm_wd_110m*." After this synchronization, check whether the data are perfectly coincident or if there are still some transmission errors, which may be a sign of incorrect setup of the "SVI_Definition.xlsx" or some PLC errors. 
 
 .. figure:: images/mmr_new7.png
    :width: 1000
@@ -256,7 +256,7 @@ To correct this time shift, click "Find delay" and manually adjust the ITFC sign
 
    Syncronized data
 
-When you select "avg_ws_110m" or any variable that should be an output of a *Simulink* model, you might observe that only the "host_calc_avg" results are visible. To check whether the *Simulink* model works the same way in both the PLC and *Matlab*, run the *Simulink* model by clicking "Run Simulink models." This uses the same inputs as the host application, allowing you to compare and ensure the C model is functioning correctly. Simulink outputs will be displayed as well.
+When you select "*avg_ws_110m*" or any variable that should be an output of a *Simulink* model, you might observe that only the "*host_calc_avg*" results are visible. To check whether the *Simulink* model works the same way in both the PLC and *Matlab*, run the *Simulink* model by clicking "Run Simulink models." This uses the same inputs as the host application, allowing you to compare and ensure the C model is functioning correctly. Simulink outputs will be displayed as well.
 
 .. figure:: images/mmr_new8.png
    :width: 1000
@@ -264,7 +264,7 @@ When you select "avg_ws_110m" or any variable that should be an output of a *Sim
 
    PLC vs Simulink time histories for the entry "avg_ws_60m"
 
-The comparison should align well after the initial ramp-up time required for the moving average. Verify the last two variables, "avg_inflow_AppStatus," which should be 0 when the submodel "calc_avg" was not running and 1 otherwise, and "avg_inflowState," which should be 0 when the submodel is running correctly and a number between 1 and 7 otherwise.
+The comparison should align well after the initial ramp-up time required for the moving average. Verify the last two variables, "*avg_inflow_AppStatus*," which should be 0 when the submodel "*calc_avg*" was not running and 1 otherwise, and "avg_inflowState," which should be 0 when the submodel is running correctly and a number between 1 and 7 otherwise.
 
 Save your results by clicking on "Save" with the desired output file name to generate a ".mat" file for future reference.
 This concludes the present tutorial. Your applications are now ready for execution.
