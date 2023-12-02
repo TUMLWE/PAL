@@ -3,7 +3,7 @@ TagName,String,Variable tag name
 VarName,String,"Internal variable name in generated code. For all practical purposes, this can be set equal to TagName"
 AppName,String,"appTag of HOST application the variable belongs to. HOST must be present in ""inputfile.xlsx"""
 VarType,String,"Matlab data type of the variable. Must be included in data type conversion dictionary between Matlab and PLC. If the variable is exchanged with an ITFC app, VarType can be inherited by setting VarType value as ""inherit"""
-VarSize,Integer,"Size of the variable. Set ""-1"" in combination with ""VarType"" equal to “inherit” to retrieve the size from the ITFC app. Numeric variables must have "VarSize" equal to 1. Strings can have any VarSize"
+VarSize,Integer,"Size of the variable. Set ""-1"" in combination with ""VarType"" equal to ""inherit"" to retrieve the size from the ITFC app. Numeric variables must have ""VarSize"" equal to 1. Strings can have any VarSize"
 Create,TRUE/FALSE,"When set to FALSE, the variable is ignored"
 parent_App,String,"""AppName"" of the parent ITFC app, if the variable is exchanged with a ITFC app. In such case ""Action"" must be set. It can be left blank otherwise"
 parent_TagName,String,"""TagName"" of the main parent ITFC variable. Necessary only if the variable is exchanged with a ITFC app. If the ITFC variable belongs to a structure, ""parent_TagName"" is the ""TagName"" of the ITFC structure. If the ITFC variable is not a structure ""parent_TagName"" is the ""TagName"" of the ITFC variable"
