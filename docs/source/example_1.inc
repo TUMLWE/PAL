@@ -78,17 +78,15 @@ Create a new ITFC
 Create a new HOST
 """"""""""""""""""""""""""""""""
 
-Now, let's delve into the process of establishing a new *HOST* application to manage output data effectively within the framework. Follow these step-by-step instructions:
-
-#. Begin by clicking the "Add *HOST*" button. Assign "*host_calc_avg*," to your new host application *AppName*. 
+#. Click on the "Add *HOST*" button. Assign "*host_calc_avg*," to your new host application *AppName*. 
 
 #. Complete all the required fields by clicking the "Details" button. Detailed guidance on these fields is provided in the :ref:`inputfile definition<user_guide_inputfile_host>` section.
 
-#. Similar to the previous steps, generate a new empty *PLC* code for the host application following the instructions in the :ref:`Create *Bachmann* Applications<user_guide_appendix_createbachmann>` section. Name this source application "*hcalc*."
+#. Similarly to the previous steps, generate a new empty PLC code for the host application following the instructions in the :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>` section. Name this source application *hcalc*.
 
-#. Copy and paste the reference app file into the "*Originals*" folder, updating the details of the app accordingly. Right-click on the "*C ref found*" light, and from the menu that appears, select "Add *Matlab* Fields.".
+#. Copy and paste the reference app file into the "Originals" folder, updating the details of the app accordingly. Right-click on the *C ref found* light, and from the menu that appears, select "Add Matlab Fields.".
 
-#. Set the "out_filename" field in the "Details" section as "*hcalc_outputs*" and provide the "*output_path_in_PLC*" (note that this will be dependent on your PLC folder path). Ensure that the corresponding folder is pre-created on the PLC to prevent potential issues during framework startup.
+#. Set the *out_filename* field in the "Details" section as *hcalc_outputs* and provide the *output_path_in_PLC* (note that this will be dependent on your PLC folder path). Ensure that the corresponding folder is pre-created on the PLC to prevent potential issues during framework startup.
 
 #. The basic applications – *SUBMODEL*, *ITFC*, and *HOST* – have been successfully created. Save your progress by clicking the “Save” button below, which updates the excel file “inputfile.xlsx.”
 
@@ -97,11 +95,11 @@ Now, let's delve into the process of establishing a new *HOST* application to ma
 Modify the "inputfile.xlsx"
 """"""""""""""""""""""""""""""""
 
-Open the "inputfile.xlsx" to configure settings for the *met-mast reader* application. Changes made to the *Submodels*, *ITFC*, and *HOST* tabs will be seamlessly reflected in the application upon the next project load.
+Open the "inputfile.xlsx" to configure the main settings for the *met_mast_reader* project. Changes made to the *Submodels*, *ITFC*, and *HOST* tabs will be reflected in the GUI upon the next project load.
 
-#. Click on the *Settings* tab. Adjust the *sample_time* parameter to your desired value. Here, 0.1 seconds is chosen. This setting determines the operating frequency for all the project applications. Note that only *Bachmann* systems can be selected in the *PLC_system* column.
+#. Click on the *Settings* tab. Adjust the *sample_time* parameter to your desired value. Here, 0.1 seconds is chosen. This parameter determines the operating frequency for all the project applications. Note that only *Bachmann* systems can be selected in the *PLC_system* column.
 
-#. Navigate to the *Submodels* tab. In the *host_apptag* column for *calc_avg*, specify *host_calc_avg*. This designates the host application with which the *SUBMODEL* application exchanges data. As mentioned earlier, it's crucial to use only one host application for every *SUBMODEL*. Save your changes and close the file.
+#. Navigate to the *Submodels* tab. In the "*host_apptag*" column for "*calc_avg*", specify "*host_calc_avg*". This designates the host application with which the *SUBMODEL* application exchanges data. As mentioned earlier, it's crucial to use the same host application for every *SUBMODEL*. Save your changes and close the file.
 
 Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_reader" project.
 
@@ -125,24 +123,21 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 Modify the “SVI_Definition”
 """"""""""""""""""""""""""""""""
 
-In this step, you will define the variables for each application and establish the necessary variable interconnections across different layers. Open "SVI definition.xlsx." The definitions for each layer are specified in the following sections.
-
+In this step, you will define the variables for each application and establish the necessary variable interconnections across different layers. Open "SVI definition.xlsx." Separate description is given for each respective layer.
 
 **ITFC**
 
-Begin by creating a dummy interface to emulate real-world conditions. For the current met-mast case, define two variables in the "ITFC":
+As a first step, it is necessary to create a dummy interface. For the current met-mast case, define two variables in the "ITFC":
 
-
-#. Create a structure named "met_mast". Set both "TagName" and "VarName" to "met_mast." Set 'InputNumber' to 1, ensuring "AppName" matches the HOST app in "inputfile.xlsx." Specify "VarType" as "struct," type "READ" in the "Access" field, and set "Create" to true. Note that structures can handle variables of different data types, but their size should be 1 for all numeric variables. You can leave the "VarSize" field empty for now.
-
+#. Create a structure named "*met_mast*". Set both *TagName* and *VarName* to "*met_mast*." Set *InputNumber* to 1, ensuring *AppName* matches the *HOST* app in "inputfile.xlsx." Specify *VarType* as "struct," type "READ" in the *Access* field, and set *Create* to true. Note that structures can handle variables of different data types, but their size should be 1 for all numeric variables. You can leave the *VarSize* field empty for now.
 #. Define three subvariables under "met_mast":
-    #. Wind Speed at 110 Meters, named "ws_110m"
-    #. Wind Speed at 60 Meters, named "ws_60m"
-    #. Wind Direction at 110 Meters, named "wd_110m"
+    #. Wind Speed at 110 m, named "*ws_110m*"
+    #. Wind Speed at 60 m, named "*ws_60m*"
+    #. Wind Direction at 110 m, named "*wd_110m*"
 
-    For each subvariable, ensure "InputNumber" matches that of the structure, leave "AppName" empty, set "VarType" as "double," "VarSize" to 1, and mark "Create" as true. The "Access" field can be left empty since it will be inherited from the structure variable.
+    For each subvariable, ensure *InputNumber* matches that of the structure, leave *AppName* empty, set *VarType* as "double," *VarSize* to 1, and mark *Create* as true. The *Access* field can be left empty since it will be inherited from the structure variable.
 
-#. Create a variable named "exchange_data_mm" to store and write output values from the HOST to the ITFC. Set "InputNumber" to 2, "VarType" to double, "VarSize" to 5, and "Access" to WRITE.
+#. Create a variable named "*exchange_data_mm*" to store and write output values from the *HOST* to the *ITFC*. Set *InputNumber* to 2, *VarType* to double, *VarSize* to 5, and *Access* to "WRITE".
 
 The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_itfc_mmreader>`.
 
@@ -153,13 +148,13 @@ The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_it
 
 **HOST**
 
-The "host_calc_avg" app is equipped with 10 variables:
+The "*host_calc_avg*" app is equipped with 10 variables:
 
-#. Create three variables corresponding to the inputs of your *Simulink* model. These variables, being read from the interface structure, necessitate defining "parent_App," "parent_TagName," and "parent_SubVar." Set "Action" to "READ" and designate "output_freq" as "fast" for these input variables.
+#. Create three variables corresponding to the inputs of your *Simulink* model. These variables, being read from the interface structure, necessitate defining *parent_App*,*parent_TagName*, and *parent_SubVar*. Set *Action* to "READ" and *output_freq* as "fast" for these input variables.
 
-#. Specify the outputs of the Simulink model, which comprises six variables. Among these, five are exchanged with the interface. Therefore, provide information in the "parent_App," "parent_TagName," and "parent_SubVar" fields for these. The last variable, "avg_inflow State," will not be written back to the interface. For the averaged quantities, set "output_freq" as "slow," while for the “avg_inflowState,” print it at “ctrl” frequency.
+#. Specify the outputs of the Simulink model, which comprises six variables. Among these, five are exchanged with the interface. Therefore, provide information in the *parent_App*, *parent_TagName*, and *parent_SubVar* fields for these. The last variable, "*avg_inflow State*, will not be written back to the interface. For the averaged quantities, set *output_freq* as "slow," while for the “*avg_inflowState*,” can be printed at “ctrl” frequency.
 
-#. Include a mandatory “AppStatus” variable for each submodel in the framework. As there is a single submodel named “calc_avg” in this example, add the variable “avg_inflow_AppStatus.” The type of this quantity can be a 16-bit unsigned integer. Output this variable at “ctrl” frequency.
+#. Include a mandatory “*AppStatus*” variable for each submodel in the framework. As there is a single submodel named “calc_avg” in this example, add the variable “avg_inflow_AppStatus.” The type of this quantity can be a 16-bit unsigned integer. Output this variable at “ctrl” frequency.
 
 The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_host_mmreader>`.
 
@@ -168,7 +163,7 @@ The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_ho
    :header-rows: 1
    :name: SVI_Definition_host_mmreader
 
-**Submodels**
+**SUBMODEL**
 
 The SUBMODEL "calc_avg" must be defined, according to the input port of the underlying *Simulink* model and its application status.
 
