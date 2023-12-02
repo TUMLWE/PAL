@@ -105,20 +105,26 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_met_mast_reader_1.csv
+   :widths: 11, 11, 11, 11, 11, 11, 11, 11, 12
    :header-rows: 1
- 
+
+
+
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - ITFC
    :file: inputfile_met_mast_reader_2.csv
    :header-rows: 1
+
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - HOST
    :file: inputfile_met_mast_reader_3.csv
    :header-rows: 1
 
+
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - Settings
    :file: inputfile_met_mast_reader_4.csv
    :widths: 30, 60, 10
    :header-rows: 1
+
 
 Modify the “SVI_Definition”
 """"""""""""""""""""""""""""""""
