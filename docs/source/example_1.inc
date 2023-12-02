@@ -30,10 +30,10 @@ Create a new SUBMODEL
 
 #. To begin, create a *SUBMODEL* model by selecting "Add *SUBMODEL*" and providing a name, such as *calc_avg.* Click OK. The underlying *Simulink* model will process inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
 
-.. figure:: images/mmr_new2.png
-   :width: 1000
-   :name: mmr_new2
-   Overview of newly create"calc_avg"  
+    .. figure:: images/mmr_new2.png
+       :width: 1000
+       :name: mmr_new2
+       Overview of newly create"calc_avg"  
 
 #. Generate an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This action creates the Simulink model in the model folder along with an "init_MODELTAG.m" file, which can be used for initializing data and constants. A green light under "*SLmodel-Ready*" indicates the model's presence in the *Matlab* path.
 
