@@ -8,14 +8,17 @@ Begin by creating a new project and naming it "SCADA_reader."
 In this tutorial, several applications will be created:
 
 #. 3 *SUBMODEL* apps: These are connected to Simulink models responsible for inflow averaging, wind farm monitoring, and loads post-processing
+
     #. avg_inflow: A *SUBMODEL* connected to a *Simulink* model performing inflow averaging
     #. WF_status: A *SUBMODEL* monitoring wind farm status
     #. loads_process: A *SUBMODEL* for loads post-processing
 #. 3 *ITFC* apps: These *ITFC* applications simulate data provided by different clients
+
     #. itfc_scada: Simulating data from SCADA for different turbines, including rotor speed, pitch, power, vibrations, and control variables
     #. itfc_mm: Simulating data from a meteorological mast, replicating "met_mast_ITFC" from the previous example
     #. itfc_loads: Simulating data for blade loads on three wind turbines.
-#. An *HOST* app: 
+#. An *HOST* app:
+
     #. host_scada: A HOST application coordinating the overall functionality and data output
 
 Create SUBMODEL apps
@@ -82,6 +85,7 @@ The *ITFC* applications simulate a realistic scenario with data coming from vari
 #. **itfc_mm** contains 1 structure. This *ITFC* app is identical to "met_mast_ITFC" of the "met_mast_reader" example
 #. **itfc_loads** contains 1 structure, which provides data in terms of blade loads for the three wind turbines
 #. Two additional "WRITE" variables are included within the *ITFC* app "*itfc_scada*":
+
     #. A 10-element double array used for control purposes.
     #. A structure in which the in-plane and out-of-plane bending loads are written by the *HOST*.
 
@@ -112,13 +116,15 @@ Generate the test interface
 After modifying the “SVI_Definition.xlsx”, the project needs to be reloaded. Similarly to the "met_mast_reader", the correct size will need to be provided for the structure variables.
 
     #. Dummy interfaces need to be generated for the different *ITFC* applications. Define the "test_ITFC_filename" fields for each *ITFC* app, named:
+
         #. ./Examples/SCADA_reader/itfc_scada.mat
         #. ./Examples/SCADA_reader/itfc_mm.mat
         #. ./Examples/SCADA_reader/itfc_loads.mat
     #. Click on "Create Random ITFC"
     #. New ".mat" files are generated for the three ITFC applications. Note that this data will not contain realistic values. You have two options:
+
         #. Replace the random data with your own.
-        #. Use the provided dummy variables containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
+        #. Use the provided dummy variables (located in "*root\\PAL\\Examples\\SCADA_reader_sample*") containing realistic data. By default, only the read variables will be filled with random numbers, while the others will be set to 0.
     #. Open the details of the ITFC apps and set their “Flag_Create_test_ITFC” to TRUE. Click on “Load ITFC”.
 
 Generate the PLC code
@@ -130,5 +136,6 @@ Testing the framework
 """"""""""""""""""""""""""""""""
 
 The testing of the project follows very closely what was done for the "met_mast_reader". A few remarks:
+
     #. The syncronization must be performed on all three ITFC applications
     #. *SUBMODELS* will be run at "FAST" frequency, which may differ from the *HOST* variables frequency

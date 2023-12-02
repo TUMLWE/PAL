@@ -203,9 +203,9 @@ Now, proceed with creating a dummy interface:
 
     #. Click on the "Create Random ITFC" button. Specify the duration of the time histories; the default is 100 seconds. Keep in mind storage considerations on your PLC. If the duration is too long, it might pose storage issues on your PLC. However, in this case, since we have only a few variables, it shouldn't be a problem. Let's set it to 1000 seconds and click "OK."
 
-    #. A new "mm_ITFC.mat" file is generated. If you open it, you will find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables are populated with random data based on their data type. However, this might not be realistic for wind speed and direction data. You have two options: replace the random data with your own or use the provided dummy variables included within the folder "Examples\\met_mast_reader_sample", which contains with realistic data. By default, only the "read" variables are filled with random numbers, while "WRITE" variables are set to 0.
+    #. A new "mm_ITFC.mat" file is generated. If you open it, you will find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables are populated with random data based on their data type. However, this might not be realistic for wind speed and direction data. You have two options: replace the random data with your own or use the provided dummy variables included within the folder "*Examples\\met_mast_reader_sample*", which contains with realistic data. By default, only the "read" variables are filled with random numbers, while "WRITE" variables are set to 0.
 
-    #. Open the details of your ITFC_App and set its *Flag_Create_test_ITFC* to TRUE. Click on "Load ITFC."
+    #. Open the details of your ITFC_App and set its *Flag_Create_test_ITFC* to TRUE. Click on "*Load ITFC*."
 
 .. _user_guide_example1_generateplccode:
 
@@ -271,7 +271,7 @@ When you select "*avg_ws_110m*" or any variable that should be an output of a *S
    :width: 1000
    :name: mmr_new8
 
-   PLC vs Simulink time histories for the entry "avg_ws_60m"
+   PLC vs Simulink time histories for the entry "*avg_ws_60m*"
 
 The comparison should align well after the initial ramp-up time required for the moving average. Verify the last two variables, "*avg_inflow_AppStatus*," which should be 0 when the submodel "*calc_avg*" was not running and 1 otherwise, and "avg_inflowState," which should be 0 when the submodel is running correctly and a number between 1 and 7 otherwise.
 
