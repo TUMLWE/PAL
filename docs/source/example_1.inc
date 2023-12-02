@@ -54,12 +54,12 @@ Create a new SUBMODEL
     #.	Met mast wind speed at 60m
     #.	Met mast wind direction at 110m 
          The reference heights in this example are based on the `IEA Task 37 reference wind turbine <https://github.com/IEAWindTask37/IEA-3.4-130-RWT>`_. The model checks if variables are correctly being transmitted (e.g., ensuring they are not frozen) and then calculates moving averages. Several outputs are computed:
-        #.	Moving average of the wind speed at 110m
-        #.	Turbulence intensity calculated from the wind speed at 110m
-        #.	Moving average of the wind speed at 60m
-        #.	Power-law shear exponent
-        #.	Moving average of the wind direction at 110m
-        #.	Status check to monitor runtime activity
+    #.	Moving average of the wind speed at 110m
+    #.	Turbulence intensity calculated from the wind speed at 110m
+    #.	Moving average of the wind speed at 60m
+    #.	Power-law shear exponent
+    #.	Moving average of the wind direction at 110m
+    #.	Status check to monitor runtime activity
 
 #. The model requires specific quantities to be defined, which can be found in the file “init_calc_avg.m” file
 #. Quantities like startup time, moving average interval, and error time are here set to 600 s
