@@ -1,6 +1,7 @@
 Example 1: Met-Mast Data Reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+
 In this first example, the user creates a simple framework to read
 data from a Met-Mast *ITFC* app, calculate moving averages,
 and determine additional inflow quantities, which are then
@@ -108,8 +109,6 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
    :file: inputfile_met_mast_reader_1.csv
    :header-rows: 1
 
-
- 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - ITFC
    :file: inputfile_met_mast_reader_2.csv
    :header-rows: 1
