@@ -114,7 +114,6 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
    :file: inputfile_met_mast_reader_2.csv
    :header-rows: 1
 
-
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - HOST
    :file: inputfile_met_mast_reader_3.csv
    :header-rows: 1
@@ -124,8 +123,6 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
    :file: inputfile_met_mast_reader_4.csv
    :widths: 30, 60, 10
    :header-rows: 1
-
-
 
 
 Modify the “SVI_Definition”
