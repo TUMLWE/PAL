@@ -7,5 +7,5 @@
 6,Comparison plot,Axes on which the variables are displayed
 7,Find delay,Run cross correlation to identify delay between HOST and ITFC
 8,Adjust delay,Manually specify or adjust the delay between HOST and ITFC
-9,Save,Save current framework as "".mat"" file
+9,Save,"Save current framework as "".mat"" file"
 10,Brush data,"Select data to keep after syncronization. See the :ref:`example<user_guide_example1_test>` for details"
