@@ -1,7 +1,7 @@
 Introduction
 =============
 
-The objective of PAL is to provide a *Matlab*-based framework for the development, deployment, and testing of interconnected applications (provided as *Simulink* models), to be executed on real-time PLC systems. As of the present release, deployment is only possible on `Bachmann M1 systems <http://www.bachmann.info>`_, therefore the sections relative to deployment and testing of the present manual are addressed to such systems. Compatibility with other systems may be added in the future.
+The objective of "PLC Applications Linker" (PAL) is to provide a *Matlab*-based framework for the development, deployment, and testing of interconnected applications (provided as *Simulink* models), to be executed on real-time PLC systems. As of the present release, deployment is only possible on `Bachmann M1 systems <http://www.bachmann.info>`_, therefore the sections relative to deployment and testing of the present manual are addressed to such systems. Compatibility with other systems may be added in the future.
 
 The present tool is developed by the **Wind Energy Institute** of the **Technical University of Munich**. Therefore, particular effort was put into addressing specific issues of research projects, including:
 
