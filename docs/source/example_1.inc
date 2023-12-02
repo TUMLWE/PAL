@@ -106,6 +106,7 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_met_mast_reader_1.csv
    :header-rows: 1
+   :widths: 11, 11, 11, 11, 11, 11, 11, 11, 11, 12
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - ITFC
    :file: inputfile_met_mast_reader_2.csv
@@ -208,6 +209,8 @@ Generate the PLC code
 To generate the PLC code, make sure all "*Generate PLC*" checkboxes are ticked, save your project, and then click on the "*Generate PLC*" button at the bottom of the GUI.
 
 As a result, three folders will be created under the directory labeled *PLCApps*. To complete this process, transfer the contents of each of these folders into the corresponding applications folder within your PLC path.
+
+.. _user_guide_example1_test:
 
 Testing the framework
 """"""""""""""""""""""""""""""""

@@ -1,8 +1,9 @@
 ﻿KeyName,Description
 modelTag,Name of SUBMODEL
 GeneratePLC,"Checkbox used to set whether to generate PLC code of Simulink mode. Linked to ""Flag_Generate_PLC_app"" in ""inputfile.xlsx"""
-C ref found,"This light turns green if the reference source code file is present under the folder ""ReferenceCFiles/originals"". Additional fields MUST be added before code generation by right-clicking and selecting ""Add Matlab Fields"""
-SLmodel-Ready,"This light turns turn green if a Simulink model with the designated name is present in the folder ""SimulinkModels"" folder "
-PLCgen-Ready,This light indicates whether the App is ready for code generation. WARNING: remember to add matlab fields!
-Create Simulink Model,Creates a new empty Simulink model
-Details,"Use to modify the SUBMODEL parameters of ""inputfile.xlsx"""
+C ref found,"This light turns green if the reference source code file is found in the folder ""ReferenceCFiles\\originals"". Additional fields MUST be added before code generation by right-clicking and selecting ""Add Matlab Fields"""
+SLmodel-Ready,"This light turns turn green if a Simulink model with the designated name is found in the folder ""SimulinkModels"" folder "
+PLCgen-Ready,This light indicates whether the App is ready for code generation. WARNING: remember to "Add Matlab Fields"!
+Create Simulink Model,"Create a new empty Simulink model. This action generates, alongside an empty Simulink model, an
+initialization .m file, which can be used for configuring specific model parameters"
+Details,"Open a tab to modify the SUBMODEL parameters of ""inputfile.xlsx"""

@@ -1,11 +1,11 @@
 ﻿N°,KeyName,Description
-1,Generate MAT file from HOST outputs,Use to select all HOST .txt files and convert them to .mat file 
-2,Run Simulink models,It runs the Simulink models with the HOST inputs currently loaded present. WARNING: trim unphysical data before use!
-3,Select HOST,Use to select the HOST app to Test. Currently only one HOST app is supported for each project
+1,Generate MAT file from HOST outputs,"Aggregate HOST output files. Select all HOST ".txt" files to convert them to a unique "".mat"" file" 
+2,Run Simulink models,Runs the Simulink models with the HOST inputs currently loaded. WARNING: trim unphysical data before use!
+3,Select HOST,Select the HOST app to Test. Currently only one HOST app is supported for each project
 4,Load HOST Data,"Load MAT file generate by the button ""Generate MAT file from HOST outputs"""
 5,Select HOST entry,"Select HOST entry to plot. ITFC and SUBMODEL curves will be added, if present"
 6,Comparison plot,Axes on which the variables are displayed
 7,Find delay,Run cross correlation to identify delay between HOST and ITFC
 8,Adjust delay,Manually specify or adjust the delay between HOST and ITFC
-9,Save,Save current framework as MAT file
-10,Brush data,Select data to keep after syncronization. See example for details
+9,Save,Save current framework as "".mat"" file
+10,Brush data,Select data to keep after syncronization. See the :ref:`example<user_guide_example1_test>` for details

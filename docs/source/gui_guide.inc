@@ -36,8 +36,7 @@ Upon generating a new *SUBMODEL*, various options and flags become visible.
    :widths: 30, 70
    :header-rows: 1
 
-If an user intends to use an externally developed *Simulink* model, it is advisable to copy-paste its content into a newly created one. This ensures the retention of *Simulink* model settings
-defined via the "Create Simulink Model" button. This action generates, alongside an empty *Simulink* model, an
+If an user intends to use an externally developed *Simulink* model, it is advisable to copy-paste its content into a newly created one. This ensures the retention of *Simulink* model settings defined via the "Create Simulink Model" button. This action generates, alongside an empty *Simulink* model, an
 initialization .m file, which can be used for configuring specific model parameters.
 
 ITFC
