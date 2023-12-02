@@ -2,13 +2,13 @@ Example 1: Met-Mast Data Reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In this first example, the user creates a simple framework to read
-data from a *Met-Mast ITFC* app, calculate moving averages,
+data from a Met-Mast *ITFC* app, calculate moving averages,
 and determine additional inflow quantities, which are then
 written back to the *ITFC*.
 
-To begin, open the framework by double-clicking on the main file "mail.mlapp." This action opens the main GUI. Two options are available: loading an existing file or creating a new one. Click on "new," and a window will appear where you can specify the folder for your new project. Open the "Examples" folder and click OK.
+To begin, open the framework by double-clicking on the file "main.mlapp" to open the main GUI. Two options are available: loading an existing file or creating a new one. Click on "new." Specify the folder for your new project. Open the "Examples" folder and click OK.
 
-Next, specify the new project name. Call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`Project Definition<user_guide_project_definition>`.
+Specify the new project name. Call it "met_mast_reader" and click OK (:numref:`mmr_new`). This will create a set of subfolders, as explained in :ref:`Project Definition<user_guide_project_definition>`.
 
 .. figure:: images/mmr_new.png
    :width: 1000
@@ -16,7 +16,7 @@ Next, specify the new project name. Call it "met_mast_reader" and click OK (:num
 
    Define new project view
 
-Now create at least three applications, one for each data layer:
+Now create three applications, one for each data layer:
 
    #. A *SUBMODEL*, performing the averaging function
    #. An *ITFC* for data transmission and testing
@@ -27,52 +27,51 @@ Now create at least three applications, one for each data layer:
 Create a new SUBMODEL
 """""""""""""""""""""""""""
 
-    #. To begin, create a *SUBMODEL* model by selecting "Add *SUBMODEL*" and providing a name, such as "calc_avg." Click OK. The underlying *Simulink* model will process inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
+#. To begin, create a *SUBMODEL* model by selecting "Add *SUBMODEL*" and providing a name, such as *calc_avg.* Click OK. The underlying *Simulink* model will process inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
 
-       .. figure:: images/mmr_new2.png
-          :width: 1000
-          :name: mmr_new2
-    
-          Overview of newly created "calc_avg"  
+   .. figure:: images/mmr_new2.png
+      :width: 1000
+      :name: mmr_new2
 
-    #. Generate an empty Simulink model by clicking "Create" in the "Create *Simulink Model*" column. This action creates the Simulink model in the model folder along with an "init_MODELTAG.m" file, which can be used for initializing data and constants. A green light under "*SLmodel-Ready*" indicates the model's presence in the *Matlab* path.
+      Overview of newly create"calc_avg"  
 
-    #. Next, create a new *Bachman Empty* project within Solution Center, following the steps in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals." If the source file name is different than the project name, update it by clicking "Details" and changing the field "refC_name" to the new name (e.g., “calavg” in the present case). A green "*C ref found*" light indicates that the reference C file was found by the framework.
+#. Generate an empty Simulink model by clicking "Create" in the "Create Simulink Model" column. This action creates the Simulink model in the model folder along with an "init_MODELTAG.m" file, which can be used for initializing data and constants. A green light under "*SLmodel-Ready*" indicates the model's presence in the *Matlab* path.
 
-    #. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`).  This modifies the reference files, enabling variables interconnection.
+#. Create a new *Bachman* Empty project within *SolutionCenter*, following the steps in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Call the application *calavg*. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals." If the source file name, without the appendix "_app.c" is different than the project name, update it by clicking "Details" and changing the field *refC_name* to the new name (e.g., *calavg* in the present case). A green "*C ref found*" light indicates the presence of the reference C file in the *Matlab*'s path.
 
-      .. figure:: images/mmr_new3.png
-         :width: 1000
-         :name: mmr_new3
+#. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`).  This modifies the reference files, enabling variables interconnection.
 
-         Add *Matlab* Fields for the SUBMODEL "calc_avg" 
+    .. figure:: images/mmr_new3.png
+       :width: 1000
+       :name: mmr_new3
 
-    #. Create the *Simulink Model* in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg." If you plan to use a custom *Simulink* model, note that some settings may differ, so it's advisable to copy the content of your model into the newly created one, as previously mentioned.
+       Add *Matlab* Fields for the SUBMODEL "calc_avg" 
 
-   #. Open the model provided. The model has three main inputs: 
+#. Create the *Simulink* model in the appropriate folder. You can either modify the empty one, copy and paste into the existing model, or use the example provided under "Examples\\met_mast_reader_sample\\SimulinkModels\\calc_avg." If you plan to use a custom *Simulink* model, note that some model settings may differ, so it is advisable to copy the content of your model into the newly created one, as previously mentioned.
 
-       #.	Met mast wind speed at 110m
-       #.	Met mast wind speed at 60m
-       #.	Met mast wind direction at 110m. 
+#. Open the model provided. The model hasthree main inputs: 
+    #.	Met mast wind speed at 110m
+    #.	Met mast wind speed at 60m
+    #.	Met mast wind direction at 110m 
+   The reference heights in this example are based on the `IEA Task 37 reference wind turbine <https://github.com/IEAWindTask37/IEA-3.4-130-RWT>`_. The model checks if variables are correctly being transmitted (e.g., ensuring they are not frozen) and then calculates moving averages. Several outputs are computed:
 
-      The reference heights in this example are based on the `IEA Task 37 reference wind turbine <https://github.com/IEAWindTask37/IEA-3.4-130-RWT>`_. The model checks if variables are correctly being transmitted (e.g., frozen) and then calculates moving averages. Several outputs are computed:
+    #.	Moving average of the wind speed at 110m
+    #.	Turbulence intensity calculated from the wind speed at 110m
+    #.	Moving average of the wind speed at 60m
+    #.	Power-law shear exponent
+    #.	Moving average of the wind direction at 110m
+    #.	Status check to monitor runtime activity
 
-       #.	Moving average of the wind speed at 110m
-       #.	Turbulence intensity
-       #.	Moving average of the wind speed at 60m
-       #.	Power-law shear exponent
-       #.	Moving average of the wind direction at 110m
-       #.	Status check to monitor runtime activity
-
-   #. The model requires specific quantities defined, which can be inspected by opening the relevant “init_calc_avg.m”file. Quantities like startup time, moving average interval, and error time are here set to 600 s.
-   #. With these settings in place, the Simulink model is ready to use.
+#. The model requires specific quantities to be defined, which can be found in the file “init_calc_avg.m” file
+#. Quantities like startup time, moving average interval, and error time are here set to 600 s
+#. With these settings in place, the *Simulink* model is ready to use
 
 
 Create a new ITFC
 """"""""""""""""""""""""""""""""
 
    #. Click on the "Add *ITFC*" button, and in the dialog box that appears, assign the name "*met_mast_ITFC*" to the *ITFC* app.
-   #. Similar to the steps taken for the "*calc_avg*" *SUBMODEL*, you'll need to generate a new empty *PLC* code. Refer to the :ref:`Create *Bachmann* Applications<user_guide_appendix_createbachmann>` section for detailed guidance. Within *SolutionCenter*, name this application "*mmitfc*." Copy and paste the reference app file into the "Originals" folder and update the "refC_name" to the new name through "Details".
+   #. Similarly to the steps taken for the "*calc_avg*" *SUBMODEL*, you'll need to generate a new empty PLC code. Refer to the :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>` section for detailed guidance. Within *SolutionCenter*, name this application "*mmitfc*." Copy and paste the reference app file into the "Originals" folder and update the "*refC_name*" to the new name through "Details".
 
    #. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`). 
 

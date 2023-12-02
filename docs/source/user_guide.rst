@@ -67,7 +67,11 @@ which can be used to read data from a met-mast and
 perform moving averages for monitoring purposes, and a
 *SCADA-data* reader.
 
+.. _user_guide_example1:
+
 .. include:: example_1.inc
+
+.. _user_guide_example2:
 
 .. include:: example_2.inc
 

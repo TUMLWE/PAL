@@ -1,5 +1,3 @@
-To start a new session, open the App Designer file “main.mlapp” and run it. A new GUI will open. There are two main tabs that are devoted to two specific operations of the framework: the “Develop/Deploy” and the “test” tab. 
-
 To start a new session, launch the *App Designer* file “main.mlapp” and run it. A new GUI
 will open, featuring two primary tabs which focus on distinct operations within the framework: the
 :ref:`Develop/Deploy<user_guide_gui_dd>` and the :ref:`Test<user_guide_gui_test>` tab.
@@ -18,9 +16,9 @@ of the GUI for the sample project "met_mast_reader" is illustrated in :numref:`p
 
    Develop/Deploy Tab
 
-The following table provides an overview of the Develop/Deploy tab.
+The following table provides an description of the Develop/Deploy tab.
 
-.. csv-table::  GUI - overview Develop/Deploy tab
+.. csv-table::  GUI - description of Develop/Deploy tab
    :file: gui_guide_dd.csv
    :widths: 30, 30, 40
    :header-rows: 1
@@ -38,8 +36,7 @@ Upon generating a new *SUBMODEL*, various options and flags become visible.
    :widths: 30, 70
    :header-rows: 1
 
-If an user intends to use an externally developed *Simulink* model, it's advisable to
-copy-paste its content into a newly created one. This ensures the retention of *Simulink* model settings
+If an user intends to use an externally developed *Simulink* model, it is advisable to copy-paste its content into a newly created one. This ensures the retention of *Simulink* model settings
 defined via the "Create Simulink Model" button. This action generates, alongside an empty *Simulink* model, an
 initialization .m file, which can be used for configuring specific model parameters.
 
@@ -52,7 +49,7 @@ ITFC
 
 HOST
 """""""""
-Equivalent to the *SUBMODEL* panel.
+The definion of a *HOST* is equivalent to that of a *SUBMODEL* panel.
 
 .. _user_guide_gui_test:
 
@@ -60,7 +57,7 @@ Test
 ^^^^^^^^^^^^^^^^^^^
 
 After the generation of PLC applications, the framework can be executed on the PLC hardware. The *HOST*
-application generates .txt outputs, which can be used through the *Test* tab to verify the correctness of the data transmission between the different applications. The tab provides tools for reading HOST outputs and comparing results between PLC and *Simulink*, among other functions. It is important to mention that, since applications are loaded onto the PLC sequentially, from lower to higher layers (*ITFC*, *HOST*, and then *SUBMODEL*), a residual delay exists between
+application generates ".txt" outputs, which can be used through the *Test* tab to verify the correctness of the data transmission between the different applications. The tab provides tools for reading *HOST* outputs and comparing results between PLC and *Simulink*, among other functions. It is important to mention that, since applications must be loaded onto the PLC sequentially, from lower to higher layers (*ITFC*, *HOST*, and then *SUBMODEL*), a residual delay exists between
 test *ITFC* data and *HOST* data, which is of course not physical but purely introduced by this delay. 
 
 An example of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`.
@@ -76,5 +73,7 @@ An example of the GUI for the example project "met_mast_reader" is shown in :num
    :widths: 30, 30, 40
    :header-rows: 1
 
-Before running *Simulink* models, unphysical data should be trimmed using the Brush function, along with the "Brush Data/sync ITFC app" (right-click on the figure). Users should familiarize themselves with the testing functionality by following the examples provided.
+Before running *Simulink* models, unphysical data should be trimmed using the Brush function, along with the "Brush Data/sync ITFC app" (right-click on the figure). Users should familiarize themselves with the testing functionality by following the :ref:`examples provided<_user_guide_example1>`.
+
+
 
