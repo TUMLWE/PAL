@@ -1,9 +1,9 @@
 System Requirements
 ===================
 
-#. **Operating System:** Windows
-#. **MATLAB:** Version 2022 or higher
-    #. **MATLAB Toolboxes:**
+- **Operating System:** Windows
+- **MATLAB:** Version 2022 or higher
+    - **MATLAB Toolboxes:**
         #. Communications Toolbox
         #. DSP System Toolbox
         #. Embedded Coder
