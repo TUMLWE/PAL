@@ -1,10 +1,10 @@
 ﻿KeyName,KeyType,Description
 modelTag,String,Same as ITFC
 PLCApp_folder,String,Same as ITFC
-slmodel_folder,String,"Name of Simulink model folder in ProjectName\SimulinkModels"
-slmodel_name,String,"Name of Simulink model in ProjectName\SimulinkModels\slmodel_folder"
-slccode_folder,String,"Name of Simulink code generation folder in ProjectName\SimulinkCCodes"
+slmodel_folder,String,"Name of Simulink model folder in ProjectName\\SimulinkModels"
+slmodel_name,String,"Name of Simulink model in ProjectName\\SimulinkModels\\slmodel_folder"
+slccode_folder,String,"Name of Simulink code generation folder in ProjectName\\SimulinkCCodes"
 refC_name,String,Same as ITFC
 Flag_Generate_PLC_app,TRUE/FALSE,Same as ITFC
-host_apptag,String,"appTag of HOST application connected to Submodel (WARNING: as of V1.0, only one HOST per project is supported)"
+host_apptag,String,"appTag of HOST application connected to Submodel (WARNING: as of the present version, only one HOST per project is supported)"
 Comment,String,Same as ITFC
