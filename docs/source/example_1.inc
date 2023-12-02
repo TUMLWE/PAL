@@ -1,7 +1,6 @@
 Example 1: Met-Mast Data Reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
 In this first example, the user creates a simple framework to read
 data from a Met-Mast *ITFC* app, calculate moving averages,
 and determine additional inflow quantities, which are then
@@ -24,6 +23,7 @@ Now create three applications, one for each data layer:
    #. A *HOST*, responsible for managing output data
 
 .. _user_guide_example1_createsubmodel:
+
 
 Create a new SUBMODEL
 """""""""""""""""""""""""""
