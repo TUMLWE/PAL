@@ -110,7 +110,7 @@ Similarly, an overview of the SUBMODELS variables is provided below.
 
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - SUBMODEL
    :file: SVI_Definition_scada_sm.csv
-   :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
+   :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
    :header-rows: 1
 
 Generate the test interface
