@@ -44,6 +44,7 @@ HOST
 An *HOST* variable can READ/WRITE data to an *ITFC* variable, but cannot be transmitted to *SUBMODEL* variables.
 
 *HOST* variables serve various purposes, including:
+
    #. Reading variables from *ITFC* and host them to be read by *SUBMODEL* apps.
    #. Read variable from ITFC for monitoring purposes
    #. Creating static variables for *SUBMODEL*, particularly useful for constant definitions
