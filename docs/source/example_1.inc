@@ -187,7 +187,7 @@ Remember to save and close the “SVI_Definition” file after making these modi
 
  .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - SUBMODELS
     :file: SVI_Definition_sm_mmreader.csv
-    :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
+    :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
     :header-rows: 1
     :name: SVI_Definition_sm_mmreader
 
