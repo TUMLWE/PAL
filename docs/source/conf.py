@@ -4,7 +4,7 @@
 
 project = 'PAL - User Guide'
 copyright = '2023, Lehrstuhl für Windenergie, Technische Universität München'
-author = 'Carlo R. Sucameli                \n                 \\            and Carlo L. Bottasso '
+author = 'Carlo R. Sucameli test  test  test  test  test  \n  test  test  test  test  test  test  test  test  \\   test  test           and Carlo L. Bottasso '
 
 release = '0.1'
 version = '0.1.0'
