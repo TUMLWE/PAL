@@ -109,7 +109,6 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_met_mast_reader_1.csv
-   |p{0.10\linewidth}|p{0.10\linewidth}|p{0.30\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.30\linewidth}|p{0.10\linewidth}|p{0.10\linewidth}|p{0.30\linewidth}|
    :class: longtable
    :header-rows: 1
 
