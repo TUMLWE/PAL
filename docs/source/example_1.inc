@@ -109,15 +109,17 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_met_mast_reader_1.csv
-   :widths: 10, 10, 10, 10, 10, 10,10, 10, 1
+   :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10
    :header-rows: 1
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - ITFC
    :file: inputfile_met_mast_reader_2.csv
+   :widths: 10, 10, 10, 10, 10, 10, 10
    :header-rows: 1
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - HOST
    :file: inputfile_met_mast_reader_3.csv
+   :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
    :header-rows: 1
 
 
@@ -167,6 +169,7 @@ The resulting sheet can be viewed in the following :ref:`table<SVI_Definition_ho
 
 .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - HOST
    :file: SVI_Definition_host_mmreader.csv
+   :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
    :header-rows: 1
    :name: SVI_Definition_host_mmreader
 
@@ -184,6 +187,7 @@ Remember to save and close the “SVI_Definition” file after making these modi
 
  .. csv-table::  met_mast_reader - "SVI_Definition.xlsx" - SUBMODELS
     :file: SVI_Definition_sm_mmreader.csv
+    :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
     :header-rows: 1
     :name: SVI_Definition_sm_mmreader
 
