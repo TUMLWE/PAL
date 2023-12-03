@@ -45,3 +45,5 @@ epub_show_urls = 'footnote'
 numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'Listing %s'}
 
 html_title = 'PAL'
+
+latex_elements ={ 'papersize' : 'a1paper' }
