@@ -99,6 +99,7 @@ An overview of the ITFC variables is shown below
 
 The table below presents the list of *HOST* variables implemented in the "SVI_Definition.xlsx." The variables fed to "exchange_data_ctrl" have been assigned an initial value equal to 1. Besides the greater number of variables, the data handling is similar to that of "met_mast_reader."
 
+.. tabularcolumns:: |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - HOST
    :file: SVI_Definition_scada_host.csv
    :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
