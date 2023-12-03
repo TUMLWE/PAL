@@ -48,5 +48,4 @@ html_title = 'PAL'
 
 latex_table_style = ['colorrows']
 
-latex_docclass = ['howto']
 
