@@ -109,7 +109,8 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - SUBMODEL
    :file: inputfile_met_mast_reader_1.csv
-   :widths: 11, 11, 11, 11, 11, 11, 11, 11, 12
+   :widths: auto
+   :class: longtable
    :header-rows: 1
 
 .. csv-table::  met_mast_reader - "inputfile.xlsx" - ITFC
