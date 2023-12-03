@@ -109,7 +109,7 @@ The table below presents the list of *HOST* variables implemented in the "SVI_De
 
 Similarly, an overview of the SUBMODELS variables is provided below.
 
-.. tabularcolumns:: |p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{0.1cm}
+.. tabularcolumns:: |\X{1}{10}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{0.1cm}
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - SUBMODEL
    :file: SVI_Definition_scada_sm.csv
    :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
