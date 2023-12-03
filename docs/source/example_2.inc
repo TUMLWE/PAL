@@ -111,6 +111,7 @@ Similarly, an overview of the SUBMODELS variables is provided below.
 .. tabularcolumns:: 
 .. csv-table::  SCADA_reader - "SVI_Definition.xlsx" - SUBMODEL
    :file: SVI_Definition_scada_sm.csv
+   width : 100%
    :widths: 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10
    :header-rows: 1
 
