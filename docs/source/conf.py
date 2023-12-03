@@ -46,7 +46,7 @@ numfig_format = {'figure': 'Figure %s', 'table': 'Table %s', 'code-block': 'List
 
 html_title = 'PAL'
 
-latex_table_style = {'colorrows'}
+latex_table_style = ['colorrows']
 
-latex_docclass = 'howto'
+latex_docclass = ['howto']
 
