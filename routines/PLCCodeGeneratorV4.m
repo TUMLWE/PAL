@@ -6,29 +6,8 @@ CurrFolder = pwd;
 
 load_system(ModelName);
 
-% bb = get_param(ModelName,'EmbeddedCoderDictionary');
-% dictionaryFile = Simulink.data.dictionary.create('codeDefinitions.sldd')
-
-% bb = get_param(ModelName,'EmbeddedCoderDictionary')
-% open_system(ModelName)
-% cm = coder.mapping.api.get(ModelName,'EmbeddedCoderC')
-% cm = coder.mapping.api.CodeMapping(ModelName)
-
-% getOutport(cm,'Out1','StorageClass')
-
-% cm = coder.mapping.utils.create(ModelName);
-% myInput = getInport(cm,'input_LUUKWFC_Status','Export');
-
-
 rtwbuild(ModelName);   % Build the model, generate the C code
 
-
-% coder.report.open(ModelName)
-% html = extractHTMLText('D:\Work\PhD\Codes\GitLab\wfc-framework_2022\SimulinkCCodes\TOGGLER_V2\matlab\MOTHERAPP_ert_rtw\html\pages\MOTHERAPP_interface.html');
-% html = extractFileText('D:\Work\PhD\Codes\GitLab\wfc-framework_2022\SimulinkCCodes\TOGGLER_V2\matlab\MOTHERAPP_ert_rtw\html\pages\MOTHERAPP_interface.html');
-
-% extractFileText(filename)
-%  html =mlreportgen.dom.HTML(html);
 
 MainFolder = fullfile(DestinationFolder , 'matlab', [ModelName '_ert_rtw']);
 FileList = [dir([MainFolder '/*.h']); dir([MainFolder '/*.c'])];

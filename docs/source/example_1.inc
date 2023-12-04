@@ -140,6 +140,7 @@ As a first step, it is necessary to create a dummy interface. For the current me
 
 #. Create a structure named "*met_mast*". Set both *TagName* and *VarName* to "*met_mast*." Set *InputNumber* to 1, ensuring *AppName* matches the *HOST* app in "inputfile.xlsx." Specify *VarType* as "struct," type "READ" in the *Access* field, and set *Create* to true. Note that structures can handle variables of different data types, but their size should be 1 for all numeric variables. You can leave the *VarSize* field empty for now.
 #. Define three subvariables under "met_mast":
+
     #. Wind Speed at 110 m, named "*ws_110m*"
     #. Wind Speed at 60 m, named "*ws_60m*"
     #. Wind Direction at 110 m, named "*wd_110m*"
