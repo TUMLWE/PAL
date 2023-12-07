@@ -238,7 +238,7 @@ Testing the framework
 #. Select a variable, such as "*mm_ws_110m*." You will see two curves, one from the *ITFC* data and the other from the *HOST* application. Use the figurer to verify whether the two signals are identical. In the present case, you will see something like this:
 
 .. figure:: images/mmr_new4.png
-   :width: 1000
+   :width: 600
    :name: mmr_new4
 
    Data trasmission error: excessive *HOST* recording time
