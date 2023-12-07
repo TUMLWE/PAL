@@ -23,36 +23,7 @@ switch var.VarType
         StructName = info.StructName;
         nTimeInst = size(var.SV{1}.time_hist,1);
         String = ['struct ' StructName ' ' InternalInterfaceVarName '_TH[' num2str(nTimeInst) '];' newline ];
-
-%         for iSubfield = 1 : length(var.SV)
-%             subvar = var.SV{iSubfield};
-% 
-%             if ~subvar.Create % if the variable should not be created
-%                 continue
-%             end
-% 
-%             time_hist = subvar.time_hist;
-% 
-%             for iTime = 0 : nTimeInst-1
-%                 switch subvar.VarType
-% 
-%                     case 'char'
-%                         String = [String 'strcpy(' InternalInterfaceVarName '_TH[' num2str(iTime) '].' subvar.VarName ', "' time_hist(iTime+1,:) '");' newline ];
-% 
-%                     case {'double', 'int16', 'logical'}
-%                         for issv = 0 : length(subvar.VarSize)-1
-%                         String = [String  InternalInterfaceVarName '_TH[' num2str(iTime) '].' subvar.VarName '[' num2str(issv) ']=' num2str(time_hist(iTime + 1), issv+1) ';' newline];
-%                         end
-% 
-%                     otherwise
-% 
-%                         fprintf('Subfield Type not yet implemented \n')
-%                         keyboard
-% 
-%                 end
-%             end
-% 
-%         end  
+ 
         out = [out String ];
 
 
@@ -72,12 +43,6 @@ switch var.VarType
             String = [PLCType ' ' VN_TH '[' num2str(numberoflements) '][' num2str(nTimeInst) '] = { 0 };' newline ...
                 ];
 
-%             for iTime = 0 : nTimeInst - 1
-%                 %                 iTime
-%                 for iElem = 0 : numberoflements - 1
-%                     String = [String VN_TH '[' num2str(iElem) '][' num2str(iTime) ']=' num2str(VN_Data(iTime+1 ,iElem+1)) ';' newline];
-%                 end
-%             end
         out = [out String  ];
 
         end

@@ -58,26 +58,4 @@ end
 
 end
 
-% % 
-% %     String = [];
-% %     
-% %     if sum(strcmp(VarNamePLCGeneral(idxArray), VarNamePLC{VPLCList(iVar)})) % This means that the variable is treated as an array
-% %         
-% %     if strcmp(Type{VPLCList(iVar)},'REAL32')
-% %         
-% %         temp = VarNamePLC{VPLCList(iVar)};
-% %         temp(regexp(temp,'[.]'))=[];
-% %         String = [VarNameENOHOST{VPLCList(iVar)} ' = ' temp '[' num2str(ArraySubfield{VPLCList(iVar)}-1) '];' newline];
-% %         
-% %     elseif strcmp(Type{VPLCList(iVar)},'STRING')
-% %         String = ['strcpy(' VarNameENOHOST{VPLCList(iVar)} ',' ArraySubfield{VPLCList(iVar)} ');' newline];
-% %   
-% %     else
-% %        fprintf('Variable Type to be included in ENOHOST not yet implemented')
-% %        keyboard
-% % 
-% %     end
-% %    
-% %     end
-    
     

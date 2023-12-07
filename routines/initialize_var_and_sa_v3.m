@@ -13,22 +13,6 @@ if isempty(var.parent_App) % only variables that need connection to parent shoul
 end
 
 
-% parent_App = {Variables.parent_App};
-% ee = cell2mat(cellfun(@(x) ~isempty(x), parent_App, 'Uniformoutput', false));
-% 
-% % only select variables that are read from a parent
-% Variables = Variables(ee);
-% 
-% parent_App = {Variables.parent_App};
-% 
-% %% arrays and structure are treated differently
-% list_parentvar = [];
-% for ivar = 1 : length(parent_App)
-%     var = Variables(ivar);
-%     if ~var.Create % if the variable should not be created
-%         continue
-%     end
-
 InternalInterfaceVarName = info.InternalInterfaceVarName;
 
 parent = var.parent;

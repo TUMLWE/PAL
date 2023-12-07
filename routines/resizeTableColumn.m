@@ -30,15 +30,3 @@ end
 
 
 end
-
-
-
-
-%         function SubmodelsPanelSizeChanged(app, event)
-%             position = app.SubmodelsPanel.Position;
-%             posFig = app.UIFigure.Position;
-%             newwidth = posFig(3) - position(1)*2;
-%             position(3) = newwidth;
-%             
-%             app.SubmodelsPanel.Position = position;
-%         end

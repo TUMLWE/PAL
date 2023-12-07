@@ -98,14 +98,6 @@ classdef sm_variable < handle
                         value = recastToType(vn, value,'double');
                         obj.(vn) = value;
 
-                        %                     case {}
-                        %                         if all(isstrprop(value,"digit"))
-                        %                             value = recastToType(vn, value,'double');
-                        %                         else
-                        %                             value = recastToType(vn, value,'string');
-                        %                         end
-                        %                         obj.(vn) = value;
-
                     otherwise
                         warning('Table field %s not implemented in sm_variable class', vn)
 

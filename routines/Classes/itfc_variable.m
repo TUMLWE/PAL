@@ -17,12 +17,6 @@ classdef itfc_variable < handle
 
         function obj = itfc_variable(input_table)
 
-%             try input_table.InputNumber
-% 
-%             catch
-% 
-%             end
-
             if length(input_table.InputNumber) == 1 % if the table is only 1 elem length, it is not a struct
 
                 switch input_table.VarType{1}

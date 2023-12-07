@@ -98,24 +98,6 @@ classdef host_variable < handle
             end
 
 
-            %% There must be a part of connection between submodel variables and host, but possibly i can do it in the submodels
-%             if ~isempty(obj.Connect_to_sm)
-% 
-%                 if ~isempty(obj.sm_AppName)
-%                     error('Could not connect variable %s of HOST app %s to its submodel: could not find sm_AppName.', ...
-%                         obj.TagName, obj.AppName )
-%                 end
-%                 if ~isempty(obj.sm_VarName)
-%                     error('Could not connect variable %s of HOST app %s to its submodel variable: could not find sm_VarName.', ...
-%                         obj.TagName, obj.AppName )
-%                 end
-% 
-%                 obj
-% 
-%             else
-% 
-%             end
-
         end
 
         function obj = addEntry(obj, input_table)
@@ -208,54 +190,7 @@ classdef host_variable < handle
             % identification of good chunk
             delay_samples = finddelay(yh - mean(yh), yi - mean(yi)) + 1;
             
-
-% %             xi_v2 = xi - seconds(delay_samples*sample_time);
-%             xi_v2 = xi - delay_samples;
-% 
-%             xi_begin = find(xi_v2 > xh(1), 1, 'first');
-% 
-%             figure(); hold on
-%             plot(xh, yh)
-%             plot(xi_v2, yi)
-% 
-%             xi_v3 = xi_v2(xi_begin:end);
-%             yi_v3 = yi(xi_begin:end);
-
-
-
-            %
-%             sample_windowing = 100;
-%             d2 = []
-%             for iElem = 1 : length(xi_v3) - sample_windowing
-% 
-%                
-%                 yi_chunk = yi_v3(iElem:iElem + sample_windowing); 
-%                 yh_chunk = yh(iElem:iElem + sample_windowing); 
-%     
-%                 d2(iElem) = finddelay(yh_chunk - mean(yh_chunk), yi_chunk - mean(yi_chunk)) + 1;
-% 
-%                 figure()
-%                 hold on
-%                 plot(xh, yh)
-% %                 plot(xi_v3 - seconds(d2(iElem)*sample_time), yi_v3)
-%                 plot(xi_v3 - d2(iElem) , yi_v3)
-%                 xline(xi_v3(iElem))
-%                 xline(xi_v3(iElem + sample_windowing))
-% 
-%                 pause
-%                 close all
-% 
-% 
-% %                 if find(yi_v3(iElem) == yh)
-% % 
-% % 
-% %                 end
-% 
-%             end
-
-
             
-
         end
 
     end

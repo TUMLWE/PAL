@@ -93,13 +93,10 @@ classdef test_framework < handle
                         var.test_outputs.itfc_var_th = var.find_parent_th();
                         nElem = size(var.test_outputs.itfc_var_th,1);
                         var.test_outputs.itfc_var_timestamp = seconds(([0 : nElem-1])*sample_time) + var.test_outputs.hostvar_timestamp(1);
-
-
                     
                     end
 
-                    
-
+                   
                 end
 
 

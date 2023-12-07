@@ -145,60 +145,24 @@ classdef host_app < handle
 
             outmat_fast = table;
             for idf = 1 : length(sorted_fast_files)
-%                 T = readtable(sorted_fast_files{idf}, dtio );
-%                 T.TimeStamp_UTC = datetime(T.TimeStamp_UTC,"InputFormat",infmt,"Format","yyyy.MM.dd HH:mm:ss.SSS");
-
                 T = read_outfile_host(sorted_fast_files{idf}, obj, 'fast');
                 outmat_fast = [outmat_fast; T];
             end
 
             outmat_slow = table;
             for idf = 1 : length(sorted_slow_files)
-%                 T = readtable(sorted_slow_files{idf}, dtio );
-%                 T.TimeStamp_UTC = datetime(T.TimeStamp_UTC,"InputFormat",infmt,"Format","yyyy.MM.dd HH:mm:ss.SSS");
-
                 T = read_outfile_host(sorted_slow_files{idf}, obj, 'slow');
                 outmat_slow = [outmat_slow; T];
             end
 
             outmat_ctrl = table;
             for idf = 1 : length(sorted_ctrl_files)
-%                 T = readtable(sorted_ctrl_files{idf}, dtio );
-%                 T.TimeStamp_UTC = datetime(T.TimeStamp_UTC,"InputFormat",infmt,"Format","yyyy.MM.dd HH:mm:ss.SSS");
- 
                 T = read_outfile_host(sorted_ctrl_files{idf}, obj, 'ctrl');
                 outmat_ctrl = [outmat_ctrl; T];
             end
 
             % now i recast the variables of the output tables
             
-
-%             for ivar = 1 : length(obj.Variables)
-%                 var = obj.Variables(ivar);
-% 
-%                 if ~var.Create
-%                     continue
-%                 end
-%                 if ~var.Print_output
-%                     continue
-%                 end
-% 
-%                 label = [strtrim(var.TagName) var.Units];
-% 
-%                 switch var.output_freq
-%                     case 'fast'
-%                         outmat_fast = recast_output_table(outmat_fast , label, var);
-%                     case 'slow'
-%                         outmat_slow = recast_output_table(outmat_slow , label, var);
-%                     case 'ctrl'
-%                         outmat_ctrl = recast_output_table(outmat_ctrl , label, var);
-%                     otherwise
-% 
-%                 end
-% 
-% 
-%             end
-
             
             %% saving outputs mats
 
@@ -253,13 +217,7 @@ classdef host_app < handle
                     
 
                 end
-
-%                 figure(); hold on
-%                 plot(xh, yh)
-%                 plot(xi, yi)
-%                 plot(xh(idx), yh(idx))
-%                 plot(xi(idx), yi(idx))
-                
+               
             end
 
         end

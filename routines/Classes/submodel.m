@@ -5,7 +5,7 @@ classdef submodel < handle
         modelTag {mustBeText} = strings
         PLCApp_folder {mustBeText} = strings
         slmodel_folder {mustBeText} = strings
-        slmodel_name {mustBeText} = strings %%%% Simulink Models Name  (THIS SHOULD NOT BE CHANGED, IT IS STILL HARD-CODED IN THE REFERENCE C Codes)
+        slmodel_name {mustBeText} = strings 
         slccode_folder {mustBeText} = strings
         refC_name {mustBeText} = strings
         Flag_Generate_PLC_app {mustBeNumericOrLogical} = false
@@ -171,9 +171,9 @@ classdef submodel < handle
                 AppName = obj.refC_name;
                 input_params_fn = obj.params_filename;
                                
-%                 PLCCodeGeneratorV3(ModelName, AppName, DestinationFolder, BachmannFolder, ...
-%                     ReferenceCFiles, ExcelPLCFileName, ExcelIOFileName, InterfaceFilesFolder, ...
-%                     input_params_fn);
+% % %                 PLCCodeGeneratorV3(ModelName, AppName, DestinationFolder, BachmannFolder, ...
+% % %                     ReferenceCFiles, ExcelPLCFileName, ExcelIOFileName, InterfaceFilesFolder, ...
+% % %                     input_params_fn);
 
                 if strcmp(settings.PLC_system,'Bachmann')
                 PLCCodeGeneratorV4(ModelName, AppName, DestinationFolder, PLCFolder, ...

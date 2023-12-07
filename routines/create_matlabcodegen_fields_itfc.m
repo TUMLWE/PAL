@@ -55,8 +55,6 @@ fprintf(fid, '%s', TXTSource);
 fclose(fid);
 
 
-
-% % % %% I believe this isn't necessary anymore
 % % % OpeningString = ['// MATLABCODEGEN: OpenField Initialize Output Variable'];
 % % % ClosingString = ['// MATLABCODEGEN: CloseField Initialize Output Variable'];
 

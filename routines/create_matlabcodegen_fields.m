@@ -223,8 +223,6 @@ txtIn = ['(?!{"ModuleVersion"[^{}]*})[\s]*// MATLABCODEGEN: OpenField SVI Variab
 TXTSource = addfield(3, txtIn, OpeningString, ClosingString, TXTSource,0);
 
 %
-
-%
 % // MATLABCODEGEN: OpenField write output array TUMITFC
 % // MATLABCODEGEN: CloseField write output array TUMITFC
 

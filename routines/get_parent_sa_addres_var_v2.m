@@ -1,7 +1,5 @@
 function [out, var_info] = get_parent_sa_addres_var_v2(var, bachmanndict, var_info, exchange_app)
 
-
-
 out = [];
 
 VarName = var.VarName;

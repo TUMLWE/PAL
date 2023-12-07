@@ -81,8 +81,6 @@ Field6Text = get_SVI_app_modules(SviLibToAdd);
 % % % % %% Field2 (like submodels)
 % % % % Field2Text = initialize_var_and_sa_v2(Variables, bachmanndict);
 
-
-
 % initialize empty fields
 Field2Text = [newline];
 Field3Text = [newline];

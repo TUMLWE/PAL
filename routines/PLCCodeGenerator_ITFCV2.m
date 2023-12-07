@@ -19,9 +19,6 @@ Field4Text = [newline 'int iC;' newline];
 Field5Text = [newline];
 % Field99Text = [newline];
 
-
-% idxVarToInclude = find(PLCVarAvailable==1 & strcmp(PLCVarApplication,'TUMITFCT'));
-
 for iVar = 1 : length(itfc.Variables)
 
     var = itfc.Variables(iVar);

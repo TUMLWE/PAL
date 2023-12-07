@@ -67,8 +67,7 @@ switch var.VarType
             VN_Data = var.time_hist;
             nTimeInst = size(VN_Data,1);
             String = [];
-%             String = [PLCType ' ' VN_TH '[' num2str(numberoflements) '][' num2str(nTimeInst) '] = { 0 };' newline ...
-%                 ];
+
 
             for iTime = 0 : nTimeInst - 1
                 %                 iTime

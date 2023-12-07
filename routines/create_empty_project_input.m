@@ -13,10 +13,6 @@ T = table ;  % create empty table
 fname = fullfile(prj_path, input_fn) ;   % here you can give path as well 
 writetable(T,fname) ;   % create a excel file with empty table
 
-
-% xlswrite(fullfile(prj_path, input_fn));
-
-
 e = actxserver('Excel.Application');
 e.Visible = 0;
 Workbook = e.Workbooks.Open(fname);

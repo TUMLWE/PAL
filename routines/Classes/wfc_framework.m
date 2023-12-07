@@ -428,7 +428,7 @@ classdef wfc_framework < handle
                  end
              end
 
-            %% 20230502 CRS: I still need to add the submodels
+            %% 20230502 CRS: I still need to add the submodels - MODBUS Not yet implemented
 %             mcd = modbus_com_dict(itfcvar, hostvar, obj.settings.plcdict);
 
 %             obj.settings.modbusdict = mcd;
