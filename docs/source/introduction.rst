@@ -30,7 +30,7 @@ Its layered approach is particularly suitable for diverse functionalities, spann
 
 The manual is structured into three main sections. The first section provides an overview of the general framework architecture, explaining the underlying structure and data flow. The second section provides in-depth information about the development of a new project, while the third section explains the components of the graphic user interface (GUI). The last section of this manual offers guidance through two distinct examples of framework implementation. As the framework was developed by the Wind Energy Institute at the Technical University of Munich, the examples are related to wind energy applications. The first example demonstrates the implementation of a Met Mast Data Reader, while the second example covers a SCADA Data Reader. 
 
-Lastly, an extension for wind farm control has been developed for PAL and is now publicly available. It can be found at the following link: :ref:`PAL - WFC <https://github.com/TUMLWE/wfc>`_
+Lastly, an extension for wind farm control has been developed for PAL and is now publicly available. It can be found at the following link: :ref:`PAL WFC <https://github.com/TUMLWE/wfc>`_ 
 
 
 
