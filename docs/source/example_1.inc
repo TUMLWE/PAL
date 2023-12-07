@@ -28,7 +28,7 @@ Now create three applications, one for each data layer:
 Create a new SUBMODEL
 """""""""""""""""""""""""""
 
-#. To begin, create a *SUBMODEL* model by selecting "Add *SUBMODEL*" and providing a name, such as *calc_avg.* Click OK. The underlying *Simulink* model will process inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel's first row with several red indicator lights (:numref:`mmr_new2`).  
+#. To begin, create a *SUBMODEL* by selecting "Add *SUBMODEL*" and providing a name, such as *calc_avg.* Click OK. The underlying *Simulink* model will process inputs from wind speed and wind direction data to calculate averages based on the desired window size. A new model will appear in the relative panel first row with several red indicator lights (:numref:`mmr_new2`).  
 
     .. figure:: images/mmr_new2.png
        :width: 1000
@@ -40,7 +40,7 @@ Create a new SUBMODEL
 
 #. Create a new *Bachman* Empty project within *SolutionCenter*, following the steps in the :ref:`Create Bachmann Applications <user_guide_appendix_createbachmann>` section. Call the application *calavg*. Ensure the main application source file is copied into the reference C folder, located in "ProjectName\\ReferenceCfiles\\Originals." If the source file name, without the appendix "_app.c" is different than the project name, update it by clicking "Details" and changing the field *refC_name* to the new name (e.g., *calavg* in the present case). A green "*C ref found*" light indicates the presence of the reference C file in the *Matlab*'s path.
 
-#. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`).  This modifies the reference files, enabling variables interconnection.
+#. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`).  This modifies the reference files, enabling the interconnection of variables.
 
     .. figure:: images/mmr_new3.png
        :width: 1000
@@ -74,7 +74,7 @@ Create a new ITFC
 """"""""""""""""""""""""""""""""
 
    #. Click on the "Add *ITFC*" button, and in the dialog box that appears, assign the name "*met_mast_ITFC*" to the *ITFC* app.
-   #. Similarly to the steps taken for the "*calc_avg*" *SUBMODEL*, you'll need to generate a new empty PLC code. Refer to the :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>` section for detailed guidance. Within *SolutionCenter*, name this application "*mmitfc*." Copy and paste the reference app file into the "Originals" folder and update the "*refC_name*" to the new name through "Details".
+   #. Similarly to the steps taken for the "*calc_avg*" *SUBMODEL*, you will need to generate a new empty PLC code. Refer to the :ref:`Create Bachmann Applications<user_guide_appendix_createbachmann>` section for detailed guidance. Within *SolutionCenter*, name this application "*mmitfc*." Copy and paste the reference app file into the "Originals" folder and update the "*refC_name*" to the new name through "Details".
 
    #. Right-click on the "*C ref found*" light and select "*Add Matlab Fields*" (:numref:`mmr_new3`). 
 
@@ -102,7 +102,7 @@ Open the "inputfile.xlsx" to configure the main settings for the *met_mast_reade
 
 #. Click on the *Settings* tab. Adjust the *sample_time* parameter to your desired value. Here, 0.1 seconds is chosen. This parameter determines the operating frequency for all the project applications. Note that only *Bachmann* systems can be selected in the *PLC_system* column.
 
-#. Navigate to the *Submodels* tab. In the "*host_apptag*" column for "*calc_avg*", specify "*host_calc_avg*". This designates the host application with which the *SUBMODEL* application exchanges data. As mentioned earlier, it's crucial to use the same host application for every *SUBMODEL*. Save your changes and close the file.
+#. Navigate to the *Submodels* tab. In the "*host_apptag*" column for "*calc_avg*", specify "*host_calc_avg*". This designates the host application with which the *SUBMODEL* application exchanges data. As mentioned earlier, it is crucial to use the same host application for every *SUBMODEL*. Save your changes and close the file.
 
 Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_reader" project.
 
@@ -132,7 +132,7 @@ Below, an overview of the different tabs in "inputfile.xlsx" for the "met_mast_r
 Modify the “SVI_Definition”
 """"""""""""""""""""""""""""""""
 
-In this step, you will define the variables for each application and establish the necessary variable interconnections across different layers. Open "SVI definition.xlsx." Separate description is given for each respective layer.
+In this step, you will define the variables for each application and establish the necessary variable interconnections across different layers. Open "SVI definition.xlsx". A separate description is given for each respective layer.
 
 **ITFC**
 
@@ -181,7 +181,7 @@ The SUBMODEL "calc_avg" must be defined, according to the input port of the unde
 #. Define three variables, corresponding to the inputs of the Simulink model. Set *IO* as "input." Specify the fields *parent_App* and *parent_TagName*. Ensure that the *Action* is set as "READ.”
 #. Define six variables corresponding to the outputs of the Simulink model. Set *IO* as "output." Specify the fields *parent_App* and *parent_TagName*. Ensure that the *Action* is set as "WRITE.”
 #. Correctly define the *PortNumber* for both input and output variables based on the port numbering of the *Simulink* model. Additionally, ensure that the *PortName* matches the names in the *Simulink* model.
-#. Create an "*AppStatus*" variable, denoted by the *IO* field set as "status." This variable doesn't require a port number, and the port name should be set as "*AppStatus*." Set this variable to "WRITE."
+#. Create an "*AppStatus*" variable, denoted by the *IO* field set as "status." This variable does not require a port number. The port name should be set as "*AppStatus*." Set this variable to "WRITE."
 
 Remember to save and close the “SVI_Definition” file after making these modifications.
 
@@ -206,7 +206,7 @@ Now, proceed with creating a dummy interface:
 
     #. Open the details of the ITFC app "met_mast_ITFC" and fill in the "test_ITFC_filename" for your ITFC app, including any relative path. Create this file in "./Examples/met_mast_reader/mm_ITFC.mat."
 
-    #. Click on the "Create Random ITFC" button. Specify the duration of the time histories; the default is 100 seconds. Keep in mind storage considerations on your PLC. If the duration is too long, it might pose storage issues on your PLC. However, in this case, since we have only a few variables, it shouldn't be a problem. Let's set it to 1000 seconds and click "OK."
+    #. Click on the "Create Random ITFC" button. Specify the duration of the time histories; the default is 100 seconds. Keep in mind storage considerations on your PLC. If the duration is too long, it might pose storage issues on your PLC. However, in this case, since we have only a few variables, it should not be a problem. Set it to 1000 seconds and click "OK."
 
     #. A new "mm_ITFC.mat" file is generated. If you open it, you will find the "met_mast" structure and the "exchange_data_mm" array. Initially, these variables are populated with random data based on their data type. However, this might not be realistic for wind speed and direction data. You have two options: replace the random data with your own or use the provided dummy variables included within the folder "*Examples\\met_mast_reader_sample*", which contains with realistic data. By default, only the "read" variables are filled with random numbers, while "WRITE" variables are set to 0.
 
@@ -243,7 +243,7 @@ Testing the framework
 
    Data trasmission error: excessive *HOST* recording time
 
-At the end of the time history, unphysical values are provided by the "*host_calc_avg*" application. This anomaly occurs because, after the 1000 seconds embedded in the ITFC application, random values are transmitted to the HOST application. To rectify this, you'll need to trim the unnecessary data. The "Brush Data" feature facilitates this process.
+At the end of the time history, unphysical values are provided by the "*host_calc_avg*" application. This anomaly occurs because, after the 1000 seconds embedded in the ITFC application, random values are transmitted to the HOST application. To rectify this, you will need to trim the unnecessary data. The "Brush Data" feature facilitates this process.
 
     #. Use "Brush Data" to select the data you wish to retain.
     #. Right-click and choose "Brush Data / Sync ITFC App."

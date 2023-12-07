@@ -16,7 +16,7 @@ of the GUI for the sample project "met_mast_reader" is illustrated in :numref:`p
 
    Develop/Deploy Tab
 
-The following table provides an description of the Develop/Deploy tab.
+The following table provides a description of the Develop/Deploy tab.
 
 .. csv-table::  GUI - description of Develop/Deploy tab
    :file: gui_guide_dd.csv
@@ -36,7 +36,7 @@ Upon generating a new *SUBMODEL*, various options and flags become visible.
    :widths: 30, 70
    :header-rows: 1
 
-If an user intends to use an externally developed *Simulink* model, it is advisable to copy-paste its content into a newly created one. This ensures the retention of *Simulink* model settings defined via the "Create Simulink Model" button. This action generates, alongside an empty *Simulink* model, an
+If a user intends to use an externally developed *Simulink* model, it is advisable to copy-paste its content into a newly created one. This ensures the retention of the *Simulink* model settings defined via the "Create Simulink Model" button. This action generates, alongside an empty *Simulink* model, an
 initialization .m file, which can be used for configuring specific model parameters.
 
 ITFC

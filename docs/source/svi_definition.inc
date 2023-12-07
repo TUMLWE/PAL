@@ -15,7 +15,7 @@ ITFC
 
 To promote the separation between hardware-specific and
 research-specific operations, the *ITFC* layer should be ideally
-developed by the hardware owner. Within the present framework, this layer serves the unique
+developed by the hardware owner. Within the present framework, as already mentioned, this layer serves the unique
 purpose of testing, ensuring the proper functioning of the
 framework applications, primarily the *Simulink* submodels.
 Thus, it is crucial that the SVI of *ITFC* applications
@@ -30,7 +30,7 @@ information to *ITFC* SVIs.
 In addition to the mentioned :ref:`data types<user_guide_appendix_supporteddata>`, *ITFC* variables
 can also be implemented as structures, where all subfields share the
 same "Access" property. Numerical arrays for subfields
-are not yet supported (except for string arrays), a detailed
+are not yet supported (except for string arrays). A detailed
 description of all table elements is provided below.
 
 .. csv-table::  SVI_Definition - ITFC tab
@@ -41,7 +41,7 @@ description of all table elements is provided below.
 HOST
 """""""""
 
-An *HOST* variable can READ/WRITE data to an *ITFC* variable, but cannot be transmitted to *SUBMODEL* variables.
+A *HOST* variable can READ/WRITE data to an *ITFC* variable, but cannot be transmitted to *SUBMODEL* variables.
 
 *HOST* variables serve various purposes, including:
 
