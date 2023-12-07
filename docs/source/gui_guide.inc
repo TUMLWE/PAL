@@ -62,7 +62,7 @@ test *ITFC* data and *HOST* data, which is of course not physical but purely int
 An example of the GUI for the example project "met_mast_reader" is shown in :numref:`paltest`.
 
 .. figure:: images/paltest.png
-   :width: 1000
+   :width: 800
    :name: paltest
 
    Test tab
