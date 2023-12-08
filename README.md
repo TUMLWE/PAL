@@ -1,6 +1,6 @@
 ---
 title: >-
-PAL &#150 User Guide
+PAL - User Guide
 
 authors:
   - name: Carlo R Sucameli
