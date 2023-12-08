@@ -88,7 +88,7 @@ classdef test_framework < handle
                     
                     outlist = [outlist ; {var.TagName}];
 
-                    if strcmpi(var.Action, 'read')
+                    if ~isempty(var.parent_SubVar) && strcmpi(var.Action, 'read')
 
                         var.test_outputs.itfc_var_th = var.find_parent_th();
                         nElem = size(var.test_outputs.itfc_var_th,1);

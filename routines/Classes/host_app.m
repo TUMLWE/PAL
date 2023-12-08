@@ -196,7 +196,7 @@ classdef host_app < handle
                 var.test_outputs.hostvar_th = yh(idx);
                 
 
-                if strcmpi(var.Action,'read')
+                if  ~isempty(var.parent_SubVar) && strcmpi(var.Action,'read')
                     yi = var.test_outputs.itfc_var_th;
                     xi = var.test_outputs.itfc_var_timestamp - delay;
                     

@@ -301,7 +301,7 @@ classdef submodel < handle
                 end
                 
 
-                yh = var.parent.test_outputs.hostvar_th;
+                yh = double(var.parent.test_outputs.hostvar_th);
                 xh = var.parent.test_outputs.hostvar_timestamp;
 
                 if isempty(ref_x) || isequal(ref_x, xh) 

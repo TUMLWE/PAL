@@ -153,13 +153,13 @@ classdef host_variable < handle
 
             pp = obj.parent;
 
-            if strcmpi(class(obj.parent_SubVar),'string') % if it is a struct
+            if ~isempty(obj.parent_SubVar) && strcmpi(class(obj.parent_SubVar),'string') % if it is a struct
 
 
              out_th = pp.time_hist.(obj.parent_SubVar);
             
 
-            elseif strcmpi(class(obj.parent_SubVar),'double') % if it is an array
+            elseif  ~isempty(obj.parent_SubVar) && strcmpi(class(obj.parent_SubVar),'double') % if it is an array
 
              out_th = pp.time_hist(:, obj.parent_SubVar);
 
