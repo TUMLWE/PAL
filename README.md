@@ -1,3 +1,13 @@
+---
+title: >-
+PAL  - User Guide
+
+authors:
+  - name: Carlo R Sucameli
+    affiliation: Lehrstuhl für Windenergie, Technische Universität München
+
+---
+
 # PAL  - User Guide
 
 ## Introduction
