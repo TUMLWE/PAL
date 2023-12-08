@@ -1,6 +1,6 @@
 ---
 title: >-
-PAL \- User Guide
+PAL &#150 User Guide
 
 authors:
   - name: Carlo R Sucameli
@@ -10,7 +10,7 @@ affiliations:
    index: 1
 ---
 
-# PAL  - User Guide
+# PAL - User Guide
 
 ## Introduction
 
