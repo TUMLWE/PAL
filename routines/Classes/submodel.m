@@ -318,6 +318,8 @@ classdef submodel < handle
                 host_app{var.PortNumber} = var.parent_App;
             end
 
+            
+        if exist('host_freq') == 1
             if ~strcmpi(host_freq{1},'fast') && length(unique(host_freq))~=1
                 warning(['Reference time for submodel %s is set to %s. This could causes potential downsampling \n' ... 
                     ' for the fast entries of submodel. If this is not an issue, proceed'], obj.modelTag, host_freq{1})
@@ -327,6 +329,20 @@ classdef submodel < handle
 
             end
 
+
+
+        else  % In this case, it means that the simulink model has no inputs, so we can just run the model with the host outputs for the status app
+                warning(['Warning: could not find inputs for submodel %s'], obj.modelTag)
+
+                host_freq{1} = 'fast';
+                host_app{1} = var.parent_App;
+
+                yh = double(var.parent.test_outputs.hostvar_th);
+%                 xh = var.parent.test_outputs.hostvar_timestamp;
+                
+                u(:,1) = yh;
+
+        end
 
 %             if length(unique(host_freq))~=1 % CRS 20231019, at the moment, only a single output_freq must be specified for all inputs
 %                 warning('Cannot run Simulink model %s, host input variables do not all have the same output_freq!!', obj.modelTag)
